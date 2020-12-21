@@ -1,5 +1,5 @@
 {
-  "name": "fii-js-core",
+  "name": "@flc-ds/fii-js-core",
   "version": "0.0.1",
   "description": "",
   "jsnext:main": "dist/index.es.js",
