@@ -1,24 +1,18 @@
 {
+  "parser": "babel-eslint",
   "extends": [
-    "react-app",
     "plugin:prettier/recommended",
-    "prettier/react",
-    "prettier/standard",
-    "plugin:jsx-a11y/recommended"
+    "prettier/standard"
   ],
-  "plugins": ["jsx-a11y", "prettier"],
+  "plugins": ["prettier"],
   "settings": {
     "import/resolver": {
       "node": {
         "moduleDirectory": ["node_modules", "./lib", "./docs"]
       }
-    },
-    "react": {
-      "version": "detect"
     }
   },
   "rules": {
-    "jsx-a11y/click-events-have-key-events": 0,
     "prettier/prettier": ["error", { "printWidth": 120 }],
     "array-bracket-spacing": ["error", "never"],
     "semi": ["error", "always"],
