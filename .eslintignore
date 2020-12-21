@@ -1,0 +1,10 @@
+.git
+.npmrc
+build
+dist
+node_modules
+scripts
+.storybook
+/components
+/enums
+/modules

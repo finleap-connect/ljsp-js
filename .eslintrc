@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["jsx-a11y", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "./lib", "./docs"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "jsx-a11y/click-events-have-key-events": 0,
+    "prettier/prettier": ["error", { "printWidth": 120 }],
+    "array-bracket-spacing": ["error", "never"],
+    "semi": ["error", "always"],
+    "no-restricted-globals": 0
+  }
+}
