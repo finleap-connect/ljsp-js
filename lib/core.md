@@ -135,17 +135,17 @@ console.log(
 
 ### areDistinct
 
-Returns true if no two of the arguments are ===. Uses JS' 
-`SameValueZero` comparison. Does `not` deeply compare reference 
+Returns true if no two of the arguments are ===. Uses JS'
+`SameValueZero` comparison. Does `not` deeply compare reference
 variables, instead compares them by reference.
 
 ```javascript
 import { areDistinct } from "lib/core";
 
-console.log(areDistinct(2, 4, 7))
+console.log(areDistinct(2, 4, 7));
 // true
 
-console.log(areDistinct(2, 4, 7, 4))
+console.log(areDistinct(2, 4, 7, 4));
 // false
 ```
 
@@ -369,7 +369,7 @@ value of `predicate`, if not, yields `else`.
 ```javascript
 import { ifSome } from "lib/core";
 
-console.log(ifSome("true", (val)=> val, "nope"))
+console.log(ifSome("true", (val) => val, "nope"));
 // "true"
 ```
 
@@ -536,12 +536,16 @@ argument that triggers a logical false result against the original predicates.
 ```javascript
 import { everyPred } from "lib/core";
 
-const isGtZeroIntMultipleTwo = everyPred((a) => Number.isInteger(a), (a) => a > 0, (a) => a % 2 === 0)
+const isGtZeroIntMultipleTwo = everyPred(
+  (a) => Number.isInteger(a),
+  (a) => a > 0,
+  (a) => a % 2 === 0
+);
 
-console.log(isGtZeroIntMultipleTwo(2, 4, 6))
+console.log(isGtZeroIntMultipleTwo(2, 4, 6));
 //true
 
-console.log(isGtZeroIntMultipleTwo(2, 4, 7))
+console.log(isGtZeroIntMultipleTwo(2, 4, 7));
 // false
 ```
 
@@ -747,7 +751,6 @@ console.log(result);
 - `set` | `Array`
 - `groupSize` | `number`
 
-
 ### dissoc
 
 dissoc[iate]. Returns a new map of the same (hashed/sorted) type,
@@ -756,7 +759,7 @@ that does not contain a mapping for key(s).
 ```javascript
 import { dissoc } from "lib/core";
 
-console.log(dissoc({1:1, 2:2, 3:3}, "1", "3"))
+console.log(dissoc({ 1: 1, 2: 2, 3: 3 }, "1", "3"));
 // { 2: 2 }
 ```
 
@@ -764,3 +767,36 @@ console.log(dissoc({1:1, 2:2, 3:3}, "1", "3"))
 
 - `set` | `Array`
 - `groupSize` | `number`
+
+### reduceKv
+
+Reduces an associative collection. `f` should be a function of 3
+arguments. Returns the result of applying `f` to `init`, the first `key`
+and the first `value` in `coll`, then applying `f` to that result and the
+2nd `key` and `value`, etc. If `coll` contains no entries, returns `init`
+and `f` is not called. Note that `reduce-kv` is supported on `Arrays`,
+where the `keys` will be the `ordinals`.
+
+```javascript
+import { reduceKv } from "lib/core";
+
+function flipKv(acc, key, value) {
+  acc[value] = key;
+  return acc;
+}
+
+const map = { one: "count", bob: "name", leipzig: "city" };
+
+console.log(reduceKv(flipKv, {}, map));
+// {
+//   city: "leipzig",
+//   count: "one",
+//   name: "bob"
+// }
+```
+
+#### Parameters
+
+- `map` | `Array | Object`
+- `key` | `string`
+- `value` | `*`
