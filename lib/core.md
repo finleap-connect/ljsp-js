@@ -858,3 +858,39 @@ console.log(selectKeys({ one: 1, two: 2, three: 3 }, ["one", "two"]));
 
 - `map` | `Object`
 - `keys` | `Array<string>`
+
+### interleave
+
+Returns `undefined` if passed no values, `coll` if passed only one coll,
+otherwise returns a `coll` of the first item in each `coll`, then the second etc.
+
+```javascript
+import { interleave } from "lib/core";
+
+console.log(interleave([1,2,3,4], ["a", "b", "c"]))
+// [1, "a", 2, "b", 3, "c"]
+
+// stops at the shortest array in the set
+console.log(interleave([1,2,3,4], ["a", "b", "c", "d"], ["nine", "eight"]));
+// [1, "a", "nine", 2, "b", "eight"]
+
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists. 
+
+### minLenList
+
+Returns the list in a list of lists that has the shortest length.
+
+```javascript
+import { minLenList } from "lib/core";
+
+console.log(minLenList([1,2,3,4], ["a", "b", "c"], [1, 2]))
+// [1, 2]
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists. 
