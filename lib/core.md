@@ -801,7 +801,6 @@ console.log(reduceKv(flipKv, {}, map));
 - `key` | `string`
 - `value` | `*`
 
-
 ### listInsert
 
 The `listInsert` function is an immutable alternative to the
@@ -812,16 +811,50 @@ are also more semantic and provide named parameters to improve readability.
 ```javascript
 import { listInsertBefore, listInsertAfter } from "lib/core";
 
-console.log(listInsertBefore({source: [1,2,3,4], insert: 5, locator: 3}))
+console.log(listInsertBefore({ source: [1, 2, 3, 4], insert: 5, locator: 3 }));
 // [1, 2, 5, 3, 4]
 
-console.log(listInsertAfter({source: [1,2,3,4], insert: 5, locator: 3}))
+console.log(listInsertAfter({ source: [1, 2, 3, 4], insert: 5, locator: 3 }));
 // [1, 2, 3, 5, 4]
-
 ```
 
 #### Parameters
 
-- `map` | `Array | Object`
-- `key` | `string`
-- `value` | `*`
+- `source` | `Array`
+- `insert` | `*`
+- `locator` | `*`
+
+### makeArray
+
+Given an element `n`, returns an array of `n`. If `n` is already an Array,
+returns `n`.
+
+```javascript
+import { makeArray } from "lib/core";
+
+console.log(makeArray(3));
+// [3]
+
+console.log(makeArray([1, 2, 3, 4]));
+// [1, 2, 3, 4]
+```
+
+#### Parameters
+
+- `item` | `*`
+
+### selectKeys
+
+Returns a map containing only those entries in map whose key is in keys.
+
+```javascript
+import { selectKeys } from "lib/core";
+
+console.log(selectKeys({ one: 1, two: 2, three: 3 }, ["one", "two"]));
+// { one: 1, two: 2 }
+```
+
+#### Parameters
+
+- `map` | `Object`
+- `keys` | `Array<string>`
