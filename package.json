@@ -1,8 +1,8 @@
 {
   "name": "@flc-ds/fii-js-core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
-  "jsnext:main": "dist/index.es.js",
+  "jsnext:main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
