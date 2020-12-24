@@ -800,3 +800,28 @@ console.log(reduceKv(flipKv, {}, map));
 - `map` | `Array | Object`
 - `key` | `string`
 - `value` | `*`
+
+
+### listInsert
+
+The `listInsert` function is an immutable alternative to the
+`Array.prototype.splice` method, which mutates the array in place.
+This function, and its implementors (`listInsertBefore`, and `listInsertAfter`),
+are also more semantic and provide named parameters to improve readability.
+
+```javascript
+import { listInsertBefore, listInsertAfter } from "lib/core";
+
+console.log(listInsertBefore({source: [1,2,3,4], insert: 5, locator: 3}))
+// [1, 2, 5, 3, 4]
+
+console.log(listInsertAfter({source: [1,2,3,4], insert: 5, locator: 3}))
+// [1, 2, 3, 5, 4]
+
+```
+
+#### Parameters
+
+- `map` | `Array | Object`
+- `key` | `string`
+- `value` | `*`
