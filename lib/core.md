@@ -894,3 +894,30 @@ console.log(minLenList([1,2,3,4], ["a", "b", "c"], [1, 2]))
 #### Parameters
 
 - `lists` A variadic set of lists. 
+
+
+## Function Functions
+
+### juxt
+
+Takes a set of functions and returns a fn that is the juxtaposition
+of those fns. The returned fn takes a variable number of args (each 
+function passed to `juxt` must take the same number of args. When
+calling the function returned by `juxt`, you must match this variadicity), 
+and returns an Array containing the result of applying each fn to the
+args (left-to-right).
+
+((juxt a b c) x) => [(a x) (b x) (c x)]
+
+```javascript
+import { juxt } from "lib/core";
+
+const test = juxt((n) => n* 2, (n) => n +1);
+
+console.log(test(3))
+// [6, 4]
+```
+
+#### Parameters
+
+- `args` | `Function` Variadic. One or more functions.
