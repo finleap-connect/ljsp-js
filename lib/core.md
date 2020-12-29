@@ -933,6 +933,8 @@ nested objects.
 ```javascript
 import { swap, conj } from "@flc-ds/fii-js-core";
 
+const obj = { one: 1, two: { abe: "eff" } };
+
 console.log(swap(obj, conj, { three: "test"}, { four: "four"}))
 /*
  * {
