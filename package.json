@@ -1,6 +1,6 @@
 {
   "name": "@flc-ds/fii-js-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "jsnext:main": "dist/index.js",
   "main": "dist/index.js",
@@ -17,8 +17,9 @@
     "commit": "run-s add-files commitizen",
     "add-files": "git add .",
     "commitizen": "git-cz",
-    "prettify:all": "run-s pretty:ts pretty:js",
-    "pretty:js": "npx prettier --write \"**/*.js*\""
+    "prettify:all": "prettier --write \"**/*.js*\"",
+    "story": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "",
@@ -55,8 +56,13 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-url": "^5.0.1",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/react": "^6.1.11",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^7.1.5",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.12.0",
