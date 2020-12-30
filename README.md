@@ -1,9 +1,73 @@
-# FII JS Core 
+# FII JS Core
 
-[![version][version-badge]][CHANGELOG]
+[![version][version-badge]][changelog]
 
-[CHANGELOG]: CHANGELOG.md
+[changelog]: CHANGELOG.md
 [version-badge]: https://img.shields.io/badge/version-0.1.0-blue.svg
+
+  * [Getting Started](#getting-started)
+    + [Prerequisites](#prerequisites)
+    + [Coding Standards](#coding-standards)
+    + [Submission Guidelines](#submission-guidelines)
+- [Core](#core)
+  * [String Functions](#string-functions)
+    + [str](#str)
+         + [strSpace](#strspace)
+         + [toPath](#topath)
+       * [Generic Functions](#generic-functions)
+    + [eq](#eq)
+         + [deepEq](#deepeq)
+         + [doWork](#dowork)
+         + [areDistinct](#aredistinct)
+       * [Math Functions](#math-functions)
+    + [add](#add)
+         + [sub](#sub)
+         + [mult](#mult)
+         + [div](#div)
+         + [quot](#quot)
+         + [remain](#remain)
+         + [mod](#mod)
+         + [inc](#inc)
+         + [dec](#dec)
+       * [Conditional Functions](#conditional-functions)
+    + [iff](#iff)
+         + [ifSome](#ifsome)
+         + [ifYes](#ifyes)
+         + [ifNo](#ifno)
+         + [ifClass](#ifclass)
+         + [when](#when)
+         + [whenNot](#whennot)
+         + [cond](#cond)
+         + [everyPred](#everypred)
+       * [List/Set Functions](#list-set-functions)
+    + [findInSetById](#findinsetbyid)
+         + [removeFromSetById](#removefromsetbyid)
+         + [updateSet](#updateset)
+         + [getSectionFromSet](#getsectionfromset)
+         + [rightDiff](#rightdiff)
+         + [leftDiff](#leftdiff)
+         + [part](#part)
+         + [conj](#conj)
+         + [dissoc](#dissoc)
+         + [reduceKv](#reducekv)
+         + [listInsert](#listinsert)
+         + [makeArray](#makearray)
+         + [selectKeys](#selectkeys)
+         + [interleave](#interleave)
+         + [minLenList](#minlenlist)
+       * [Function Functions](#function-functions)
+    + [juxt](#juxt)
+       * [Object Functions](#object-functions)
+    + [swap](#swap)
+         + [updateIn](#updatein)
+         + [addWatch](#addwatch)
+         + [removeWatch](#removewatch)
+       * [Validation](#validation)
+    + [isPositiveInt](#ispositiveint)
+         + [isNonNegativeInt](#isnonnegativeint)
+       * [Spec](#spec)
+- [Branching Flow](#branching-flow)
+- [Deployment](#deployment)
 
 ## Getting Started
 
@@ -21,7 +85,6 @@ Please see our coding standards, here, for more information [Coding Standards](h
 ### Submission Guidelines
 
 See the CONTRIBUTING.md
-
 
 # Core
 
@@ -1021,6 +1084,87 @@ console.log(updateIn(base, ["a", "b"], add, 10));
 - `rest` | `*` Variadic. Any number of additional arguments to pass to the
   update function.
 
+### addWatch
+
+Adds a watch function to an object. The watch
+fn must be a fn of 4 args: a key, the object, its old-state, its
+new-state. Whenever the reference's state changes,
+any registered watches will have their functions called.
+Keys must be unique per reference, and can be used to remove
+the watch with remove-watch, but are otherwise considered opaque by
+the watch mechanism. Adds a non-writable, non-enumerable property
+`___watcher` to the object. This property is used internally by
+`core` to maintain the watched state of an object across immutable
+updates.
+
+```javascript
+import { addWatch } from "@flc-ds/fii-js-core";
+
+const ferret = { one: 1, two: 2, three: 3 };
+
+const watchedFerret = addWatch(ferret, "two", (key, object, oldState, newState) => {
+  console.log(`"ferret updated: ${key}, ${oldState} - ${newState}"`);
+});
+
+swap(watchedFerret, (ferret) => {
+  ferret.two = 42;
+  return ferret;
+});
+// ferret updated: two, 22 - 42\""
+```
+
+#### Parameters
+
+- `map` | `Object` An object to update. Works with nested objects.
+- `updatePath` | `Array` An Array where the order of the values correspond
+  to nested levels in the object. For example, in the example above, the nested
+  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
+  so: `["a", "b"]`
+- `fn` | `Function` An update function. The function receives the `map` and
+  (optionally) any additional arguments passed to `updateIn`.
+- `rest` | `*` Variadic. Any number of additional arguments to pass to the
+  update function.
+
+### removeWatch
+
+Removes a watch (set by add-watch) from an object.
+
+```javascript
+import { removeWatch } from "@flc-ds/fii-js-core";
+
+const ferret = { one: 1, two: 2, three: 3 };
+
+const watchedFerret = addWatch(ferret, "two", (key, object, oldState, newState) => {
+  console.log(`"ferret updated: ${key}, ${oldState} - ${newState}"`);
+});
+
+swap(watchedFerret, (ferret) => {
+  ferret.two = 42;
+  return ferret;
+});
+// ferret updated: two, 22 - 42\""
+
+removeWatch(watchedFerret, "two")
+
+swap(watchedFerret, (ferret) => {
+  ferret.two = 42;
+  return ferret;
+});
+// Nothing...
+```
+
+#### Parameters
+
+- `map` | `Object` An object to update. Works with nested objects.
+- `updatePath` | `Array` An Array where the order of the values correspond
+  to nested levels in the object. For example, in the example above, the nested
+  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
+  so: `["a", "b"]`
+- `fn` | `Function` An update function. The function receives the `map` and
+  (optionally) any additional arguments passed to `updateIn`.
+- `rest` | `*` Variadic. Any number of additional arguments to pass to the
+  update function.
+
 ## Validation
 
 ### isPositiveInt
@@ -1096,14 +1240,12 @@ Supplied as an object with the following properties:
 - `func` | `String` The name of the function.
 - `spec` | `Object` An object, as described above.
 
-
-
 ##### Branching Flow
+
 We use the Release Flow methodology for our branching and release flow. For details, see
 
 [Release Flow](https://finleap-connect.atlassian.net/wiki/spaces/DS/pages/2302967817/FE+Application+Release+Process)
 
-## Deployment
+# Deployment
 
 Deployment is handled by GitLab; for details see the `.gitlab-ci.yml`.
-
