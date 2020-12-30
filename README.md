@@ -10,17 +10,17 @@
     + [Coding Standards](#coding-standards)
     + [Submission Guidelines](#submission-guidelines)
 - [Core](#core)
-  * [String Functions](#string-functions)
-    + [str](#str)
+    * [String Functions](#string-functions)
+         + [str](#str)
          + [strSpace](#strspace)
          + [toPath](#topath)
-       * [Generic Functions](#generic-functions)
-    + [eq](#eq)
+    * [Generic Functions](#generic-functions)
+         + [eq](#eq)
          + [deepEq](#deepeq)
          + [doWork](#dowork)
          + [areDistinct](#aredistinct)
-       * [Math Functions](#math-functions)
-    + [add](#add)
+    * [Math Functions](#math-functions)
+         + [add](#add)
          + [sub](#sub)
          + [mult](#mult)
          + [div](#div)
@@ -29,8 +29,8 @@
          + [mod](#mod)
          + [inc](#inc)
          + [dec](#dec)
-       * [Conditional Functions](#conditional-functions)
-    + [iff](#iff)
+    * [Conditional Functions](#conditional-functions)
+         + [iff](#iff)
          + [ifSome](#ifsome)
          + [ifYes](#ifyes)
          + [ifNo](#ifno)
@@ -39,8 +39,8 @@
          + [whenNot](#whennot)
          + [cond](#cond)
          + [everyPred](#everypred)
-       * [List/Set Functions](#list-set-functions)
-    + [findInSetById](#findinsetbyid)
+    * [List/Set Functions](#list-set-functions)
+         + [findInSetById](#findinsetbyid)
          + [removeFromSetById](#removefromsetbyid)
          + [updateSet](#updateset)
          + [getSectionFromSet](#getsectionfromset)
@@ -55,17 +55,18 @@
          + [selectKeys](#selectkeys)
          + [interleave](#interleave)
          + [minLenList](#minlenlist)
-       * [Function Functions](#function-functions)
-    + [juxt](#juxt)
-       * [Object Functions](#object-functions)
-    + [swap](#swap)
+         + [subset](#subset)
+    * [Function Functions](#function-functions)
+         + [juxt](#juxt)
+    * [Object Functions](#object-functions)
+         + [swap](#swap)
          + [updateIn](#updatein)
          + [addWatch](#addwatch)
          + [removeWatch](#removewatch)
-       * [Validation](#validation)
-    + [isPositiveInt](#ispositiveint)
+    * [Validation](#validation)
+         + [isPositiveInt](#ispositiveint)
          + [isNonNegativeInt](#isnonnegativeint)
-       * [Spec](#spec)
+    * [Spec](#spec)
 - [Branching Flow](#branching-flow)
 - [Deployment](#deployment)
 
@@ -976,6 +977,24 @@ import { minLenList } from "@flc-ds/fii-js-core";
 
 console.log(minLenList([1, 2, 3, 4], ["a", "b", "c"], [1, 2]));
 // [1, 2]
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists.
+
+### subset
+
+Is set1 a subset of set2?
+
+```javascript
+import { subset } from "@flc-ds/fii-js-core";
+
+console.log(subset([1,2,3,4], [1,2,3]))
+// true
+
+console.log(subset([1,2,3,4], [7,8,9]))
+// false 
 ```
 
 #### Parameters
