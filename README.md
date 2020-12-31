@@ -39,7 +39,7 @@
          + [whenNot](#whennot)
          + [cond](#cond)
          + [everyPred](#everypred)
-    * [List/Set Functions](#list-set-functions)
+    * [List Functions](#list-functions)
          + [findInSetById](#findinsetbyid)
          + [removeFromSetById](#removefromsetbyid)
          + [updateSet](#updateset)
@@ -56,6 +56,7 @@
          + [interleave](#interleave)
          + [minLenList](#minlenlist)
          + [subset](#subset)
+         + [into](#into)
     * [Function Functions](#function-functions)
          + [juxt](#juxt)
     * [Object Functions](#object-functions)
@@ -649,7 +650,7 @@ or expressions. If functions, they are lazily evaluated. If expressions,
 then all the expressions are evaluated, as expected, when they are passed
 into `cond`.
 
-## List/Set Functions
+## List Functions
 
 ### findInSetById
 
@@ -995,6 +996,34 @@ console.log(subset([1,2,3,4], [1,2,3]))
 
 console.log(subset([1,2,3,4], [7,8,9]))
 // false 
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists.
+
+### into
+
+Returns a new coll consisting of `to`-coll with all of the items of
+`from`-coll conjoined. A transformation function may be supplied.
+
+```javascript
+import { into } from "@flc-ds/fii-js-core";
+
+console.log(into());
+// []
+console.log(into([1, 2, 3]));
+// [1, 2, 3]
+console.log(into([0], [1, 2, 3]));
+// [0, 1, 2, 3]
+
+/* With Transformation function */
+function sum(set) {
+  return set.map((item) => item + 1)
+}
+
+console.log(into([0], sum, [1, 2, 3]));
+// [0, 2, 3, 4]
 ```
 
 #### Parameters
