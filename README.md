@@ -57,7 +57,8 @@
          + [minLenList](#minlenlist)
          + [subset](#subset)
          + [into](#into)
-         + [frequencies](#frequencies)      
+         + [frequencies](#frequencies)
+         + [rest](#rest)
     * [Function Functions](#function-functions)
          + [juxt](#juxt)
     * [Object Functions](#object-functions)
@@ -1047,6 +1048,24 @@ console.log(frequencies([1,2,1,2,3,43,3,2,3]))
  *  43: 1
  *}
  */
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists.
+
+### rest
+
+Returns a possibly empty Array of the items after the first.
+
+```javascript
+import { rest } from "@flc-ds/fii-js-core";
+
+console.log(rest([1,2,3,4,5]));
+// [2, 3, 4, 5]
+
+console.log(rest([1]))
+// []
 ```
 
 #### Parameters
