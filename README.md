@@ -57,6 +57,7 @@
          + [minLenList](#minlenlist)
          + [subset](#subset)
          + [into](#into)
+         + [frequencies](#frequencies)      
     * [Function Functions](#function-functions)
          + [juxt](#juxt)
     * [Object Functions](#object-functions)
@@ -1024,6 +1025,28 @@ function sum(set) {
 
 console.log(into([0], sum, [1, 2, 3]));
 // [0, 2, 3, 4]
+```
+
+#### Parameters
+
+- `lists` A variadic set of lists.
+
+### frequencies
+
+Returns a map from distinct items in coll to the number of times
+they appear.
+
+```javascript
+import { frequencies } from "@flc-ds/fii-js-core";
+
+console.log(frequencies([1,2,1,2,3,43,3,2,3]))
+/* {
+ *  1: 2,
+ *  2: 3,
+ *  3: 3,
+ *  43: 1
+ *}
+ */
 ```
 
 #### Parameters
