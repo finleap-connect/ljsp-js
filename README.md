@@ -59,6 +59,7 @@
          + [into](#into)
          + [frequencies](#frequencies)
          + [rest](#rest)
+         + [cons](#cons)
     * [Function Functions](#function-functions)
          + [juxt](#juxt)
     * [Object Functions](#object-functions)
@@ -1052,7 +1053,7 @@ console.log(frequencies([1,2,1,2,3,43,3,2,3]))
 
 #### Parameters
 
-- `lists` A variadic set of lists.
+- `set` An Array.
 
 ### rest
 
@@ -1070,7 +1071,26 @@ console.log(rest([1]))
 
 #### Parameters
 
-- `lists` A variadic set of lists.
+- `set` An Array.
+
+### cons
+
+Returns a new Array where `item` is the first element and `array` is
+the rest.
+
+```javascript
+import { cons } from "@flc-ds/fii-js-core";
+
+console.log(cons(1, [4, 5, 6]))
+// [1, 4, 5, 6]
+
+console.log(cons([1,2,3], [4, 5, 6]))
+// [[1, 2, 3], 4, 5, 6]
+```
+
+#### Parameters
+
+- `set` An Array.
 
 ## Function Functions
 
