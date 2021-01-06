@@ -60,6 +60,7 @@
          + [frequencies](#frequencies)
          + [rest](#rest)
          + [cons](#cons)
+         + [sort](#sort)
     * [Function Functions](#function-functions)
          + [juxt](#juxt)
     * [Object Functions](#object-functions)
@@ -1086,6 +1087,32 @@ console.log(cons(1, [4, 5, 6]))
 
 console.log(cons([1,2,3], [4, 5, 6]))
 // [[1, 2, 3], 4, 5, 6]
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### sort
+
+Returns a sorted sequence of the items in Array. If no comparator is
+supplied, uses default sort. Immutable . Returns a sorted copy of the 
+Array.
+
+```javascript
+import { sort } from "@flc-ds/fii-js-core";
+
+console.log(sort([1,4,3,5,7]));
+// [1, 3, 4, 5, 7]
+
+var items = ['réservé', 'premier', 'communiqué', 'café', 'adieu', 'éclair'];
+
+function sortAccent (a, b) {
+  return a.localeCompare(b);
+}
+
+console.log(sort(sortAccent, items));
+// ["adieu", "café", "communiqué", "éclair", "premier", "réservé"]
 ```
 
 #### Parameters
