@@ -186,6 +186,26 @@ console.log(eq(age, day, amount));
 
 - `...Primitive` | Variable number of primitive values
 
+### notEq
+
+Equality. Returns true if x is not equal to y, false if true. Uses JavaScripts `===`,
+`SameValueZero` comparison.
+
+```javascript
+import { notEq } from "@flc-ds/fii-js-core";
+
+const age = 12;
+const day = 12;
+const amount = 12;
+
+console.log(notEq(age, day, amount));
+// false
+```
+
+#### Parameters
+
+- `...Primitive` | Variable number of primitive values
+
 ### deepEq
 
 Equality. Performs a deep comparison between two values to determine if they are equivalent.
