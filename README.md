@@ -5,75 +5,76 @@
 [changelog]: CHANGELOG.md
 [version-badge]: https://img.shields.io/badge/version-0.1.0-blue.svg
 
-  * [Getting Started](#getting-started)
-    + [Prerequisites](#prerequisites)
-    + [Coding Standards](#coding-standards)
-    + [Submission Guidelines](#submission-guidelines)
-- [Core](#core)
-    * [String Functions](#string-functions)
-         + [str](#str)
-         + [strSpace](#strspace)
-         + [toPath](#topath)
-    * [Generic Functions](#generic-functions)
-         + [eq](#eq)
-         + [deepEq](#deepeq)
-         + [doWork](#dowork)
-         + [areDistinct](#aredistinct)
-    * [Math Functions](#math-functions)
-         + [add](#add)
-         + [sub](#sub)
-         + [mult](#mult)
-         + [div](#div)
-         + [quot](#quot)
-         + [remain](#remain)
-         + [mod](#mod)
-         + [inc](#inc)
-         + [dec](#dec)
-    * [Conditional Functions](#conditional-functions)
-         + [iff](#iff)
-         + [ifSome](#ifsome)
-         + [ifYes](#ifyes)
-         + [ifNo](#ifno)
-         + [ifClass](#ifclass)
-         + [when](#when)
-         + [whenNot](#whennot)
-         + [cond](#cond)
-         + [everyPred](#everypred)
-    * [List Functions](#list-functions)
-         + [findInSetById](#findinsetbyid)
-         + [removeFromSetById](#removefromsetbyid)
-         + [updateSet](#updateset)
-         + [getSectionFromSet](#getsectionfromset)
-         + [rightDiff](#rightdiff)
-         + [leftDiff](#leftdiff)
-         + [part](#part)
-         + [conj](#conj)
-         + [dissoc](#dissoc)
-         + [reduceKv](#reducekv)
-         + [listInsert](#listinsert)
-         + [makeArray](#makearray)
-         + [selectKeys](#selectkeys)
-         + [interleave](#interleave)
-         + [minLenList](#minlenlist)
-         + [subset](#subset)
-         + [into](#into)
-         + [frequencies](#frequencies)
-         + [rest](#rest)
-         + [cons](#cons)
-         + [sort](#sort)
-    * [Function Functions](#function-functions)
-         + [juxt](#juxt)
-    * [Object Functions](#object-functions)
-         + [swap](#swap)
-         + [updateIn](#updatein)
-         + [addWatch](#addwatch)
-         + [removeWatch](#removewatch)
-    * [Validation](#validation)
-         + [isPositiveInt](#ispositiveint)
-         + [isNonNegativeInt](#isnonnegativeint)
-    * [Spec](#spec)
-- [Branching Flow](#branching-flow)
-- [Deployment](#deployment)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Coding Standards](#coding-standards)
+  - [Submission Guidelines](#submission-guidelines)
+
+* [Core](#core)
+  - [String Functions](#string-functions)
+    - [str](#str)
+    - [strSpace](#strspace)
+    - [toPath](#topath)
+  - [Generic Functions](#generic-functions)
+    - [eq](#eq)
+    - [deepEq](#deepeq)
+    - [doWork](#dowork)
+    - [areDistinct](#aredistinct)
+  - [Math Functions](#math-functions)
+    - [add](#add)
+    - [sub](#sub)
+    - [mult](#mult)
+    - [div](#div)
+    - [quot](#quot)
+    - [remain](#remain)
+    - [mod](#mod)
+    - [inc](#inc)
+    - [dec](#dec)
+  - [Conditional Functions](#conditional-functions)
+    - [iff](#iff)
+    - [ifSome](#ifsome)
+    - [ifYes](#ifyes)
+    - [ifNo](#ifno)
+    - [ifClass](#ifclass)
+    - [when](#when)
+    - [whenNot](#whennot)
+    - [cond](#cond)
+    - [everyPred](#everypred)
+  - [List Functions](#list-functions)
+    - [findInSetById](#findinsetbyid)
+    - [removeFromSetById](#removefromsetbyid)
+    - [updateSet](#updateset)
+    - [getSectionFromSet](#getsectionfromset)
+    - [rightDiff](#rightdiff)
+    - [leftDiff](#leftdiff)
+    - [part](#part)
+    - [conj](#conj)
+    - [dissoc](#dissoc)
+    - [reduceKv](#reducekv)
+    - [listInsert](#listinsert)
+    - [makeArray](#makearray)
+    - [selectKeys](#selectkeys)
+    - [interleave](#interleave)
+    - [minLenList](#minlenlist)
+    - [subset](#subset)
+    - [into](#into)
+    - [frequencies](#frequencies)
+    - [rest](#rest)
+    - [cons](#cons)
+    - [sort](#sort)
+  - [Function Functions](#function-functions)
+    - [juxt](#juxt)
+  - [Object Functions](#object-functions)
+    - [swap](#swap)
+    - [updateIn](#updatein)
+    - [addWatch](#addwatch)
+    - [removeWatch](#removewatch)
+  - [Validation](#validation)
+    - [isPositiveInt](#ispositiveint)
+    - [isNonNegativeInt](#isnonnegativeint)
+  - [Spec](#spec)
+* [Branching Flow](#branching-flow)
+* [Deployment](#deployment)
 
 ## Getting Started
 
@@ -1015,11 +1016,11 @@ Is set1 a subset of set2?
 ```javascript
 import { subset } from "@flc-ds/fii-js-core";
 
-console.log(subset([1,2,3,4], [1,2,3]))
+console.log(subset([1, 2, 3, 4], [1, 2, 3]));
 // true
 
-console.log(subset([1,2,3,4], [7,8,9]))
-// false 
+console.log(subset([1, 2, 3, 4], [7, 8, 9]));
+// false
 ```
 
 #### Parameters
@@ -1043,7 +1044,7 @@ console.log(into([0], [1, 2, 3]));
 
 /* With Transformation function */
 function sum(set) {
-  return set.map((item) => item + 1)
+  return set.map((item) => item + 1);
 }
 
 console.log(into([0], sum, [1, 2, 3]));
@@ -1062,7 +1063,7 @@ they appear.
 ```javascript
 import { frequencies } from "@flc-ds/fii-js-core";
 
-console.log(frequencies([1,2,1,2,3,43,3,2,3]))
+console.log(frequencies([1, 2, 1, 2, 3, 43, 3, 2, 3]));
 /* {
  *  1: 2,
  *  2: 3,
@@ -1083,10 +1084,10 @@ Returns a possibly empty Array of the items after the first.
 ```javascript
 import { rest } from "@flc-ds/fii-js-core";
 
-console.log(rest([1,2,3,4,5]));
+console.log(rest([1, 2, 3, 4, 5]));
 // [2, 3, 4, 5]
 
-console.log(rest([1]))
+console.log(rest([1]));
 // []
 ```
 
@@ -1102,10 +1103,10 @@ the rest.
 ```javascript
 import { cons } from "@flc-ds/fii-js-core";
 
-console.log(cons(1, [4, 5, 6]))
+console.log(cons(1, [4, 5, 6]));
 // [1, 4, 5, 6]
 
-console.log(cons([1,2,3], [4, 5, 6]))
+console.log(cons([1, 2, 3], [4, 5, 6]));
 // [[1, 2, 3], 4, 5, 6]
 ```
 
@@ -1116,23 +1117,74 @@ console.log(cons([1,2,3], [4, 5, 6]))
 ### sort
 
 Returns a sorted sequence of the items in Array. If no comparator is
-supplied, uses default sort. Immutable . Returns a sorted copy of the 
+supplied, uses default sort. Immutable . Returns a sorted copy of the
 Array.
 
 ```javascript
 import { sort } from "@flc-ds/fii-js-core";
 
-console.log(sort([1,4,3,5,7]));
+console.log(sort([1, 4, 3, 5, 7]));
 // [1, 3, 4, 5, 7]
 
-var items = ['réservé', 'premier', 'communiqué', 'café', 'adieu', 'éclair'];
+var items = ["réservé", "premier", "communiqué", "café", "adieu", "éclair"];
 
-function sortAccent (a, b) {
+function sortAccent(a, b) {
   return a.localeCompare(b);
 }
 
 console.log(sort(sortAccent, items));
 // ["adieu", "café", "communiqué", "éclair", "premier", "réservé"]
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### flattenChildTree
+
+Returns a flattened array of a tree-like array structure, where the Array
+contains objects that have a children property, which is nested.
+
+```javascript
+import { flattenChildTree } from "@flc-ds/fii-js-core";
+
+console.log(
+  JSON.stringify(
+    flattenChildTree([
+      {
+        one: 1,
+        children: [
+          {
+            two: 2,
+            children: [
+              {
+                three: 3,
+                children: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        one: 1,
+        children: [
+          {
+            two: 2,
+            children: []
+          }
+        ]
+      }
+    ])
+  )
+)
+/*  [
+ *    { one: 1, children: [{ two: 2, children: [{ three: 3, children: [] }] }] },
+ *    { two: 2, children: [{ three: 3, children: [] }] },
+ *    { three: 3, children: [] },
+ *    { one: 1, children: [{ two: 2, children: [] }] },
+ *    { two: 2, children: [] }
+ *  ];
+ */
 ```
 
 #### Parameters
@@ -1301,7 +1353,7 @@ swap(watchedFerret, (ferret) => {
 });
 // ferret updated: two, 22 - 42\""
 
-removeWatch(watchedFerret, "two")
+removeWatch(watchedFerret, "two");
 
 swap(watchedFerret, (ferret) => {
   ferret.two = 42;
