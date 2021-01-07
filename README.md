@@ -65,6 +65,7 @@
     - [sort](#sort)
     - [some](#some)
     - [includes](#includes)
+    - [notIncludes](#notincludes)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -1252,6 +1253,27 @@ console.log(includes([1,2,3], 2, 3))
 
 console.log(includes([1,2,3], 2, 5))
 // false
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### notIncludes
+
+An inverted functional, variadic implementation of `Array.prototype.includes`.
+
+```javascript
+import { notIncludes } from "@flc-ds/fii-js-core";
+
+console.log(notIncludes([1,2,3], 2));
+// false
+
+console.log(notIncludes([1,2,3], 2, 3))
+// false
+
+console.log(notIncludes([1,2,3], 2, 5))
+// true
 ```
 
 #### Parameters
