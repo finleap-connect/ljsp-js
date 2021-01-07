@@ -40,6 +40,7 @@
     - [whenNot](#whennot)
     - [cond](#cond)
     - [everyPred](#everypred)
+    - [some$](#_some)
   - [List Functions](#list-functions)
     - [findInSetById](#findinsetbyid)
     - [removeFromSetById](#removefromsetbyid)
@@ -62,6 +63,8 @@
     - [rest](#rest)
     - [cons](#cons)
     - [sort](#sort)
+    - [some](#some)
+    - [includes](#includes)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -675,6 +678,31 @@ or expressions. If functions, they are lazily evaluated. If expressions,
 then all the expressions are evaluated, as expected, when they are passed
 into `cond`.
 
+### _some$
+
+Returns true if x is not nil, false otherwise.
+
+```javascript
+import { some$ } from "@flc-ds/fii-js-core";
+
+console.log(some$(2));
+// true
+
+console.log(some$());
+// false
+```
+
+#### Parameters
+
+Most versions of `cond` currently available in JS rely on nested arrays.
+This makes using `cond` cumbersome, at best. This version of cond relies
+on providing the correct number of arguments to the function. Calls to
+`cond` must receive an even number of arguments in predicate/consequent
+form (or no arguments). Predicates and consequents can be either functions
+or expressions. If functions, they are lazily evaluated. If expressions,
+then all the expressions are evaluated, as expected, when they are passed
+into `cond`.
+
 ## List Functions
 
 ### findInSetById
@@ -1140,6 +1168,24 @@ console.log(sort(sortAccent, items));
 
 - `set` An Array.
 
+### some
+
+Returns the first logical true value of (pred x) for any x in set,
+else nil. In contrast to `Array.prototype.some`, returns a value, 
+not a `Boolean`. `some` is actually a functional wrapper for
+`Array.prototype.find`.
+
+```javascript
+import { some } from "@flc-ds/fii-js-core";
+
+console.log(some((item) => item > 1, [1, 4, 3, 5, 7]));
+// 4
+```
+
+#### Parameters
+
+- `set` An Array.
+
 ### flattenChildTree
 
 Returns a flattened array of a tree-like array structure, where the Array
@@ -1185,6 +1231,27 @@ console.log(
  *    { two: 2, children: [] }
  *  ];
  */
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### includes
+
+A functional, variadic implementation of `Array.prototype.includes`.
+
+```javascript
+import { includes } from "@flc-ds/fii-js-core";
+
+console.log(includes([1,2,3], 2));
+// true
+
+console.log(includes([1,2,3], 2, 3))
+// true
+
+console.log(includes([1,2,3], 2, 5))
+// false
 ```
 
 #### Parameters
