@@ -1280,6 +1280,22 @@ console.log(notIncludes([1,2,3], 2, 5))
 
 - `set` An Array.
 
+### interpose
+
+Returns an Array of the elements of `set` separated by `sep`.
+Returns a partially applied function, when no `set` is provided.
+
+```javascript
+import { interpose } from "@flc-ds/fii-js-core";
+
+console.log(interpose("-", [1,2,3]))
+// [1, "-", "-", 2, "-", 3]
+```
+
+#### Parameters
+
+- `set` An Array.
+
 ## Function Functions
 
 ### juxt
