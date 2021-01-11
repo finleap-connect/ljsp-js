@@ -66,6 +66,7 @@
     - [some](#some)
     - [includes](#includes)
     - [notIncludes](#notincludes)
+    - [interpose](#interpose)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -73,6 +74,7 @@
     - [updateIn](#updatein)
     - [addWatch](#addwatch)
     - [removeWatch](#removewatch)
+    - [merge](#merge)
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
@@ -1465,6 +1467,45 @@ swap(watchedFerret, (ferret) => {
   return ferret;
 });
 // Nothing...
+```
+
+#### Parameters
+
+- `map` | `Object` An object to update. Works with nested objects.
+- `updatePath` | `Array` An Array where the order of the values correspond
+  to nested levels in the object. For example, in the example above, the nested
+  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
+  so: `["a", "b"]`
+- `fn` | `Function` An update function. The function receives the `map` and
+  (optionally) any additional arguments passed to `updateIn`.
+- `rest` | `*` Variadic. Any number of additional arguments to pass to the
+  update function.
+
+### merge
+
+Returns a map that consists of the rest of the maps conj-ed onto
+the first.  If a key occurs in more than one map, the mapping from
+the latter (left-to-right) will be the mapping in the result.
+
+```javascript
+import { merge } from "@flc-ds/fii-js-core";
+
+const test = {one: 1, two: 2, three: 3};
+const one = { four: 4, five: 5}
+const two = { seven: 7, eight: 8}
+
+console.log(merge(test, one, two))
+/*
+{
+  eight: 8,
+  five: 5,
+  four: 4,
+  one: 1,
+  seven: 7,
+  three: 3,
+  two: 2
+}
+*/
 ```
 
 #### Parameters
