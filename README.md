@@ -67,6 +67,7 @@
     - [includes](#includes)
     - [notIncludes](#notincludes)
     - [interpose](#interpose)
+    - [butLast](#butlast)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -1292,6 +1293,21 @@ import { interpose } from "@flc-ds/fii-js-core";
 
 console.log(interpose("-", [1,2,3]))
 // [1, "-", "-", 2, "-", 3]
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### butLast
+
+Return a seq of all but the last item in coll.
+
+```javascript
+import { butLast } from "@flc-ds/fii-js-core";
+
+console.log(butLast([1,2,3]))
+// [1, 2]
 ```
 
 #### Parameters
