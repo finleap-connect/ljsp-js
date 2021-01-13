@@ -67,7 +67,7 @@
     - [includes](#includes)
     - [notIncludes](#notincludes)
     - [interpose](#interpose)
-    - [last](#last) 
+    - [last](#last)
     - [butLast](#butlast)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
@@ -77,6 +77,7 @@
     - [addWatch](#addwatch)
     - [removeWatch](#removewatch)
     - [merge](#merge)
+    - [project](#project)
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
@@ -468,7 +469,8 @@ console.log(nums.map(dec));
 
 ### iff
 
-A functional version of `if` that always returns a value.
+A functional version of `if` that always returns a value. NOTE: _because this
+is a functional implementation, all expressions will be evaluated_.
 
 ```javascript
 import { iff } from "@flc-ds/fii-js-core";
@@ -482,7 +484,9 @@ console.log(iff(false, "Birds", "Castles"));
 
 #### Parameters
 
-- `...Primitive` | Variable number of primitive values
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
+- `falseCondition` | A value or expression that will return if the condition is false.
 
 ### ifSome
 
@@ -498,7 +502,9 @@ console.log(ifSome("true", (val) => val, "nope"));
 
 #### Parameters
 
-- `...Primitive` | Variable number of primitive values
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A function that will receive the value of the condition, and return if the condition is true.
+- `falseCondition` | A value or expression that will return if the condition is false.
 
 ### ifYes
 
@@ -517,7 +523,8 @@ console.log(ifYes(false, "Birds"));
 
 #### Parameters
 
-- `...Primitive` | Variable number of primitive values
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
 
 ### ifNo
 
@@ -536,7 +543,8 @@ console.log(ifNo(12, "Birds"));
 
 #### Parameters
 
-- `...Primitive` | Variable number of primitive values
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `falseCondition` | A value or expression that will return if the condition is false.
 
 ### ifClass
 
@@ -545,18 +553,19 @@ Evaluates test. If truthy, evaluates and returns then expr,
 otherwise the _empty string_.
 
 ```javascript
-import { ifNo } from "@flc-ds/fii-js-core";
+import { ifClass } from "@flc-ds/fii-js-core";
 
-console.log(ifNo("", "Monkeys"));
+console.log(ifClass(true, "Monkeys"));
 // "Monkeys"
 
-console.log(ifNo(12, "Birds"));
-// undefined
+console.log(ifClass(false, "Birds"));
+// """
 ```
 
 #### Parameters
 
-- `...Primitive` | Variable number of primitive values
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
 
 ### when
 
@@ -578,7 +587,7 @@ console.log(
 
 #### Parameters
 
-- `...Structural` | Variable number of Structural values
+- `...Functions` | Variable number of Functions.
 
 ### whenNot
 
@@ -600,7 +609,7 @@ console.log(
 
 #### Parameters
 
-- `...Structural` | Variable number of Structural values
+- `...Functions` | Variable number of Functions.
 
 ### cond
 
@@ -674,16 +683,9 @@ console.log(isGtZeroIntMultipleTwo(2, 4, 7));
 
 #### Parameters
 
-Most versions of `cond` currently available in JS rely on nested arrays.
-This makes using `cond` cumbersome, at best. This version of cond relies
-on providing the correct number of arguments to the function. Calls to
-`cond` must receive an even number of arguments in predicate/consequent
-form (or no arguments). Predicates and consequents can be either functions
-or expressions. If functions, they are lazily evaluated. If expressions,
-then all the expressions are evaluated, as expected, when they are passed
-into `cond`.
+- `...Functions` | Variable number of Functions.
 
-### _some$
+### \_some$
 
 Returns true if x is not nil, false otherwise.
 
@@ -699,14 +701,7 @@ console.log(some$());
 
 #### Parameters
 
-Most versions of `cond` currently available in JS rely on nested arrays.
-This makes using `cond` cumbersome, at best. This version of cond relies
-on providing the correct number of arguments to the function. Calls to
-`cond` must receive an even number of arguments in predicate/consequent
-form (or no arguments). Predicates and consequents can be either functions
-or expressions. If functions, they are lazily evaluated. If expressions,
-then all the expressions are evaluated, as expected, when they are passed
-into `cond`.
+- `val` | `*` Any value or expression.
 
 ## List Functions
 
@@ -897,7 +892,7 @@ console.log(result);
 #### Parameters
 
 - `set` | `Array`
-- `groupSize` | `number`
+- `val` | `*`
 
 ### dissoc
 
@@ -914,7 +909,7 @@ console.log(dissoc({ 1: 1, 2: 2, 3: 3 }, "1", "3"));
 #### Parameters
 
 - `set` | `Array`
-- `groupSize` | `number`
+- `indices` | `string` A variadic list of indices to remove.
 
 ### reduceKv
 
@@ -1144,7 +1139,7 @@ console.log(cons([1, 2, 3], [4, 5, 6]));
 ```
 
 #### Parameters
-
+- `val` | `*`
 - `set` An Array.
 
 ### sort
@@ -1170,13 +1165,13 @@ console.log(sort(sortAccent, items));
 ```
 
 #### Parameters
-
+- `comparator` | `Function` Optional. A valid comparator function. See [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) for details.
 - `set` An Array.
 
 ### some
 
 Returns the first logical true value of (pred x) for any x in set,
-else nil. In contrast to `Array.prototype.some`, returns a value, 
+else nil. In contrast to `Array.prototype.some`, returns a value,
 not a `Boolean`. `some` is actually a functional wrapper for
 `Array.prototype.find`.
 
@@ -1188,7 +1183,7 @@ console.log(some((item) => item > 1, [1, 4, 3, 5, 7]));
 ```
 
 #### Parameters
-
+- `predicate` | `Function` A predicate function.
 - `set` An Array.
 
 ### flattenChildTree
@@ -1227,7 +1222,7 @@ console.log(
       }
     ])
   )
-)
+);
 /*  [
  *    { one: 1, children: [{ two: 2, children: [{ three: 3, children: [] }] }] },
  *    { two: 2, children: [{ three: 3, children: [] }] },
@@ -1240,7 +1235,7 @@ console.log(
 
 #### Parameters
 
-- `set` An Array.
+- `set` An Array of objects.
 
 ### includes
 
@@ -1249,19 +1244,19 @@ A functional, variadic implementation of `Array.prototype.includes`.
 ```javascript
 import { includes } from "@flc-ds/fii-js-core";
 
-console.log(includes([1,2,3], 2));
+console.log(includes([1, 2, 3], 2));
 // true
 
-console.log(includes([1,2,3], 2, 3))
+console.log(includes([1, 2, 3], 2, 3));
 // true
 
-console.log(includes([1,2,3], 2, 5))
+console.log(includes([1, 2, 3], 2, 5));
 // false
 ```
 
 #### Parameters
-
 - `set` An Array.
+- `values` | `*`
 
 ### notIncludes
 
@@ -1270,19 +1265,19 @@ An inverted functional, variadic implementation of `Array.prototype.includes`.
 ```javascript
 import { notIncludes } from "@flc-ds/fii-js-core";
 
-console.log(notIncludes([1,2,3], 2));
+console.log(notIncludes([1, 2, 3], 2));
 // false
 
-console.log(notIncludes([1,2,3], 2, 3))
+console.log(notIncludes([1, 2, 3], 2, 3));
 // false
 
-console.log(notIncludes([1,2,3], 2, 5))
+console.log(notIncludes([1, 2, 3], 2, 5));
 // true
 ```
 
 #### Parameters
-
 - `set` An Array.
+- `values` | `*`
 
 ### interpose
 
@@ -1292,12 +1287,12 @@ Returns a partially applied function, when no `set` is provided.
 ```javascript
 import { interpose } from "@flc-ds/fii-js-core";
 
-console.log(interpose("-", [1,2,3]))
+console.log(interpose("-", [1, 2, 3]));
 // [1, "-", "-", 2, "-", 3]
 ```
 
 #### Parameters
-
+- `value` | `*`
 - `set` An Array.
 
 ### last
@@ -1307,15 +1302,14 @@ Return the last item in an Array or Object.
 ```javascript
 import { last } from "@flc-ds/fii-js-core";
 
-console.log(last([1,2,3]))
-// 3 
+console.log(last([1, 2, 3]));
+// 3
 
-console.log(last({one: 1, two: 2, three: 3}))
+console.log(last({ one: 1, two: 2, three: 3 }));
 // ["three", 3]
 ```
 
 #### Parameters
-
 - `set` An Array.
 
 ### butLast
@@ -1325,12 +1319,11 @@ Return a seq of all but the last item in coll.
 ```javascript
 import { butLast } from "@flc-ds/fii-js-core";
 
-console.log(butLast([1,2,3]))
+console.log(butLast([1, 2, 3]));
 // [1, 2]
 ```
 
 #### Parameters
-
 - `set` An Array.
 
 ## Function Functions
@@ -1359,7 +1352,6 @@ console.log(test(3));
 ```
 
 #### Parameters
-
 - `args` | `Function` Variadic. One or more functions.
 
 ## Object Functions
@@ -1390,12 +1382,13 @@ console.log(swap(obj, conj, { three: "test" }, { four: "four" }));
 ```
 
 #### Parameters
-
-- `args` | `Function` Variadic. One or more functions.
+- `object` | `Object` An object.
+- `transformer` | `Function` A function used to transform (modify) the object.  
+- `updates` | `Object` Variadic. One or more objects to modify the main object.
 
 ### updateIn
 
-'Updates' a value in a nested associative structure, where `ks` is a
+"Updates" a value in a nested associative structure, where `ks` is a
 sequence of keys and `f` is a function that will take the old value
 and any supplied args and return the new value, and returns a new
 nested structure. If any levels do not exist, hash-maps will be
@@ -1466,15 +1459,9 @@ swap(watchedFerret, (ferret) => {
 
 #### Parameters
 
-- `map` | `Object` An object to update. Works with nested objects.
-- `updatePath` | `Array` An Array where the order of the values correspond
-  to nested levels in the object. For example, in the example above, the nested
-  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
-  so: `["a", "b"]`
-- `fn` | `Function` An update function. The function receives the `map` and
-  (optionally) any additional arguments passed to `updateIn`.
-- `rest` | `*` Variadic. Any number of additional arguments to pass to the
-  update function.
+- `map` | `Object` An object to watch.
+- `property` | `string` A property on the object to watch.
+- `fn` | `Function` A function to run when the property of the object is updated.
 
 ### removeWatch
 
@@ -1506,30 +1493,23 @@ swap(watchedFerret, (ferret) => {
 
 #### Parameters
 
-- `map` | `Object` An object to update. Works with nested objects.
-- `updatePath` | `Array` An Array where the order of the values correspond
-  to nested levels in the object. For example, in the example above, the nested
-  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
-  so: `["a", "b"]`
-- `fn` | `Function` An update function. The function receives the `map` and
-  (optionally) any additional arguments passed to `updateIn`.
-- `rest` | `*` Variadic. Any number of additional arguments to pass to the
-  update function.
+- `map` | `Object` An object to watch.
+- `property` | `string` The property on the object to un-watch.
 
 ### merge
 
 Returns a map that consists of the rest of the maps conj-ed onto
-the first.  If a key occurs in more than one map, the mapping from
+the first. If a key occurs in more than one map, the mapping from
 the latter (left-to-right) will be the mapping in the result.
 
 ```javascript
 import { merge } from "@flc-ds/fii-js-core";
 
-const test = {one: 1, two: 2, three: 3};
-const one = { four: 4, five: 5}
-const two = { seven: 7, eight: 8}
+const test = { one: 1, two: 2, three: 3 };
+const one = { four: 4, five: 5 };
+const two = { seven: 7, eight: 8 };
 
-console.log(merge(test, one, two))
+console.log(merge(test, one, two));
 /*
 {
   eight: 8,
@@ -1545,15 +1525,37 @@ console.log(merge(test, one, two))
 
 #### Parameters
 
-- `map` | `Object` An object to update. Works with nested objects.
-- `updatePath` | `Array` An Array where the order of the values correspond
-  to nested levels in the object. For example, in the example above, the nested
-  property `b` in the object `{ a: { b: 4 } }` is referenced in the Array like
-  so: `["a", "b"]`
-- `fn` | `Function` An update function. The function receives the `map` and
-  (optionally) any additional arguments passed to `updateIn`.
-- `rest` | `*` Variadic. Any number of additional arguments to pass to the
-  update function.
+- `map` | `Object` Variadic. Objects to merge.
+
+
+### project
+
+Similar to lodash `pick`, except that `project` is variadic and
+can work on sets of objects. Additionally, it always returns an
+Array.
+
+```javascript
+import { project } from "@flc-ds/fii-js-core";
+
+console.log(project({ one: 1, two: 2, three: 3 }, ["one", "three"]));
+//  { one: 1, three: 3 }
+
+console.log(
+  project(
+    [
+      { one: 1, two: 2, three: 3 },
+      { one: 1, two: 2, three: 3 }
+    ],
+    ["one", "three"]
+  )
+);
+// [{ one: 1, three: 3 }, { one: 1, three: 3 }]
+```
+
+#### Parameters
+
+- `objects` | `Object | Array<Object>` An object or Array of objects of the same shape.
+- `keys` | `Array<string>` An Array of property names.
 
 ## Validation
 
@@ -1572,7 +1574,6 @@ console.log(isPositiveInt(0));
 ```
 
 #### Parameters
-
 - `num` | `Number`
 
 ### isNonNegativeInt
@@ -1593,7 +1594,6 @@ console.log(isNonNegativeInt(-5));
 ```
 
 #### Parameters
-
 - `num` | `Number`
 
 ## Spec
