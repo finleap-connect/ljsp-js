@@ -67,6 +67,7 @@
     - [includes](#includes)
     - [notIncludes](#notincludes)
     - [interpose](#interpose)
+    - [last](#last) 
     - [butLast](#butlast)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
@@ -1293,6 +1294,24 @@ import { interpose } from "@flc-ds/fii-js-core";
 
 console.log(interpose("-", [1,2,3]))
 // [1, "-", "-", 2, "-", 3]
+```
+
+#### Parameters
+
+- `set` An Array.
+
+### last
+
+Return the last item in an Array or Object.
+
+```javascript
+import { last } from "@flc-ds/fii-js-core";
+
+console.log(last([1,2,3]))
+// 3 
+
+console.log(last({one: 1, two: 2, three: 3}))
+// ["three", 3]
 ```
 
 #### Parameters
