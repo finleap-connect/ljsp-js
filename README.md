@@ -20,6 +20,8 @@
     - [deepEq](#deepeq)
     - [doWork](#dowork)
     - [areDistinct](#aredistinct)
+    - [isEmpty](#isempty)
+    - [notEmpty](#notempty)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -271,6 +273,46 @@ console.log(areDistinct(2, 4, 7));
 
 console.log(areDistinct(2, 4, 7, 4));
 // false
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
+### isEmpty
+
+Lodash's `isEmpty` function, included here for completeness, because we have `notEmpty`.
+
+```javascript
+import { isEmpty } from "@flc-ds/fii-js-core";
+
+console.log(isEmpty({}));
+// true
+
+console.log(isEmpty([2, 4, 7, 4]));
+// false
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
+### notEmpty
+
+Checks if value is NOT an empty object, collection, map, or set.
+Objects are considered empty if they have no own enumerable string keyed properties.
+Array-like values such as arguments objects, arrays, buffers, strings, or jQuery-like 
+collections are considered empty if they have a length of 0. Similarly, maps and sets 
+are considered empty if they have a size of 0.
+
+```javascript
+import { notEmpty } from "@flc-ds/fii-js-core";
+
+console.log(notEmpty({}));
+// false
+
+console.log(notEmpty([2, 4, 7, 4]));
+// true
 ```
 
 #### Parameters
