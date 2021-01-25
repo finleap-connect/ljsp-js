@@ -1368,6 +1368,73 @@ console.log(butLast([1, 2, 3]));
 #### Parameters
 - `set` An Array.
 
+### cycle
+
+Returns a lazy (infinite!) generator of cycled repetitions of the items in coll.
+
+```javascript
+import { cycle } from "@flc-ds/fii-js-core";
+
+const aAndB = ["a", "b"];
+
+const generator = cycle(aAndB);
+
+for(let i = 0; i < 3; i++) {
+  console.log(generator());
+}
+// "a", "b", "a"
+```
+
+#### Parameters
+- `set` An Array.
+
+### takeS
+
+Returns an Array of the first n items in a sequence generator, or all items if
+there are fewer than n.  Returns a stateful transducer when
+no collection is provided.
+
+```javascript
+import { cycle, takeS } from "@flc-ds/fii-js-core";
+
+const aAndB = ["a", "b"];
+
+const generator = cycle(aAndB);
+
+console.log(takeS(10, generator))
+// ["a", "b", "a", "b", "a", "b", "a", "b", "a", "b"]
+```
+
+#### Parameters
+- `count` | `Number` The number of items to return.
+- `seq` | `Sequence Generator` A generator function that, when called, produces a value.
+
+### generator
+
+Returns an iterator function that can be called to return the values in 
+an Array sequentially. Once values have been exhausted, returns `undefined`.
+
+```javascript
+import { iterator } from "@flc-ds/fii-js-core";
+
+const aAndB = ["a", "b"];
+
+const iterableAB = iterator(aAndB);
+
+console.log(iterableAB())
+// "a"
+
+console.log(iterableAB())
+// "b"
+
+console.log(iterableAB())
+// undefined
+```
+
+#### Parameters
+- `count` | `Number` The number of items to return.
+- `seq` | `Sequence Generator` A generator function that, when called, produces a value.
+
 ## Function Functions
 
 ### juxt
