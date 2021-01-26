@@ -1437,6 +1437,40 @@ console.log(iterableAB())
 - `count` | `Number` The number of items to return.
 - `seq` | `Sequence Generator` A generator function that, when called, produces a value.
 
+### walk
+
+Traverses set, an Array or Object. `inner` and `outer` are
+functions. Applies `inner` to each element of `set`, building up a
+data structure of the same type, then applies `outer` to the result.
+
+```javascript
+import { walk } from "@flc-ds/fii-js-core";
+
+// prettier-ignore
+console.log(walk(
+    (i) => i * 2, 
+    (set) => set.reduce((acc, cur) => acc + cur), 
+    [1,2,3,4,5]
+  )
+)
+// 30
+
+console.log(walk(([key, value]) => [key, (value + 1)], (set) => set, {one: 1, two: 2, three: 3}))
+/**
+ * {
+ *  one: 2,
+ *  two: 3,
+ *  three: 4
+ * }
+*/
+```
+
+#### Parameters
+- `inner` | `Function` A `map` function to apply to each element. If an `Object` is provided as the set, the `Functor`
+  must conform to calling `map` as `Object.entries.map`.
+- `outer` | `Function` A function to apply to the final result. The result function will receive the modified data structure.
+- `set` | `Array | Object` The item to walk.
+
 ## Function Functions
 
 ### juxt
