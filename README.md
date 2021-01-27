@@ -74,6 +74,8 @@
     - [cycle](#cycle)
     - [takeS](#takes)  
     - [iterator](#iterator)
+    - [walk](#walk)
+    - [distinct$](#distinct)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -1470,6 +1472,34 @@ console.log(walk(([key, value]) => [key, (value + 1)], (set) => set, {one: 1, tw
   must conform to calling `map` as `Object.entries.map`.
 - `outer` | `Function` A function to apply to the final result. The result function will receive the modified data structure.
 - `set` | `Array | Object` The item to walk.
+
+### distinct$
+
+Returns true if no two of the arguments are == (uses Lodash `isEqual`). 
+Works on a series of args, or an Array.
+
+```javascript
+import { distinct$ } from "@flc-ds/fii-js-core";
+
+console.log(distinct$(1));
+// true - single args always return true
+
+console.log(distinct$(1, 2, 3));
+// true
+
+console.log(distinct$(1, 2, 3, 4, 2));
+// false
+
+console.log(distinct$([1, 2, 3]));
+// true
+
+console.log(distinct$([1, 2, 3, 2]));
+// false
+```
+
+#### Parameters
+- `set` | `Array` An array of values to compare.
+- `*`  A set of primitive arguments.
 
 ## Function Functions
 
