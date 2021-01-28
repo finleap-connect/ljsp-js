@@ -72,7 +72,7 @@
     - [last](#last)
     - [butLast](#butlast)
     - [cycle](#cycle)
-    - [takeS](#takes)  
+    - [takeS](#takes)
     - [iterator](#iterator)
     - [walk](#walk)
     - [distinct$](#distinct)
@@ -182,6 +182,61 @@ console.log(toPath("http://api.docs.com", slug, "reports"));
 - | Returns an empty string.
 - `*` | converts the value to a string
 - `...string` | concatenates values with a forward-slash delimiter (and converts them to strings)
+
+### strInterpose
+
+Returns a string separated by sep. If no string is provided, returns a partially applied `strInterpose` function.
+
+```javascript
+import { strInterpose } from "@flc-ds/fii-js-core";
+
+console.log(strInterpose("-", "my name is bob"));
+// "my-name-is-bob"
+
+console.log(strInterpose(12, "my-name-is-bob", "-"));
+// "my12name12is12bob"
+
+console.log(strInterpose(1, null, "-"));
+/**
+ * function run(str) {
+ *   sep = sep.toString();
+ *   return str.split(splitter).join(sep);
+ * }
+ */
+```
+
+#### Parameters
+
+- | Returns an empty string.
+- `*` | converts the value to a string
+- `...string` | concatenates values with a forward-slash delimiter (and converts them to strings)
+
+### blank$
+
+True if s is nil, empty, or contains only whitespace.
+
+```javascript
+import { blank$ } from "@flc-ds/fii-js-core";
+
+console.log(blank$(""));
+// true
+
+console.log(blank$("    "));
+// true
+
+console.log(blank$(null));
+// true
+
+console.log(blank$(undefined));
+// true
+
+console.log(blank$("hello"));
+// false
+```
+
+#### Parameters
+
+- `str` | `String | null | undefined` The item to test for blankness.
 
 ## Generic Functions
 
@@ -306,11 +361,10 @@ console.log(isEmpty([2, 4, 7, 4]));
 
 ### notEmpty
 
-Checks if value is NOT an empty object, collection, map, or set.
-Objects are considered empty if they have no own enumerable string keyed properties.
-Array-like values such as arguments objects, arrays, buffers, strings, or jQuery-like 
-collections are considered empty if they have a length of 0. Similarly, maps and sets 
-are considered empty if they have a size of 0.
+Checks if value is NOT an empty object, collection, map, or set. Objects are considered empty if they have no own
+enumerable string keyed properties. Array-like values such as arguments objects, arrays, buffers, strings, or
+jQuery-like collections are considered empty if they have a length of 0. Similarly, maps and sets are considered empty
+if they have a size of 0.
 
 ```javascript
 import { notEmpty } from "@flc-ds/fii-js-core";
@@ -1188,6 +1242,7 @@ console.log(cons([1, 2, 3], [4, 5, 6]));
 ```
 
 #### Parameters
+
 - `val` | `*`
 - `set` An Array.
 
@@ -1214,6 +1269,7 @@ console.log(sort(sortAccent, items));
 ```
 
 #### Parameters
+
 - `comparator` | `Function` Optional. A valid comparator function. See [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) for details.
 - `set` An Array.
 
@@ -1232,6 +1288,7 @@ console.log(some((item) => item > 1, [1, 4, 3, 5, 7]));
 ```
 
 #### Parameters
+
 - `predicate` | `Function` A predicate function.
 - `set` An Array.
 
@@ -1304,6 +1361,7 @@ console.log(includes([1, 2, 3], 2, 5));
 ```
 
 #### Parameters
+
 - `set` An Array.
 - `values` | `*`
 
@@ -1325,6 +1383,7 @@ console.log(notIncludes([1, 2, 3], 2, 5));
 ```
 
 #### Parameters
+
 - `set` An Array.
 - `values` | `*`
 
@@ -1341,6 +1400,7 @@ console.log(interpose("-", [1, 2, 3]));
 ```
 
 #### Parameters
+
 - `value` | `*`
 - `set` An Array.
 
@@ -1359,6 +1419,7 @@ console.log(last({ one: 1, two: 2, three: 3 }));
 ```
 
 #### Parameters
+
 - `set` An Array.
 
 ### butLast
@@ -1373,6 +1434,7 @@ console.log(butLast([1, 2, 3]));
 ```
 
 #### Parameters
+
 - `set` An Array.
 
 ### cycle
@@ -1386,19 +1448,20 @@ const aAndB = ["a", "b"];
 
 const generator = cycle(aAndB);
 
-for(let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++) {
   console.log(generator());
 }
 // "a", "b", "a"
 ```
 
 #### Parameters
+
 - `set` An Array.
 
 ### takeS
 
-Returns an Array of the first n items in a sequence or iterator, or all items if
-there are fewer than n.  Returns a stateful function when no collection is provided.
+Returns an Array of the first n items in a sequence or iterator, or all items if there are fewer than n. Returns a
+stateful function when no collection is provided.
 
 ```javascript
 import { cycle, takeS } from "@flc-ds/fii-js-core";
@@ -1407,18 +1470,18 @@ const aAndB = ["a", "b"];
 
 const generator = cycle(aAndB);
 
-console.log(takeS(10, generator))
+console.log(takeS(10, generator));
 // ["a", "b", "a", "b", "a", "b", "a", "b", "a", "b"]
 ```
 
 #### Parameters
+
 - `count` | `Number` The number of items to return.
 - `seq` | `Sequence Generator` A generator function that, when called, produces a value.
 
 ### iterator
 
-Returns an iterator function that can be called to return the values in 
-an Array sequentially. Once values have been exhausted, returns `undefined`.
+Returns an iterator function that can be called to return the values in an Array sequentially. Once values have been exhausted, returns `undefined`.
 
 ```javascript
 import { iterator } from "@flc-ds/fii-js-core";
@@ -1427,17 +1490,18 @@ const aAndB = ["a", "b"];
 
 const iterableAB = iterator(aAndB);
 
-console.log(iterableAB())
+console.log(iterableAB());
 // "a"
 
-console.log(iterableAB())
+console.log(iterableAB());
 // "b"
 
-console.log(iterableAB())
+console.log(iterableAB());
 // undefined
 ```
 
 #### Parameters
+
 - `count` | `Number` The number of items to return.
 - `seq` | `Sequence Generator` A generator function that, when called, produces a value.
 
@@ -1452,24 +1516,31 @@ import { walk } from "@flc-ds/fii-js-core";
 
 // prettier-ignore
 console.log(walk(
-    (i) => i * 2, 
-    (set) => set.reduce((acc, cur) => acc + cur), 
-    [1,2,3,4,5]
-  )
+        (i) => i * 2,
+        (set) => set.reduce((acc, cur) => acc + cur),
+        [1, 2, 3, 4, 5]
+        )
 )
 // 30
 
-console.log(walk(([key, value]) => [key, (value + 1)], (set) => set, {one: 1, two: 2, three: 3}))
+console.log(
+        walk(
+                ([key, value]) => [key, value + 1],
+                (set) => set,
+                { one: 1, two: 2, three: 3 }
+        )
+);
 /**
  * {
  *  one: 2,
  *  two: 3,
  *  three: 4
  * }
-*/
+ */
 ```
 
 #### Parameters
+
 - `inner` | `Function` A `map` function to apply to each element. If an `Object` is provided as the set, the `Functor`
   must conform to calling `map` as `Object.entries.map`.
 - `outer` | `Function` A function to apply to the final result. The result function will receive the modified data structure.
@@ -1477,8 +1548,7 @@ console.log(walk(([key, value]) => [key, (value + 1)], (set) => set, {one: 1, tw
 
 ### distinct$
 
-Returns true if no two of the arguments are == (uses Lodash `isEqual`). 
-Works on a series of args, or an Array.
+Returns true if no two of the arguments are == (uses Lodash `isEqual`). Works on a series of args, or an Array.
 
 ```javascript
 import { distinct$ } from "@flc-ds/fii-js-core";
@@ -1500,8 +1570,9 @@ console.log(distinct$([1, 2, 3, 2]));
 ```
 
 #### Parameters
+
 - `set` | `Array` An array of values to compare.
-- `*`  A set of primitive arguments.
+- `*` A set of primitive arguments.
 
 ### repeat
 
@@ -1510,17 +1581,17 @@ Returns a lazy (infinite!, or length n if supplied) sequence of xs.
 ```javascript
 import { repeat } from "@flc-ds/fii-js-core";
 
-const repeater = repeat(5, "x")
+const repeater = repeat(5, "x");
 
-console.log(repeater())
-console.log(repeater())
+console.log(repeater());
+console.log(repeater());
 // "x"
 // "x"
 
-const repeater = repeat(5, {one: 1})
+const repeater = repeat(5, { one: 1 });
 
-console.log(repeater())
-console.log(repeater())
+console.log(repeater());
+console.log(repeater());
 // {one: 1} -- Note, these objects are NOT the same. They are all deep clones
 // {one: 1} -- using Lodash's `cloneDeep`.
 ```
@@ -1529,7 +1600,7 @@ console.log(repeater())
 
 - `num` | `Number` If the first value is a number, this number controls how many times the value is repeated. If there
   is no second value, the first value will be repeated infinitely/
-- `*`  A value to repeat.
+- `*` A value to repeat.
 
 ### splitAt
 
@@ -1538,20 +1609,20 @@ Returns an Array of [(take n coll) (drop n coll)]
 ```javascript
 import { splitAt } from "@flc-ds/fii-js-core";
 
-const result = splitAt(2, [1, 2, 3, 4, 5])
+const result = splitAt(2, [1, 2, 3, 4, 5]);
 // [[1, 2] [3, 4, 5]]
 
-const result = splitAt(3, [1, 2])
+const result = splitAt(3, [1, 2]);
 // [[1, 2] []]
 
-console.log(splitAt(3, []))
+console.log(splitAt(3, []));
 // [[], []]
 ```
 
 #### Parameters
 
 - `num` | `Number` The index at which to split the Array.
-- `set` | `Array`  The Array to split.
+- `set` | `Array` The Array to split.
 
 ## Function Functions
 
@@ -1577,6 +1648,7 @@ console.log(test(3));
 ```
 
 #### Parameters
+
 - `args` | `Function` Variadic. One or more functions.
 
 ## Object Functions
@@ -1607,8 +1679,9 @@ console.log(swap(obj, conj, { three: "test" }, { four: "four" }));
 ```
 
 #### Parameters
+
 - `object` | `Object` An object.
-- `transformer` | `Function` A function used to transform (modify) the object.  
+- `transformer` | `Function` A function used to transform (modify) the object.
 - `updates` | `Object` Variadic. One or more objects to modify the main object.
 
 ### updateIn
@@ -1752,7 +1825,6 @@ console.log(merge(test, one, two));
 
 - `map` | `Object` Variadic. Objects to merge.
 
-
 ### project
 
 Similar to lodash `pick`, except that `project` is variadic and
@@ -1799,6 +1871,7 @@ console.log(isPositiveInt(0));
 ```
 
 #### Parameters
+
 - `num` | `Number`
 
 ### isNonNegativeInt
@@ -1819,6 +1892,7 @@ console.log(isNonNegativeInt(-5));
 ```
 
 #### Parameters
+
 - `num` | `Number`
 
 ## Spec
