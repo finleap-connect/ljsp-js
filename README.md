@@ -77,6 +77,7 @@
     - [walk](#walk)
     - [distinct$](#distinct)
     - [repeat](#repeat)
+    - [splitAt](#splitat)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -1525,19 +1526,40 @@ console.log(repeater())
 ```
 
 #### Parameters
-- `num` | `Number` If the first value is a number, this number controls how many times the value is repeated.
-  If there is no second value, the first value will be repeated infinitely/
+
+- `num` | `Number` If the first value is a number, this number controls how many times the value is repeated. If there
+  is no second value, the first value will be repeated infinitely/
 - `*`  A value to repeat.
+
+### splitAt
+
+Returns an Array of [(take n coll) (drop n coll)]
+
+```javascript
+import { splitAt } from "@flc-ds/fii-js-core";
+
+const result = splitAt(2, [1, 2, 3, 4, 5])
+// [[1, 2] [3, 4, 5]]
+
+const result = splitAt(3, [1, 2])
+// [[1, 2] []]
+
+console.log(splitAt(3, []))
+// [[], []]
+```
+
+#### Parameters
+
+- `num` | `Number` The index at which to split the Array.
+- `set` | `Array`  The Array to split.
 
 ## Function Functions
 
 ### juxt
 
-Takes a set of functions and returns a fn that is the juxtaposition
-of those fns. The returned fn takes a variable number of args (each
-function passed to `juxt` must take the same number of args. When
-calling the function returned by `juxt`, you must match this variadicity),
-and returns an Array containing the result of applying each fn to the
+Takes a set of functions and returns a fn that is the juxtaposition of those fns. The returned fn takes a variable
+number of args (each function passed to `juxt` must take the same number of args. When calling the function returned
+by `juxt`, you must match this variadicity), and returns an Array containing the result of applying each fn to the
 args (left-to-right).
 
 ((juxt a b c) x) => [(a x) (b x) (c x)]
