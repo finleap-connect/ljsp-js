@@ -76,6 +76,7 @@
     - [iterator](#iterator)
     - [walk](#walk)
     - [distinct$](#distinct)
+    - [repeat](#repeat)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -1500,6 +1501,33 @@ console.log(distinct$([1, 2, 3, 2]));
 #### Parameters
 - `set` | `Array` An array of values to compare.
 - `*`  A set of primitive arguments.
+
+### repeat
+
+Returns a lazy (infinite!, or length n if supplied) sequence of xs.
+
+```javascript
+import { repeat } from "@flc-ds/fii-js-core";
+
+const repeater = repeat(5, "x")
+
+console.log(repeater())
+console.log(repeater())
+// "x"
+// "x"
+
+const repeater = repeat(5, {one: 1})
+
+console.log(repeater())
+console.log(repeater())
+// {one: 1} -- Note, these objects are NOT the same. They are all deep clones
+// {one: 1} -- using Lodash's `cloneDeep`.
+```
+
+#### Parameters
+- `num` | `Number` If the first value is a number, this number controls how many times the value is repeated.
+  If there is no second value, the first value will be repeated infinitely/
+- `*`  A value to repeat.
 
 ## Function Functions
 
