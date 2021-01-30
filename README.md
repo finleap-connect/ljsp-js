@@ -78,6 +78,7 @@
     - [distinct$](#distinct)
     - [repeat](#repeat)
     - [splitAt](#splitat)
+    - [mapcat](#mapcat)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -237,6 +238,31 @@ console.log(blank$("hello"));
 #### Parameters
 
 - `str` | `String | null | undefined` The item to test for blankness.
+
+### mapcat
+
+Returns the result of applying concat to the result of applying map to f and colls. Thus function f should return a
+collection. Returns a partially applied function when no collections are provided
+
+```javascript
+import { mapcat } from "@flc-ds/fii-js-core";
+
+console.log(mapcat(_.reverse, [[3, 2, 1, 0], [6, 5, 4], [9, 8, 7]]));
+
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+function splitWord(item) {
+  return _.split(item, /(\d)/)
+}
+
+console.log(mapcat(splitWord, ["aa1bb", "cc2dd", "ee3ff"]));
+// ["aa", "1", "bb", "cc", "2", "dd", "ee", "3", "ff"]
+```
+
+#### Parameters
+
+- `func` | `Function` The function to apply map to.
+- `set` | `Array` [_optional_] The set to map over.
 
 ## Generic Functions
 
