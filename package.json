@@ -1,6 +1,6 @@
 {
   "name": "@flc-ds/fii-js-core",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "",
   "jsnext:main": "dist/index.js",
   "main": "dist/index.js",
@@ -16,7 +16,6 @@
     "lint": "eslint lib/**/*.js --fix --max-warnings=0",
     "commit": "run-s add-files commitizen",
     "add-files": "git add .",
-    "commitizen": "git-cz",
     "prettify:all": "prettier --write \"**/*.js*\"",
     "story": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -31,16 +30,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "npm run lint",
-      "npm run prettify:all",
-      "git add ."
-    ]
   },
   "dependencies": {
     "lodash": "^4.17.20"
@@ -59,7 +50,6 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^7.1.5",
-    "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
