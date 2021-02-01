@@ -264,6 +264,42 @@ console.log(mapcat(splitWord, ["aa1bb", "cc2dd", "ee3ff"]));
 - `func` | `Function` The function to apply map to.
 - `set` | `Array` [_optional_] The set to map over.
 
+### reductions
+
+Returns an iterator function that returns the intermediate values of a reduction (as per reduce) of set by f, starting
+with init. If init is not provided, the init value is the first item in set.
+
+```javascript
+import { reductions } from "@flc-ds/fii-js-core";
+
+function add(a, b) {
+  return a + b;
+}
+
+const test = reductions(add, 8, [1, 2, 3, 4])
+console.log(test());
+// 9
+console.log(test());
+// 11
+console.log(test());
+// 14
+
+// WITHOUT INIT
+const test = reductions(add, [1, 2, 3, 4])
+console.log(test());
+// 3
+console.log(test());
+// 6
+console.log(test());
+// 10
+```
+
+#### Parameters
+
+- `func` | `Function` The function to apply map to.
+- `init` | `*` [_optional_] The initial value.
+- `set` | `Array`
+
 ## Generic Functions
 
 ### eq
