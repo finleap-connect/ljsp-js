@@ -79,6 +79,11 @@
     - [repeat](#repeat)
     - [splitAt](#splitat)
     - [mapcat](#mapcat)
+    - [reductions](#reductions)
+    - [forIt](#forit)
+    - [mapIt](#mapit)
+    - [filterIt](#filterit)
+    - [reduceIt](#reduceit)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -247,12 +252,18 @@ collection. Returns a partially applied function when no collections are provide
 ```javascript
 import { mapcat } from "@flc-ds/fii-js-core";
 
-console.log(mapcat(_.reverse, [[3, 2, 1, 0], [6, 5, 4], [9, 8, 7]]));
+console.log(
+        mapcat(_.reverse, [
+          [3, 2, 1, 0],
+          [6, 5, 4],
+          [9, 8, 7]
+        ])
+);
 
 // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 function splitWord(item) {
-  return _.split(item, /(\d)/)
+  return _.split(item, /(\d)/);
 }
 
 console.log(mapcat(splitWord, ["aa1bb", "cc2dd", "ee3ff"]));
@@ -276,7 +287,7 @@ function add(a, b) {
   return a + b;
 }
 
-const test = reductions(add, 8, [1, 2, 3, 4])
+const test = reductions(add, 8, [1, 2, 3, 4]);
 console.log(test());
 // 9
 console.log(test());
@@ -285,7 +296,7 @@ console.log(test());
 // 14
 
 // WITHOUT INIT
-const test = reductions(add, [1, 2, 3, 4])
+const test = reductions(add, [1, 2, 3, 4]);
 console.log(test());
 // 3
 console.log(test());
@@ -299,6 +310,75 @@ console.log(test());
 - `func` | `Function` The function to apply map to.
 - `init` | `*` [_optional_] The initial value.
 - `set` | `Array`
+
+### forIt
+
+Loops over all values in an iterator.
+
+```javascript
+import { forIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = forIt(console.log, iterator);
+// 9, 11, 14
+```
+
+#### Parameters
+
+- `fn` | `Function` The function to run against a value from the iterator.
+- `Iterator` The iterator.
+
+### mapIt
+
+`map` over an iterator. Returns a new iterator.
+
+```javascript
+import { mapIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = mapIt((a) => a * 2, iterator);
+// iterator of: 18, 22, 28
+```
+
+#### Parameters
+
+- `fn` | `Function` The mapping function.
+- `Iterator` The iterator.
+
+### filterIt
+
+`filter` over an iterator. Returns a new iterator.
+
+```javascript
+import { filterIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = filterIt((a) => a > 12, test);
+// iterator of: 14
+```
+
+#### Parameters
+
+- `fn` | `Function` The mapping function.
+- `Iterator` The iterator.
+
+### reduceIt
+
+`reduce` over an iterator.
+
+```javascript
+import { filterIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = reduceIt(add, test);
+// 6
+```
+
+#### Parameters
+
+- `fn` | `Function` The reducing function.
+- `init` | `*` [_optional_] The initial value.
+- `Iterator` The iterator.
 
 ## Generic Functions
 
