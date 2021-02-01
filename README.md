@@ -380,6 +380,22 @@ const result = reduceIt(add, test);
 - `init` | `*` [_optional_] The initial value.
 - `Iterator` The iterator.
 
+### nthnext
+
+Returns the nth next of set, An empty Array when n is 0.
+
+```javascript
+import { nthnext } from "@flc-ds/fii-js-core";
+
+console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4))
+// [5,6,7]
+```
+
+#### Parameters
+
+- `set` | `Array` The set.
+- `num` | `number` The number of items to drop from the front of the Array.
+
 ## Generic Functions
 
 ### eq
