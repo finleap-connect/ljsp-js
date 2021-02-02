@@ -42,6 +42,7 @@
     - [whenNot](#whennot)
     - [cond](#cond)
     - [everyPred](#everypred)
+    - [every](#every)
     - [some$](#_some)
   - [List Functions](#list-functions)
     - [findInSetById](#findinsetbyid)
@@ -945,6 +946,20 @@ console.log(isGtZeroIntMultipleTwo(2, 4, 7));
 #### Parameters
 
 - `...Functions` | Variable number of Functions.
+
+### every
+Takes a set of expression and evaluates them against truthy values.
+Returns `false` if one of the expression evaluates to false.
+
+```javascript
+import { every } from "@flc-ds/fii-js-core";
+
+console.log(every(2, true, () => true));
+// true
+
+console.log(every(0, true, () => true));
+// false
+```
 
 ### \_some$
 
