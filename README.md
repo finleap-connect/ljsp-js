@@ -866,6 +866,25 @@ console.log(ifClass(false, "Birds"));
 - `condition` | A truthy value or expression that evaluates to a truthy value.
 - `trueCondition` | A value or expression that will return if the condition is true.
 
+### ifObj
+
+Returns the consequent if true, otherwise an empty object
+
+```javascript
+import { ifObj } from "@flc-ds/fii-js-core";
+
+console.log(ifObj(true, { one: 1 }));
+// { one: 1 }
+
+console.log(ifObj(false, { one: 1 }));
+// {}
+```
+
+#### Parameters
+
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
+
 ### when
 
 Evaluates test. If truthy, evaluates body in an implicit doWork.
