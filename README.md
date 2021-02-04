@@ -828,11 +828,28 @@ console.log(ifNo(12, "Birds"));
 - `condition` | A truthy value or expression that evaluates to a truthy value.
 - `falseCondition` | A value or expression that will return if the condition is false.
 
+### ifBlank
+
+If truthy, evaluates and returns then expr, otherwise the _empty string_.
+
+```javascript
+import { ifBlank } from "@flc-ds/fii-js-core";
+
+console.log(ifBlank(true, "Monkeys"));
+// "Monkeys"
+
+console.log(ifBlank(false, "Birds"));
+// """
+```
+
+#### Parameters
+
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
+
 ### ifClass
 
-A convenience method for including conditional class names.
-Evaluates test. If truthy, evaluates and returns then expr,
-otherwise the _empty string_.
+An alias of `ifBlank`. A semantic, convenience method for including conditional class names.
 
 ```javascript
 import { ifClass } from "@flc-ds/fii-js-core";
@@ -857,7 +874,7 @@ Evaluates test. If truthy, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-  when(
+        when(
     true,
     () => "one",
     () => "two",
