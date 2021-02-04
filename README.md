@@ -22,6 +22,7 @@
     - [areDistinct](#aredistinct)
     - [isEmpty](#isempty)
     - [notEmpty](#notempty)
+    - [void$](#void)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -43,6 +44,8 @@
     - [cond](#cond)
     - [everyPred](#everypred)
     - [some$](#_some)
+    - [ifBlank](#ifblank)
+    - [ifObj](#ifobj)
   - [List Functions](#list-functions)
     - [findInSetById](#findinsetbyid)
     - [removeFromSetById](#removefromsetbyid)
@@ -84,6 +87,7 @@
     - [mapIt](#mapit)
     - [filterIt](#filterit)
     - [reduceIt](#reduceit)
+    - [nthnext](#nthnext)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -868,7 +872,7 @@ console.log(ifClass(false, "Birds"));
 
 ### ifObj
 
-Returns the consequent if true, otherwise an empty object
+Returns the consequent if true, otherwise an empty object.
 
 ```javascript
 import { ifObj } from "@flc-ds/fii-js-core";
