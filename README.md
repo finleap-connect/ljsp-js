@@ -538,6 +538,27 @@ console.log(notEmpty([2, 4, 7, 4]));
 
 - `...Function` | Variable number of functions
 
+### void$
+
+Checks if value is either `null` or (`typeof`) `undefined`.
+
+```javascript
+import { void$ } from "@flc-ds/fii-js-core";
+
+console.log(void$({}));
+// false
+
+console.log(void$(null));
+// true
+
+console.log(void$(undefined));
+// true
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
 ## Math Functions
 
 ### add
