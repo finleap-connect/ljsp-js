@@ -964,12 +964,47 @@ console.log(some$());
 
 - `val` | `*` Any value or expression.
 
+### and
+
+Evaluates exprs one at a time, from left to right. If a form returns logical false (nil or false), it returns that value
+and doesn't evaluate any of the other expressions; otherwise, it returns the value of the last expr. (and) returns true.
+
+```javascript
+import { and } from "@flc-ds/fii-js-core";
+
+console.log(and(2, true, () => true));
+// () => true)
+
+console.log(and(0, true, () => true));
+// 0
+
+console.log(and())
+// true
+```
+
+### or
+
+Evaluates exprs one at a time, from left to right. If a form returns a logical true value, or returns that value and
+doesn't evaluate any of the other expressions, otherwise it returns the value of the last expression. (or) returns nil.
+
+```javascript
+import { or } from "@flc-ds/fii-js-core";
+
+console.log(or(2, true, () => true));
+// 2
+
+console.log(or(0, false, () => true));
+// () => true
+
+console.log(or());
+// undefined
+```
+
 ## List Functions
 
 ### findInSetById
 
-Finds an item in a set of objects with ids by matching the value
-of each item's id property against the provided value.
+Finds an item in a set of objects with ids by matching the value of each item's id property against the provided value.
 
 ```javascript
 import { findInSetById } from "@flc-ds/fii-js-core";
