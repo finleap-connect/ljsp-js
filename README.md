@@ -88,6 +88,7 @@
     - [filterIt](#filterit)
     - [reduceIt](#reduceit)
     - [nthnext](#nthnext)
+    - [index](#index)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
   - [Object Functions](#object-functions)
@@ -399,6 +400,48 @@ console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4))
 
 - `set` | `Array` The set.
 - `num` | `number` The number of items to drop from the front of the Array.
+
+### index
+
+Returns a map of the distinct values of `keys` in the `obj` mapped to a set of the objects in `obj` with the
+corresponding values of `keys`.
+
+```javascript
+import { index } from "@flc-ds/fii-js-core";
+
+const set = [
+  { name: "betsy", weight: 1000 },
+  { name: "jake", weight: 756 },
+  { name: "shaq", weight: 1000 }
+];
+
+console.log(index(set, ["weight"]));
+
+/**
+ * {
+ *   weight_1000: [
+ *     {
+ *       name: "betsy",
+ *       weight: 1000
+ *     }, {
+ *       name: "shaq",
+ *       weight: 1000
+ *     }
+ *   ],
+ *   weight_756: [
+ *     {
+ *       name: "jake",
+ *       weight: 756
+ *     }
+ *   ]
+ * }
+ */
+```
+
+#### Parameters
+
+- `objects` | `Array<Object>` An object or Array of objects of the same shape.
+- `keys` | `Array<string>` An Array of property names.
 
 ## Generic Functions
 
