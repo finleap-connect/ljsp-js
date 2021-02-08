@@ -91,6 +91,7 @@
     - [index](#index)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
+    - [trampoline](#trampoline)
   - [Object Functions](#object-functions)
     - [swap](#swap)
     - [updateIn](#updatein)
@@ -1936,8 +1937,8 @@ args (left-to-right).
 import { juxt } from "@flc-ds/fii-js-core";
 
 const test = juxt(
-  (n) => n * 2,
-  (n) => n + 1
+        (n) => n * 2,
+        (n) => n + 1
 );
 
 console.log(test(3));
@@ -1948,14 +1949,54 @@ console.log(test(3));
 
 - `args` | `Function` Variadic. One or more functions.
 
+### trampoline
+
+`trampoline` can be used to convert recursive algorithms without stack consumption. Calls `fn` with supplied args, if
+any. If `fn` returns a function, calls that function with no arguments, and continues to repeat, until the return value
+is not a function, then returns that non-fn value. Note that if you want to return a function as a final value, you must
+wrap it in some data structure and unpack it after `trampoline`
+returns.
+
+Note that the returned function (see the _else_ clause) returns the results of calling the "recursed" function.
+
+```javascript
+import { trampoline } from "@flc-ds/fii-js-core";
+
+function foo(x) {
+  // Base case
+  if (x < 0) {
+    return console.log("done");
+  }
+  // "recursive" call
+  else {
+    return function() {
+      console.log(x); // this line is just a side-effect
+      return foo(--x);
+    }
+  }
+}
+
+trampoline(foo, 3);
+/**
+ * 3
+ * 2
+ * 1
+ * 0
+ * "done"
+ */
+```
+
+#### Parameters
+
+- `args` | `Function` Variadic. One or more functions.
+
 ## Object Functions
 
 ### swap
 
-Swaps the value of an object to be: `(apply f current-value-of-object args)`.
-Returns the value that was swapped in. `swap` returns a new object. The
-original object is unchanged. Uses lodash's `cloneDeep` to for working with
-nested objects.
+Swaps the value of an object to be: `(apply f current-value-of-object args)`. Returns the value that was swapped
+in. `swap` returns a new object. The original object is unchanged. Uses lodash's `cloneDeep` to for working with nested
+objects.
 
 ```javascript
 import { swap, conj } from "@flc-ds/fii-js-core";
