@@ -99,6 +99,7 @@
     - [removeWatch](#removewatch)
     - [merge](#merge)
     - [project](#project)
+    - [rename](#rename)
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
@@ -2191,6 +2192,35 @@ console.log(
 
 - `objects` | `Object | Array<Object>` An object or Array of objects of the same shape.
 - `keys` | `Array<string>` An Array of property names.
+
+
+### rename
+
+Renames object keys with provided ones.
+
+```javascript
+import { rename } from "@flc-ds/fii-js-core";
+
+let users = [
+  {name: 'John Doe', country: 'US', pin: 100001},
+  {name: 'Micheal Klark', country: 'US'},
+  {name: 'Sheldon', country: 'Cooper', zip: 20001},
+];
+
+console.log(rename(users, {pin: 'zip'}));
+/*
+[
+  { name: 'John Doe', country: 'US', zip: 100001 },
+  { name: 'Micheal Klark', country: 'US' },
+  { name: 'Sheldon', country: 'Cooper', zip: 20001 }
+]
+ */
+```
+
+#### Parameters
+
+- `collection | Array<Object>` A collection
+- `mapper | Object` A mapper
 
 ## Validation
 
