@@ -33,6 +33,11 @@
     - [mod](#mod)
     - [inc](#inc)
     - [dec](#dec)
+    - [pos$](#pos)
+    - [neg$](#neg)
+    - [zero$](#zero)
+    - [odd$](#odd)
+    - [even$](#even)
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -795,12 +800,87 @@ console.log(nums.map(dec));
 
 - `Number` | A number.
 
+### pos$
+
+Returns true if num is greater than zero, else false.
+
+```javascript
+import { pos$ } from "@flc-ds/fii-js-core";
+
+console.log(pos$(9));
+// true
+```
+
+#### Parameters
+
+- `Number` | A number.
+
+### neg$
+
+Returns true if num is less than zero, else false.
+
+```javascript
+import { neg$ } from "@flc-ds/fii-js-core";
+
+console.log(neg$(-5));
+// true
+```
+
+#### Parameters
+
+- `Number` | A number.
+
+### zero$
+
+Returns true if num is zero, else false.
+
+```javascript
+import { zero$ } from "@flc-ds/fii-js-core";
+
+console.log(zero$(0));
+// true
+```
+
+#### Parameters
+
+- `Number` | A number.
+
+### even$
+
+Returns true if a number is even, otherwise false.
+
+```javascript
+import { even$ } from "@flc-ds/fii-js-core";
+
+console.log(even$(8));
+// true
+```
+
+#### Parameters
+
+- `Number` | A number.
+
+### odd$
+
+Returns true if a number is odd, otherwise false.
+
+```javascript
+import { odd$ } from "@flc-ds/fii-js-core";
+
+console.log(odd$(9));
+// true
+```
+
+#### Parameters
+
+- `Number` | A number.
+
 ## Conditional Functions
 
 ### iff
 
-A functional version of `if` that always returns a value. NOTE: _because this
-is a functional implementation, all expressions will be evaluated_.
+A functional version of `if` that always returns a value. NOTE: _because this is a functional implementation, all
+expressions will be evaluated_.
 
 ```javascript
 import { iff } from "@flc-ds/fii-js-core";
