@@ -2071,6 +2071,47 @@ trampoline(foo, 3);
 
 - `args` | `Function` Variadic. One or more functions.
 
+### keep
+`keep` can be used to  return a non nullish result of `fn(set)`.
+_`fn` should be free from any side effects_. __falsy values__ are returned by the function.
+If `set` is not passed, it returns a transducer function `fn`, which accepts set as argument.
+
+```javascript
+import { keep, odd$ } from "@flc-ds/fii-js-core";
+
+function returnWithBool(val) {
+  return iff(odd(val), val, false);
+}
+
+function returnWithNull(val) {
+  return iff(odd(val), val, null);
+}
+
+function returnWithUndefined(val) {
+  return iff(odd(val), val, undefined);
+}
+
+console.log(keep(returnWithBool, range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keep(returnWithNull, range(5)));
+// [ 1, 3 ]
+
+console.log(keep(returnWithUndefined, range(5)));
+// [ 1, 3 ]
+
+let keepFn = (arg) => keep(arg);
+
+console.log(keepFn(returnWithBool)(range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keepFn(returnWithNull)(range(5)));
+// [ 1, 3 ]
+
+console.log(keepFn(returnWithUndefined)(range(5)));
+// [ 1, 3 ]
+```
+
 ## Object Functions
 
 ### swap
