@@ -40,6 +40,8 @@
     - [even$](#even)
     - [lt$](#lt)
     - [gt$](#gt)
+    - [lte$](#lte)
+    - [gte$](#gte)
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -98,6 +100,7 @@
     - [index](#index)
     - [randomSample](#randomsample)
     - [keep](#keep)
+    - [ffirst](#ffirst)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -517,6 +520,24 @@ console.log(keepFn(returnWithUndefined)(range(5)));
 
 - `fn` | `Function` A predicate function.
 - `set` | `Array` An Array to filter.
+
+### ffirst
+
+Same as (first (first x))
+
+```javascript
+import { ffirst } from "@flc-ds/fii-js-core";
+
+console.log(ffirst([]))
+// undefined
+
+console.log(ffirst([[1, 2, 3]]))
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
 
 ## Generic Functions
 
@@ -946,13 +967,17 @@ console.log(odd$(9));
 
 ### lt$
 
-Returns `true` if nums are in monotonically increasing order, otherwise `false`.
+Returns `true` if nums are in monotonically increasing order, otherwise `false`. Calls with no comparison act like the
+identity function.
 
 ```javascript
 import { lt$ } from "@flc-ds/fii-js-core";
 
 console.log(lt$(8, 10, 12, 25));
 // true
+
+console.log(lt$(8));
+// 8
 ```
 
 #### Parameters
@@ -961,13 +986,56 @@ console.log(lt$(8, 10, 12, 25));
 
 ### gt$
 
-Returns `true` if nums are in monotonically decreasing order, otherwise `false`.
+Returns `true` if nums are in monotonically decreasing order, otherwise `false`. Calls with no comparison act like the
+identity function.
 
 ```javascript
 import { gt$ } from "@flc-ds/fii-js-core";
 
 console.log(gt$(18, 10, 5, 2));
 // true
+
+console.log(gt$(18));
+// 18
+```
+
+#### Parameters
+
+- `number` | A number(s) (variadic).
+
+### lte$
+
+Returns true if nums are in monotonically non-decreasing order, otherwise false. Calls with no comparison act like the
+identity function.
+
+```javascript
+import { lte$ } from "@flc-ds/fii-js-core";
+
+console.log(lte$(8, 10, 10, 15, 25));
+// true
+
+console.log(lte$(8));
+// 8
+
+```
+
+#### Parameters
+
+- `number` | A number(s) (variadic).
+
+### gte$
+
+Returns true if nums are in monotonically non-increasing order, otherwise false. Calls with no comparison act like the
+identity function.
+
+```javascript
+import { gte$ } from "@flc-ds/fii-js-core";
+
+console.log(gte$(18, 10, 10, 2));
+// true
+
+console.log(gte$(18));
+// 18
 ```
 
 #### Parameters
