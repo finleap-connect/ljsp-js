@@ -38,6 +38,8 @@
     - [zero$](#zero)
     - [odd$](#odd)
     - [even$](#even)
+    - [lt$](#lt)
+    - [gt$](#gt)
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -94,6 +96,8 @@
     - [reduceIt](#reduceit)
     - [nthnext](#nthnext)
     - [index](#index)
+    - [randomSample](#randomsample)
+    - [keep](#keep)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -449,6 +453,70 @@ console.log(index(set, ["weight"]));
 
 - `objects` | `Array<Object>` An object or Array of objects of the same shape.
 - `keys` | `Array<string>` An Array of property names.
+
+### randomSample
+
+Returns items from coll with random probability of prob (0.0 - 1.0). Returns a partially applied function when no
+collection is provided.
+
+```javascript
+import { randomSample } from "@flc-ds/fii-js-core";
+
+console.log(randomSample(0.5, [1, 2, 3, 4, 5]));
+// [1,2,5]
+```
+
+#### Parameters
+
+- `prob` | `Float` A floating-point decimal between 0.0 and 1.0.
+- `set` | `Array` An Array to sample.
+
+### keep
+
+`keep` can be used to return a non nullish result of `fn(set)`.
+_`fn` should be free from any side effects_. __falsy values__ are returned by the function. If `set` is not passed, it
+returns a transducer function `fn`, which accepts set as argument.
+
+```javascript
+import { keep, odd$ } from "@flc-ds/fii-js-core";
+
+function returnWithBool(val) {
+  return iff(odd(val), val, false);
+}
+
+function returnWithNull(val) {
+  return iff(odd(val), val, null);
+}
+
+function returnWithUndefined(val) {
+  return iff(odd(val), val, undefined);
+}
+
+console.log(keep(returnWithBool, range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keep(returnWithNull, range(5)));
+// [ 1, 3 ]
+
+console.log(keep(returnWithUndefined, range(5)));
+// [ 1, 3 ]
+
+let keepFn = (arg) => keep(arg);
+
+console.log(keepFn(returnWithBool)(range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keepFn(returnWithNull)(range(5)));
+// [ 1, 3 ]
+
+console.log(keepFn(returnWithUndefined)(range(5)));
+// [ 1, 3 ]
+```
+
+#### Parameters
+
+- `fn` | `Function` A predicate function.
+- `set` | `Array` An Array to filter.
 
 ## Generic Functions
 
@@ -875,6 +943,51 @@ console.log(odd$(9));
 #### Parameters
 
 - `Number` | A number.
+
+### lt$
+
+Returns `true` if nums are in monotonically increasing order, otherwise `false`.
+
+```javascript
+import { lt$ } from "@flc-ds/fii-js-core";
+
+console.log(lt$(8, 10, 12, 25));
+// true
+```
+
+#### Parameters
+
+- `number` | A number(s) (variadic).
+
+### gt$
+
+Returns `true` if nums are in monotonically decreasing order, otherwise `false`.
+
+```javascript
+import { gt$ } from "@flc-ds/fii-js-core";
+
+console.log(gt$(18, 10, 5, 2));
+// true
+```
+
+#### Parameters
+
+- `number` | A number(s) (variadic).
+
+### float$
+
+Returns `true` if the number is a `Float`.
+
+```javascript
+import { float$ } from "@flc-ds/fii-js-core";
+
+console.log(float$(0.5));
+// true
+```
+
+#### Parameters
+
+- `number` | A number.
 
 ## Conditional Functions
 
@@ -2070,47 +2183,6 @@ trampoline(foo, 3);
 #### Parameters
 
 - `args` | `Function` Variadic. One or more functions.
-
-### keep
-`keep` can be used to  return a non nullish result of `fn(set)`.
-_`fn` should be free from any side effects_. __falsy values__ are returned by the function.
-If `set` is not passed, it returns a transducer function `fn`, which accepts set as argument.
-
-```javascript
-import { keep, odd$ } from "@flc-ds/fii-js-core";
-
-function returnWithBool(val) {
-  return iff(odd(val), val, false);
-}
-
-function returnWithNull(val) {
-  return iff(odd(val), val, null);
-}
-
-function returnWithUndefined(val) {
-  return iff(odd(val), val, undefined);
-}
-
-console.log(keep(returnWithBool, range(5)));
-// [ false, 1, false, 3, false ]
-
-console.log(keep(returnWithNull, range(5)));
-// [ 1, 3 ]
-
-console.log(keep(returnWithUndefined, range(5)));
-// [ 1, 3 ]
-
-let keepFn = (arg) => keep(arg);
-
-console.log(keepFn(returnWithBool)(range(5)));
-// [ false, 1, false, 3, false ]
-
-console.log(keepFn(returnWithNull)(range(5)));
-// [ 1, 3 ]
-
-console.log(keepFn(returnWithUndefined)(range(5)));
-// [ 1, 3 ]
-```
 
 ## Object Functions
 
