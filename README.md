@@ -101,6 +101,7 @@
     - [randomSample](#randomsample)
     - [keep](#keep)
     - [ffirst](#ffirst)
+    - [second](#second)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -535,6 +536,24 @@ console.log(ffirst([]))
 
 console.log(ffirst([[1, 2, 3]]))
 // 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
+### second
+
+Same as (first (next x))
+
+```javascript
+import { second } from "@flc-ds/fii-js-core";
+
+console.log(second([]))
+// undefined
+
+console.log(second([1, 2, 3]))
+// 2
 ```
 
 #### Parameters
