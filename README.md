@@ -112,6 +112,7 @@
     - [merge](#merge)
     - [project](#project)
     - [rename](#rename)
+    - [ownMethods](#ownmethods)
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
@@ -2454,7 +2455,6 @@ console.log(
 - `objects` | `Object | Array<Object>` An object or Array of objects of the same shape.
 - `keys` | `Array<string>` An Array of property names.
 
-
 ### rename
 
 Renames object keys with provided ones.
@@ -2482,6 +2482,34 @@ console.log(rename(users, {pin: 'zip'}));
 
 - `collection | Array<Object>` A collection
 - `mapper | Object` A mapper
+
+### ownMethods
+
+Returns an Array of an object's own methods. Returns an empty Array if no methods are found.
+
+```javascript
+import { ownMethods } from "@flc-ds/fii-js-core";
+
+console.log(ownMethods({
+  one() {
+  },
+  two() {
+  },
+  three() {
+  },
+  name: "Pete"
+}));
+// [ one(){}, two(){}, three(){} ]
+
+console.log(ownMethods({
+  name: "Pete"
+}));
+// []
+```
+
+#### Parameters
+
+- `obj | Object` An object
 
 ## Validation
 
