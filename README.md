@@ -104,6 +104,7 @@
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
+    - [complement](#complement)
   - [Object Functions](#object-functions)
     - [swap](#swap)
     - [updateIn](#updatein)
@@ -2247,6 +2248,24 @@ trampoline(foo, 3);
  * 0
  * "done"
  */
+```
+
+#### Parameters
+
+- `args` | `Function` Variadic. One or more functions.
+
+### complement
+
+Takes a fn f and returns a fn that takes the same arguments as f, has the same effects, if any, and returns the opposite
+truth value.
+
+```javascript
+import { complement } from "@flc-ds/fii-js-core";
+
+const notEq = complement(_.eq);
+
+console.log(notEq("a", "b"))
+// true
 ```
 
 #### Parameters
