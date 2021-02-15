@@ -118,6 +118,8 @@
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
+  - [RegExp](#regexp)
+    - [cat](#cat)
   - [Spec](#spec)
 * [Branching Flow](#branching-flow)
 * [Deployment](#deployment)
@@ -409,7 +411,7 @@ Returns the nth next of set, An empty Array when n is 0.
 ```javascript
 import { nthnext } from "@flc-ds/fii-js-core";
 
-console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4))
+console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4));
 // [5,6,7]
 ```
 
@@ -480,7 +482,7 @@ console.log(randomSample(0.5, [1, 2, 3, 4, 5]));
 ### keep
 
 `keep` can be used to return a non nullish result of `fn(set)`.
-_`fn` should be free from any side effects_. __falsy values__ are returned by the function. If `set` is not passed, it
+_`fn` should be free from any side effects_. **falsy values** are returned by the function. If `set` is not passed, it
 returns a transducer function `fn`, which accepts set as argument.
 
 ```javascript
@@ -531,10 +533,10 @@ Same as (first (first x))
 ```javascript
 import { ffirst } from "@flc-ds/fii-js-core";
 
-console.log(ffirst([]))
+console.log(ffirst([]));
 // undefined
 
-console.log(ffirst([[1, 2, 3]]))
+console.log(ffirst([[1, 2, 3]]));
 // 1
 ```
 
@@ -549,10 +551,10 @@ Same as (first (next x))
 ```javascript
 import { second } from "@flc-ds/fii-js-core";
 
-console.log(second([]))
+console.log(second([]));
 // undefined
 
-console.log(second([1, 2, 3]))
+console.log(second([1, 2, 3]));
 // 2
 ```
 
@@ -1037,7 +1039,6 @@ console.log(lte$(8, 10, 10, 15, 25));
 
 console.log(lte$(8));
 // 8
-
 ```
 
 #### Parameters
@@ -1225,8 +1226,8 @@ import { when } from "@flc-ds/fii-js-core";
 
 console.log(
         when(
-    true,
-    () => "one",
+                true,
+                () => "one",
     () => "two",
     () => "three"
   )
@@ -1366,7 +1367,7 @@ console.log(and(2, true, () => true));
 console.log(and(0, true, () => true));
 // 0
 
-console.log(and())
+console.log(and());
 // true
 ```
 
@@ -2255,7 +2256,7 @@ function foo(x) {
     return function() {
       console.log(x); // this line is just a side-effect
       return foo(--x);
-    }
+    };
   }
 }
 
@@ -2283,7 +2284,7 @@ import { complement } from "@flc-ds/fii-js-core";
 
 const notEq = complement(_.eq);
 
-console.log(notEq("a", "b"))
+console.log(notEq("a", "b"));
 // true
 ```
 
@@ -2501,12 +2502,12 @@ Renames object keys with provided ones.
 import { rename } from "@flc-ds/fii-js-core";
 
 let users = [
-  {name: 'John Doe', country: 'US', pin: 100001},
-  {name: 'Micheal Klark', country: 'US'},
-  {name: 'Sheldon', country: 'Cooper', zip: 20001},
+  { name: "John Doe", country: "US", pin: 100001 },
+  { name: "Micheal Klark", country: "US" },
+  { name: "Sheldon", country: "Cooper", zip: 20001 }
 ];
 
-console.log(rename(users, {pin: 'zip'}));
+console.log(rename(users, { pin: "zip" }));
 /*
 [
   { name: 'John Doe', country: 'US', zip: 100001 },
@@ -2528,20 +2529,24 @@ Returns an Array of an object's own methods. Returns an empty Array if no method
 ```javascript
 import { ownMethods } from "@flc-ds/fii-js-core";
 
-console.log(ownMethods({
-  one() {
-  },
-  two() {
-  },
-  three() {
-  },
-  name: "Pete"
-}));
+console.log(
+        ownMethods({
+          one() {
+          },
+          two() {
+          },
+          three() {
+          },
+          name: "Pete"
+        })
+);
 // [ one(){}, two(){}, three(){} ]
 
-console.log(ownMethods({
-  name: "Pete"
-}));
+console.log(
+        ownMethods({
+          name: "Pete"
+        })
+);
 // []
 ```
 
@@ -2624,7 +2629,27 @@ Supplied as an object with the following properties:
 - `func` | `String` The name of the function.
 - `spec` | `Object` An object, as described above.
 
-##### Branching Flow
+## RegExp
+
+### cat
+
+Takes key+pred pairs, e.g. Returns a regex function that matches (all) values in sequence, returning a map containing
+the keys of each matched regex and its corresponding value.
+
+```javascript
+import { cat } from "@flc-ds/fii-js-core";
+
+const regexSet = cat({ a: /a/, b: /b/ });
+
+console.log(regexSet(["ab", "bc"]));
+// [{a:["a"], b:["b"]},{a:null, b:["b"]}]
+```
+
+#### Parameters
+
+- `keyPred` | `Object` An Object with key-predicate pairs.
+
+## Branching Flow
 
 We use the Release Flow methodology for our branching and release flow. For details, see
 
