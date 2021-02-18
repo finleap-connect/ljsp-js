@@ -562,6 +562,24 @@ console.log(second([1, 2, 3]));
 
 - `set` | `Array<Array>` A two-dimensional Array.
 
+### first
+
+A convenience export of Lodash's `first` function.
+
+```javascript
+import { first } from "@flc-ds/fii-js-core";
+
+console.log(first([]));
+// undefined
+
+console.log(first([1, 2, 3]));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
 ## Generic Functions
 
 ### eq
