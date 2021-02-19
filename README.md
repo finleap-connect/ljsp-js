@@ -2350,6 +2350,35 @@ console.log(notEq("a", "b"));
 
 - `args` | `Function` Variadic. One or more functions.
 
+### fNill
+
+Takes a function f, and returns a function that calls f, replacing
+a nil first argument to f with the supplied value x. Higher arity
+versions can replace arguments in the second and third
+positions (y, z). Note that the function f can take any number of
+arguments, not just the one(s) being nil-patched.
+
+```javascript
+import { fNill } from "@flc-ds/fii-js-core";
+
+function sayHello(first, other) {
+  return str("Hello ", first, " and ", other);
+}
+
+const sayHelloWithDefaults = fNill(sayHello, "John", "Reed");
+
+console.log(sayHelloWithDefaults());
+// "Hello John and Reed"
+
+console.log(sayHelloWithDefaults("Maxx"));
+// "Hello Maxx and Reed"
+```
+
+#### Parameters
+
+- `fn` | `Function` A function
+- `...args` | `*` Variadic arguments.
+
 ## Object Functions
 
 ### swap
