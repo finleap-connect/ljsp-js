@@ -102,6 +102,8 @@
     - [keep](#keep)
     - [ffirst](#ffirst)
     - [second](#second)
+    - [fillVoid](#fillvoid)
+    - [first](#first)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -557,10 +559,25 @@ console.log(second([]));
 console.log(second([1, 2, 3]));
 // 2
 ```
-
 #### Parameters
 
 - `set` | `Array<Array>` A two-dimensional Array.
+
+
+### fillVoid
+A function which replaces void values in an array from the template and returns a new array.
+
+```javascript
+import { fillVoid } from "@flc-ds/fii-js-core";
+
+console.log(fillVoid([1,2,null, 4], [1, 2, 3, 4]));
+// [1, 2, 3, 4]
+```
+
+#### Parameters
+
+- `source` | `Array<>` A one-dimensional Array.
+- `template` | `Array<>` A one-dimensional Array which should not have void values.
 
 ### first
 
