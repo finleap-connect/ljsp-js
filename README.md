@@ -104,6 +104,7 @@
     - [second](#second)
     - [fillVoid](#fillvoid)
     - [first](#first)
+    - [extendArray](#extendarray)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -279,11 +280,11 @@ collection. Returns a partially applied function when no collections are provide
 import { mapcat } from "@flc-ds/fii-js-core";
 
 console.log(
-        mapcat(_.reverse, [
-          [3, 2, 1, 0],
-          [6, 5, 4],
-          [9, 8, 7]
-        ])
+  mapcat(_.reverse, [
+    [3, 2, 1, 0],
+    [6, 5, 4],
+    [9, 8, 7]
+  ])
 );
 
 // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -559,18 +560,19 @@ console.log(second([]));
 console.log(second([1, 2, 3]));
 // 2
 ```
+
 #### Parameters
 
 - `set` | `Array<Array>` A two-dimensional Array.
 
-
 ### fillVoid
+
 A function which replaces void values in an array from the template and returns a new array.
 
 ```javascript
 import { fillVoid } from "@flc-ds/fii-js-core";
 
-console.log(fillVoid([1,2,null, 4], [1, 2, 3, 4]));
+console.log(fillVoid([1, 2, null, 4], [1, 2, 3, 4]));
 // [1, 2, 3, 4]
 ```
 
@@ -596,6 +598,27 @@ console.log(first([1, 2, 3]));
 #### Parameters
 
 - `set` | `Array<Array>` A two-dimensional Array.
+
+### extendArray
+
+Extends original array with provided value or function which receives index as param.
+
+```javascript
+import { extendArray } from "@flc-ds/fii-js-core";
+import { identity } from "lodash";
+
+console.log(extendArray([1, 2, 3], 10, "x"));
+// [1, 2, 3,'x','x','x','x', 'x', 'x', 'x']
+
+console.log(extendArray([1, 2, 3], 10, identity));
+// [1,2,3,4,5,6,7,8,9]
+```
+
+#### Parameters
+
+- `source` | `[]` array.
+- `len` | `number` length.
+- `value` | `*` A function which receives the index or a static value
 
 ## Generic Functions
 
@@ -1260,9 +1283,9 @@ Evaluates test. If truthy, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-        when(
-                true,
-                () => "one",
+  when(
+    true,
+    () => "one",
     () => "two",
     () => "three"
   )
@@ -2141,11 +2164,11 @@ console.log(walk(
 // 30
 
 console.log(
-        walk(
-                ([key, value]) => [key, value + 1],
-                (set) => set,
-                { one: 1, two: 2, three: 3 }
-        )
+  walk(
+    ([key, value]) => [key, value + 1],
+    (set) => set,
+    { one: 1, two: 2, three: 3 }
+  )
 );
 /**
  * {
@@ -2256,8 +2279,8 @@ args (left-to-right).
 import { juxt } from "@flc-ds/fii-js-core";
 
 const test = juxt(
-        (n) => n * 2,
-        (n) => n + 1
+  (n) => n * 2,
+  (n) => n + 1
 );
 
 console.log(test(3));
@@ -2288,7 +2311,7 @@ function foo(x) {
   }
   // "recursive" call
   else {
-    return function() {
+    return function () {
       console.log(x); // this line is just a side-effect
       return foo(--x);
     };
@@ -2565,22 +2588,19 @@ Returns an Array of an object's own methods. Returns an empty Array if no method
 import { ownMethods } from "@flc-ds/fii-js-core";
 
 console.log(
-        ownMethods({
-          one() {
-          },
-          two() {
-          },
-          three() {
-          },
-          name: "Pete"
-        })
+  ownMethods({
+    one() {},
+    two() {},
+    three() {},
+    name: "Pete"
+  })
 );
 // [ one(){}, two(){}, three(){} ]
 
 console.log(
-        ownMethods({
-          name: "Pete"
-        })
+  ownMethods({
+    name: "Pete"
+  })
 );
 // []
 ```
