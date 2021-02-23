@@ -105,6 +105,7 @@
     - [ffirst](#ffirst)
     - [fillVoid](#fillvoid)
     - [extendArray](#extendarray)
+    - [reduce](#reduce)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -620,6 +621,101 @@ console.log(extendArray([1, 2, 3], 10, identity));
 - `source` | `[]` array.
 - `len` | `number` length.
 - `value` | `*` A function which receives the index or a static value
+
+### reduce
+
+NOTE: `js-core`'s `reduce` function varies from the standard JS Array.reduce pattern. Read below for more detail.
+
+`f` should be a function of 2 arguments. If `val` is not supplied, returns the result of applying `f` to the first 2
+items in `set`, then applying `f` to that result and the 3rd item, etc. If `set` contains no items, `f` must accept no
+arguments as well, and reduce returns the result of calling `f` with no arguments. If `set` has only 1 item, it is
+returned and `f` is not called. If `val` is supplied, returns the result of applying `f` to `val` and the first item
+in `set`, then applying `f` to that result and the 2nd item, etc. If coll contains no items, returns `val` and `f` is
+not called.
+
+Additionally, the reduction will terminate early if an intermediate result wraps its result in the `reduced` function.
+
+```javascript
+import { reduce, add, reduced } from "@flc-ds/fii-js-core";
+
+console.log(reduce(add, [1, 2, 3, 4]));
+// 10
+
+console.log(reduce(add, 2, [1, 2, 3, 4]));
+// 12
+
+console.log(reduce(add, 0, [1]));
+// 1
+
+console.log(reduce(add, 10, []));
+// 10
+
+console.log(
+  reduce(
+    (acc, cur) => {
+      return acc < 5 ? add(acc, cur) : reduced(acc);
+    },
+    0,
+    [1, 2, 3, 4, 5]
+  )
+);
+// 6
+```
+
+#### Parameters
+
+<<<<<<< HEAD
+- `fn` | `Function` The callback function. Must take 2 parameters: accumulator and current.
+=======
+- `f` | `Function` The callback function. Must take 2 parameters: accumulator and current.
+>>>>>>> dd968567021a669f119cab3bcfb11283d99ddb8e
+- `val` | `*` An initializer value. The first value in the accumulation.
+- `set` | `Array` An array.
+
+### reduced
+
+Wraps `x` in a way such that a `reduce` will terminate with the value `x`
+
+```javascript
+import { reduce, add, reduced } from "@flc-ds/fii-js-core";
+
+console.log(
+  reduce(
+    (acc, cur) => {
+      return acc < 5 ? add(acc, cur) : reduced(acc);
+    },
+    0,
+    [1, 2, 3, 4, 5]
+  )
+);
+// 6
+```
+
+#### Parameters
+
+- `val` | `*` A value.
+
+### reduced$
+
+Returns true if `x` is the result of a call to `reduced`
+
+```javascript
+import { reduced$ } from "@flc-ds/fii-js-core";
+
+const test = 1;
+
+const reducedTest = reduced(test);
+
+console.log(reduced$(reducedTest));
+// true
+
+console.log(reduced$(12));
+// false
+```
+
+#### Parameters
+
+- `val` | `*` A value.
 
 ## Generic Functions
 
