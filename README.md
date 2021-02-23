@@ -100,15 +100,16 @@
     - [index](#index)
     - [randomSample](#randomsample)
     - [keep](#keep)
-    - [ffirst](#ffirst)
-    - [second](#second)
-    - [fillVoid](#fillvoid)
     - [first](#first)
+    - [second](#second)
+    - [ffirst](#ffirst)
+    - [fillVoid](#fillvoid)
     - [extendArray](#extendarray)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
     - [complement](#complement)
+    - [fnil](#fnil)
   - [Object Functions](#object-functions)
     - [swap](#swap)
     - [updateIn](#updatein)
@@ -2350,13 +2351,11 @@ console.log(notEq("a", "b"));
 
 - `args` | `Function` Variadic. One or more functions.
 
-### fNill
+### fNil
 
-Takes a function f, and returns a function that calls f, replacing
-a nil first argument to f with the supplied value x. Higher arity
-versions can replace arguments in the second and third
-positions (y, z). Note that the function f can take any number of
-arguments, not just the one(s) being nil-patched.
+Takes a function `f`, and returns a function that calls `f`, replacing a `nullish` first argument to `f` with the
+supplied value. Higher arity versions can replace arguments in the second, third, etc. positions. Note that the
+function `f` can take any number of arguments, not just the one(s) being nil-patched.
 
 ```javascript
 import { fNill } from "@flc-ds/fii-js-core";
