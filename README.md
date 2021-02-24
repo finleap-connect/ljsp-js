@@ -1820,11 +1820,18 @@ console.log(makeArray(3));
 
 console.log(makeArray([1, 2, 3, 4]));
 // [1, 2, 3, 4]
+
+console.log(makeArray(3, (i) => ({ num: i }) ));
+// [ { num: 3 } ]
+
+console.log(makeArray([1, 2, 3, 4], (i) => ([i])));
+// [ [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
 ```
 
 #### Parameters
 
 - `item` | `*`
+- `transform` | `Function` Transformer function receiving the item as argument 
 
 ### selectKeys
 
