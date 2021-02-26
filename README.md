@@ -23,6 +23,7 @@
     - [isEmpty](#isempty)
     - [notEmpty](#notempty)
     - [void$](#void)
+    - [diff](#diff)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -664,11 +665,7 @@ console.log(
 
 #### Parameters
 
-<<<<<<< HEAD
-- `fn` | `Function` The callback function. Must take 2 parameters: accumulator and current.
-=======
 - `f` | `Function` The callback function. Must take 2 parameters: accumulator and current.
->>>>>>> dd968567021a669f119cab3bcfb11283d99ddb8e
 - `val` | `*` An initializer value. The first value in the accumulation.
 - `set` | `Array` An array.
 
@@ -879,6 +876,78 @@ console.log(void$(undefined));
 #### Parameters
 
 - `...Function` | Variable number of functions
+
+### not
+
+Returns true if x is logically `false`, `false` otherwise
+
+```javascript
+import { not } from "@flc-ds/fii-js-core";
+
+console.log(not(1));
+// false
+
+console.log(not(true));
+// false
+
+console.log(not(false));
+// true
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
+### diff
+
+Recursively compares a and b, returning an Array of
+[things-only-in-a things-only-in-b things-in-both].
+Comparison rules:
+
+- For equal a and b, return [a].
+- Objects are sub-diffed where keys match and values differ.
+- Sets are never sub-diffed.
+- All sequential things are treated as associative collections
+  by their indexes, with results returned as an Array.
+- Everything else is compared for equality.
+
+```javascript
+import { diff } from "@flc-ds/fii-js-core";
+
+const uno = { same: "same", different: "one" };
+const dos = { same: "same", different: "two", only_here: "whatever" };
+
+console.log(diff(uno, dos));
+/*
+ * [
+ *  { different: 'one' },
+ *  { different: 'two', only_here: 'whatever' },
+ *  { same: 'same' }
+ * ]
+ */
+
+console.log(diff([1, 2, 3], [5, 9, 3, 2, 3, 7]));
+// [ [ 1, 2 ], [ 5, 9, 2, 3, 7 ], [ 3 ] ]
+
+console.log(diff({ a: { b: 1 }, c: 2 }, { a: {}, c: 2 }));
+// [ { a: { b: 1 } }, { a: {} }, { c: 2 } ]
+
+/* Nothing Unique in first Object */
+console.log(diff({ a: 1 }, { a: 1, b: 2 }));
+// [ {}, { b: 2 }, { a: 1 } ]
+
+/* Compare by equality */
+console.log(diff("one", "onet"));
+// [ 'one', 'onet', null ]
+
+console.log(diff("one", "one"));
+// [ null, null, "one" ]
+```
+
+#### Parameters
+
+- `a` | `Array | Object | String` The left side
+- `b` | `Array | Object | String` The right side
 
 ## Math Functions
 
@@ -1821,17 +1890,17 @@ console.log(makeArray(3));
 console.log(makeArray([1, 2, 3, 4]));
 // [1, 2, 3, 4]
 
-console.log(makeArray(3, (i) => ({ num: i }) ));
+console.log(makeArray(3, (i) => ({ num: i })));
 // [ { num: 3 } ]
 
-console.log(makeArray([1, 2, 3, 4], (i) => ([i])));
+console.log(makeArray([1, 2, 3, 4], (i) => [i]));
 // [ [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
 ```
 
 #### Parameters
 
 - `item` | `*`
-- `transform` | `Function` Transformer function receiving the item as argument 
+- `transform` | `Function` Transformer function receiving the item as argument
 
 ### selectKeys
 
