@@ -40,5 +40,5 @@ publish:
     - master
   script:
     - source bin/override-envs.sh
-    - npm ci
-    - npx semantic-release
+    - npm i
+    - npm run release
