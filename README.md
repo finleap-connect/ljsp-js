@@ -43,6 +43,9 @@
     - [gt$](#gt)
     - [lte$](#lte)
     - [gte$](#gte)
+    - [float$](#float)  
+    - [max](#max)
+    - [min](#min) 
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -1302,6 +1305,36 @@ console.log(float$(0.5));
 #### Parameters
 
 - `number` | A number.
+
+### max
+
+Returns the greatest of the nums.
+
+```javascript
+import { max } from "@flc-ds/fii-js-core";
+
+console.log(max(5, 10, 35, 20, 15));
+// 35
+```
+
+#### Parameters
+
+- `num` | `Numbers(s)` A number (variadic).
+
+### min
+
+Returns the least of the nums.
+
+```javascript
+import { min } from "@flc-ds/fii-js-core";
+
+console.log(min(5, 10, 2, 20, 15));
+// 2
+```
+
+#### Parameters
+
+- `num` | `Numbers(s)` A number (variadic).
 
 ## Conditional Functions
 
