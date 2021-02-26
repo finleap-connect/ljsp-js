@@ -1,5 +1,6 @@
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
+import copy from "rollup-plugin-copy";
 import resolve from "rollup-plugin-node-resolve";
 // If you want to run analytics against the bundle size, import analyze
 // as below, and include `analyze()` in the plugins array.
@@ -10,7 +11,7 @@ export default [
     input: "lib/index.js",
     output: [
       {
-        file: "dist/index.js",
+        file: "release/dist/index.js",
         format: "cjs",
         sourcemap: false
       }
@@ -28,7 +29,15 @@ export default [
         ],
         exclude: ["node_modules/**", "lib", "bin"]
       }),
-      commonjs()
+      commonjs(),
+      copy({
+        targets: [
+          {
+            src: ["./package.json", "./README.md", "./CONTRIBUTING.md", "./CHANGELOG.md"],
+            dest: "release"
+          }
+        ]
+      })
     ],
     external: ["lodash"]
   }
