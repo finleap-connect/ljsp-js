@@ -42,6 +42,9 @@
     - [gt$](#gt)
     - [lte$](#lte)
     - [gte$](#gte)
+    - [float$](#float)  
+    - [max](#max)
+    - [min](#min) 
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -664,11 +667,7 @@ console.log(
 
 #### Parameters
 
-<<<<<<< HEAD
-- `fn` | `Function` The callback function. Must take 2 parameters: accumulator and current.
-=======
 - `f` | `Function` The callback function. Must take 2 parameters: accumulator and current.
->>>>>>> dd968567021a669f119cab3bcfb11283d99ddb8e
 - `val` | `*` An initializer value. The first value in the accumulation.
 - `set` | `Array` An array.
 
@@ -1233,6 +1232,36 @@ console.log(float$(0.5));
 #### Parameters
 
 - `number` | A number.
+
+### max
+
+Returns the greatest of the nums.
+
+```javascript
+import { max } from "@flc-ds/fii-js-core";
+
+console.log(max(5, 10, 35, 20, 15));
+// 35
+```
+
+#### Parameters
+
+- `num` | `Numbers(s)` A number (variadic).
+
+### min
+
+Returns the least of the nums.
+
+```javascript
+import { min } from "@flc-ds/fii-js-core";
+
+console.log(min(5, 10, 2, 20, 15));
+// 2
+```
+
+#### Parameters
+
+- `num` | `Numbers(s)` A number (variadic).
 
 ## Conditional Functions
 

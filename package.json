@@ -1,6 +1,6 @@
 {
   "name": "@flc-ds/fii-js-core",
-  "version": "0.0.60",
+  "version": "1.0.0",
   "description": "",
   "repository": {
     "url": "https://gitlab.figo.systems/flc-ds/js-core.git"
