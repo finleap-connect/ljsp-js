@@ -11,10 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
-    "prepare": "npm run build",
-    "prerelease": "npm run lint && npm run build",
     "release": "npm publish",
-    "distribute": "npm run prettify:all && npm run release",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint lib/**/*.js --fix --max-warnings=0",
     "commit": "run-s add-files commitizen",
