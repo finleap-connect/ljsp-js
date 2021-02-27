@@ -21,9 +21,12 @@
     - [doWork](#dowork)
     - [areDistinct](#aredistinct)
     - [isEmpty](#isempty)
+    - [isString](#isstring)
+    - [isObject](#isobject)  
     - [notEmpty](#notempty)
     - [void$](#void)
     - [diff](#diff)
+    - [alike](#alike)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -104,6 +107,7 @@
     - [index](#index)
     - [randomSample](#randomsample)
     - [keep](#keep)
+    - [nth](#nth) 
     - [first](#first)
     - [second](#second)
     - [ffirst](#ffirst)
@@ -535,6 +539,24 @@ console.log(keepFn(returnWithUndefined)(range(5)));
 - `fn` | `Function` A predicate function.
 - `set` | `Array` An Array to filter.
 
+### nth
+
+Returns an index value from an Array
+
+```javascript
+import { nth } from "@flc-ds/fii-js-core";
+
+console.log(nth([]));
+// undefined
+
+console.log(nth([[1, 2, 3]], 1));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
 ### ffirst
 
 Same as (first (first x))
@@ -822,7 +844,9 @@ console.log(areDistinct(2, 4, 7, 4));
 
 ### isEmpty
 
-Lodash's `isEmpty` function, included here for completeness, because we have `notEmpty`.
+Checks if value is an empty object, collection, map, or set. Objects are considered empty 
+if they have no own enumerable string keyed properties. Maps and Sets are considered empty 
+if they have a size of 0. Does not work with Buffers.
 
 ```javascript
 import { isEmpty } from "@flc-ds/fii-js-core";
@@ -853,6 +877,42 @@ console.log(notEmpty({}));
 
 console.log(notEmpty([2, 4, 7, 4]));
 // true
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
+### isString
+
+Determines whether a value is a string.
+
+```javascript
+import { isString } from "@flc-ds/fii-js-core";
+
+console.log(isString({}));
+// false
+
+console.log(isString("one"));
+// true
+```
+
+#### Parameters
+
+- `...Function` | Variable number of functions
+
+### isObject
+
+Determines whether a value is an object.
+
+```javascript
+import { isObject } from "@flc-ds/fii-js-core";
+
+console.log(isObject({}));
+// true
+
+console.log(isObject("one"));
+// false
 ```
 
 #### Parameters
@@ -945,6 +1005,25 @@ console.log(diff("one", "onet"));
 
 console.log(diff("one", "one"));
 // [ null, null, "one" ]
+```
+
+#### Parameters
+
+- `a` | `Array | Object | String` The left side
+- `b` | `Array | Object | String` The right side
+
+### alike
+
+Performs a coercive comparison of two values, using ES's Abstract Equality Comparison (==)
+
+```javascript
+import { alike } from "@flc-ds/fii-js-core";
+
+console.log(alike(1, "1"));
+// true
+
+console.log(alike("one", 1));
+// false
 ```
 
 #### Parameters
