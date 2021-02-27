@@ -15,15 +15,20 @@
     - [str](#str)
     - [strSpace](#strspace)
     - [toPath](#topath)
+    - [replaceFirst](#replacefirst)
   - [Generic Functions](#generic-functions)
     - [eq](#eq)
     - [deepEq](#deepeq)
     - [doWork](#dowork)
     - [areDistinct](#aredistinct)
     - [isEmpty](#isempty)
+    - [isString](#isstring)
+    - [isObject](#isobject)
+    - [isRegExp](#isregexp) 
     - [notEmpty](#notempty)
     - [void$](#void)
     - [diff](#diff)
+    - [alike](#alike)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -43,9 +48,9 @@
     - [gt$](#gt)
     - [lte$](#lte)
     - [gte$](#gte)
-    - [float$](#float)  
+    - [float$](#float)
     - [max](#max)
-    - [min](#min) 
+    - [min](#min)
   - [Conditional Functions](#conditional-functions)
     - [iff](#iff)
     - [ifSome](#ifsome)
@@ -104,6 +109,7 @@
     - [index](#index)
     - [randomSample](#randomsample)
     - [keep](#keep)
+    - [nth](#nth)
     - [first](#first)
     - [second](#second)
     - [ffirst](#ffirst)
@@ -221,6 +227,24 @@ console.log(toPath("http://api.docs.com", slug, "reports"));
 - | Returns an empty string.
 - `*` | converts the value to a string
 - `...string` | concatenates values with a forward-slash delimiter (and converts them to strings)
+
+### replaceFirst
+
+Replaces the first instance of match with replacement in s. Functions
+similarly to native JS replace (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+
+```javascript
+import { replaceFirst } from "@flc-ds/fii-js-core";
+
+console.log(replaceFirst("fabulous fodder foo food fodder", /Fodder/gi, "blodder"));
+// fabulous blodder foo food fodder
+```
+
+#### Parameters
+
+- `string` | `String` 
+- `matcher` | `String | RegExp`
+- `replacement` | `String | String Pattern | Function` (See MDN docs for details)
 
 ### strInterpose
 
@@ -535,6 +559,24 @@ console.log(keepFn(returnWithUndefined)(range(5)));
 - `fn` | `Function` A predicate function.
 - `set` | `Array` An Array to filter.
 
+### nth
+
+Returns an index value from an Array.
+
+```javascript
+import { nth } from "@flc-ds/fii-js-core";
+
+console.log(nth([]));
+// undefined
+
+console.log(nth([[1, 2, 3]], 1));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` An Array.
+
 ### ffirst
 
 Same as (first (first x))
@@ -822,7 +864,9 @@ console.log(areDistinct(2, 4, 7, 4));
 
 ### isEmpty
 
-Lodash's `isEmpty` function, included here for completeness, because we have `notEmpty`.
+Checks if value is an empty object, collection, map, or set. Objects are considered empty
+if they have no own enumerable string keyed properties. Maps and Sets are considered empty
+if they have a size of 0. Does not work with Buffers.
 
 ```javascript
 import { isEmpty } from "@flc-ds/fii-js-core";
@@ -836,7 +880,7 @@ console.log(isEmpty([2, 4, 7, 4]));
 
 #### Parameters
 
-- `...Function` | Variable number of functions
+- `*` | `Object | Array | Map | Set` The item to test.
 
 ### notEmpty
 
@@ -858,6 +902,60 @@ console.log(notEmpty([2, 4, 7, 4]));
 #### Parameters
 
 - `...Function` | Variable number of functions
+
+### isString
+
+Determines whether a value is a string.
+
+```javascript
+import { isString } from "@flc-ds/fii-js-core";
+
+console.log(isString({}));
+// false
+
+console.log(isString("one"));
+// true
+```
+
+#### Parameters
+
+- `*` | The variable to test.
+
+### isObject
+
+Determines whether a value is an object.
+
+```javascript
+import { isObject } from "@flc-ds/fii-js-core";
+
+console.log(isObject({}));
+// true
+
+console.log(isObject("one"));
+// false
+```
+
+#### Parameters
+
+- `*` | The variable to test.
+
+### isRegExp
+
+Determines whether a value is a RegExp.
+
+```javascript
+import { isRegExp } from "@flc-ds/fii-js-core";
+
+console.log(isRegExp(/one/));
+// true
+
+console.log(isRegExp("one"));
+// false
+```
+
+#### Parameters
+
+- `*` | The variable to test.
 
 ### void$
 
@@ -951,6 +1049,25 @@ console.log(diff("one", "one"));
 
 - `a` | `Array | Object | String` The left side
 - `b` | `Array | Object | String` The right side
+
+### alike
+
+Performs a coercive comparison of two values, using ES's Abstract Equality Comparison (==).
+
+```javascript
+import { alike } from "@flc-ds/fii-js-core";
+
+console.log(alike(1, "1"));
+// true
+
+console.log(alike("one", 1));
+// false
+```
+
+#### Parameters
+
+- `a` | `*` The left side
+- `b` | `*` The right side
 
 ## Math Functions
 
@@ -1482,12 +1599,12 @@ Evaluates test. If truthy, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-  when(
-    true,
-    () => "one",
-    () => "two",
-    () => "three"
-  )
+        when(
+                true,
+                () => "one",
+                () => "two",
+                () => "three"
+        )
 );
 // "three"
 ```
@@ -1504,12 +1621,12 @@ Evaluates test. If falsey, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-  when(
-    true,
-    () => "one",
-    () => "two",
-    () => "three"
-  )
+        when(
+                true,
+                () => "one",
+                () => "two",
+                () => "three"
+        )
 );
 // "three"
 ```
@@ -1532,11 +1649,11 @@ import { cond, ELSE } from "@flc-ds/fii-js-core";
 const score = 85;
 // prettier-ignore
 const grade =  cond(
-   score >= 90, "A",
-   score >= 80, "B",
-   score >= 70, "C",
-   score >= 60, "D",
-   ELSE, "F"
+        score >= 90, "A",
+        score >= 80, "B",
+        score >= 70, "C",
+        score >= 60, "D",
+        ELSE, "F"
 )
 console.log(grade);
 // "B"
@@ -1544,11 +1661,11 @@ console.log(grade);
 // Lazily evaluated
 // prettier-ignore
 const grade =  cond(
-   () => score >= 90, () => "A",
-   () => score >= 80, () => "B",
-   () => score >= 70, () => "C",
-   () => score >= 60, () => "D",
-   ELSE, "F"
+        () => score >= 90, () => "A",
+        () => score >= 80, () => "B",
+        () => score >= 70, () => "C",
+        () => score >= 60, () => "D",
+        ELSE, "F"
 )
 console.log(grade);
 // "B"
@@ -1576,9 +1693,9 @@ argument that triggers a logical false result against the original predicates.
 import { everyPred } from "@flc-ds/fii-js-core";
 
 const isGtZeroIntMultipleTwo = everyPred(
-  (a) => Number.isInteger(a),
-  (a) => a > 0,
-  (a) => a % 2 === 0
+        (a) => Number.isInteger(a),
+        (a) => a > 0,
+        (a) => a % 2 === 0
 );
 
 console.log(isGtZeroIntMultipleTwo(2, 4, 6));
@@ -2147,33 +2264,33 @@ contains objects that have a children property, which is nested.
 import { flattenChildTree } from "@flc-ds/fii-js-core";
 
 console.log(
-  JSON.stringify(
-    flattenChildTree([
-      {
-        one: 1,
-        children: [
-          {
-            two: 2,
-            children: [
-              {
-                three: 3,
-                children: []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        one: 1,
-        children: [
-          {
-            two: 2,
-            children: []
-          }
-        ]
-      }
-    ])
-  )
+        JSON.stringify(
+                flattenChildTree([
+                  {
+                    one: 1,
+                    children: [
+                      {
+                        two: 2,
+                        children: [
+                          {
+                            three: 3,
+                            children: []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    one: 1,
+                    children: [
+                      {
+                        two: 2,
+                        children: []
+                      }
+                    ]
+                  }
+                ])
+        )
 );
 /*  [
  *    { one: 1, children: [{ two: 2, children: [{ three: 3, children: [] }] }] },
@@ -2370,11 +2487,11 @@ console.log(walk(
 // 30
 
 console.log(
-  walk(
-    ([key, value]) => [key, value + 1],
-    (set) => set,
-    { one: 1, two: 2, three: 3 }
-  )
+        walk(
+                ([key, value]) => [key, value + 1],
+                (set) => set,
+                { one: 1, two: 2, three: 3 }
+        )
 );
 /**
  * {
@@ -2485,8 +2602,8 @@ args (left-to-right).
 import { juxt } from "@flc-ds/fii-js-core";
 
 const test = juxt(
-  (n) => n * 2,
-  (n) => n + 1
+        (n) => n * 2,
+        (n) => n + 1
 );
 
 console.log(test(3));
@@ -2769,13 +2886,13 @@ console.log(project({ one: 1, two: 2, three: 3 }, ["one", "three"]));
 //  { one: 1, three: 3 }
 
 console.log(
-  project(
-    [
-      { one: 1, two: 2, three: 3 },
-      { one: 1, two: 2, three: 3 }
-    ],
-    ["one", "three"]
-  )
+        project(
+                [
+                  { one: 1, two: 2, three: 3 },
+                  { one: 1, two: 2, three: 3 }
+                ],
+                ["one", "three"]
+        )
 );
 // [{ one: 1, three: 3 }, { one: 1, three: 3 }]
 ```
@@ -2821,19 +2938,19 @@ Returns an Array of an object's own methods. Returns an empty Array if no method
 import { ownMethods } from "@flc-ds/fii-js-core";
 
 console.log(
-  ownMethods({
-    one() {},
-    two() {},
-    three() {},
-    name: "Pete"
-  })
+        ownMethods({
+          one() {},
+          two() {},
+          three() {},
+          name: "Pete"
+        })
 );
 // [ one(){}, two(){}, three(){} ]
 
 console.log(
-  ownMethods({
-    name: "Pete"
-  })
+        ownMethods({
+          name: "Pete"
+        })
 );
 // []
 ```
