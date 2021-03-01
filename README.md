@@ -60,6 +60,7 @@
     - [when](#when)
     - [whenNot](#whennot)
     - [cond](#cond)
+    - [condp](#condp)  
     - [everyPred](#everypred)
     - [some$](#_some)
     - [ifBlank](#ifblank)
@@ -1681,6 +1682,53 @@ form (or no arguments). Predicates and consequents can be either functions
 or expressions. If functions, they are lazily evaluated. If expressions,
 then all the expressions are evaluated, as expected, when they are passed
 into `cond`.
+
+### condp
+
+Takes a binary predicate function, an expression, and a set of clauses.
+Each clause can take the form of either:
+test-expr, result-expr
+test-expr, result-fn (must be a unary function)
+For each clause, `pred(test-expr, expr)` is evaluated. If it returns
+logical `true`, the clause is a match. If a binary clause matches, the
+result-expr is returned, if a function clause matches, it is called with 
+the result of the predicate as its argument, the result of that call 
+being the return value of `condp`. A single default expression can follow 
+the clauses, and its value will be returned if no clause matches. If no 
+default expression is provided and no clause matches, `undefined` is 
+returned.
+
+```javascript
+import { condp, lt$ } from "@flc-ds/fii-js-core";
+
+console.log(
+  condp(lt$, 15,
+    1, "one",
+    10, "ten",
+    100, "hundred",
+    1000, "thousand",
+    "default"
+  )
+);
+// hundred
+
+console.log(
+  condp(lt$, 2500,
+    1, "one",
+    10, "ten",
+    100, "hundred",
+    1000, "thousand",
+    "default"
+  )
+);
+// default
+```
+
+#### Parameters
+
+- `pred` | `Function` A binary function
+- `expr` |  An expression
+- `...rest` | `Expression | Function` An expression or function. If it is a function, the function must be unary.
 
 ### everyPred
 
