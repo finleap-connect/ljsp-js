@@ -1,6 +1,6 @@
 {
   "name": "@flc-ds/fii-js-core",
-  "version": "0.0.66",
+  "version": "1.0.0",
   "description": "",
   "repository": {
     "url": "https://gitlab.figo.systems/flc-ds/js-core.git"
@@ -14,20 +14,11 @@
     "release": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint lib/**/*.js --fix --max-warnings=0",
-    "commit": "run-s add-files commitizen",
-    "add-files": "git add .",
-    "prettify:all": "prettier --write \"**/*.js*\"",
-    "story": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "prettify:all": "prettier --write \"**/*.js*\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
@@ -50,7 +41,6 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^7.1.5",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-prettier": "^3.1.4",
