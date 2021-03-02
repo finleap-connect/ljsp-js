@@ -1,7 +1,10 @@
-import { eq } from "../generic/eq";
 import { spec } from "../spec/spec";
 
+/**
+ * Returns true if n is even, throws an exception if n is not an integer
+ * @param num
+ */
 export function even$(num: number): boolean {
   spec({ func: "even$", spec: { numIsInt: Number.isInteger(num) } });
-  return eq(num % 2, 0);
+  return num % 2 === 0;
 }

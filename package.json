@@ -9,11 +9,11 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {
-    "ts-migrate": "ts-migrate",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "release": "npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "lint": "eslint lib/**/*.js --fix --max-warnings=0",
     "prettify:all": "prettier --write \"**/*.js*\""
   },
@@ -40,6 +40,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@semantic-release/gitlab-config": "^8.0.0",
     "@types/lodash": "^4.14.168",
+    "@types/jest": "^26.0.20",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^7.1.5",
@@ -47,6 +48,7 @@
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.6",
+    "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
     "prettier": "^2.1.2",
     "rollup": "^2.32.1",
@@ -61,8 +63,7 @@
     "rollup-plugin-url": "^3.0.1",
     "rollup-plugin-visualizer": "^4.1.2",
     "semantic-release": "^17.3.9",
-    "ts-migrate": "^0.1.15",
-    "tslib": "^2.1.0",
+    "ts-jest": "^26.5.2",
     "typescript": "^4.2.2"
   },
   "publishConfig": {
