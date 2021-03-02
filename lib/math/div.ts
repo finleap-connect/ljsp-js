@@ -1,6 +1,11 @@
 import { spec } from "../spec/spec";
 import { isNumberSet } from "../generic/is-number-set";
 
+/**
+ * If no denominators are supplied, returns 1/numerator,
+ * else returns numerator divided by all of the denominators.
+ * @param rest
+ */
 export function div(...rest: Array<number>) {
   spec({ func: "div", spec: { validArgNum: rest.length > 0, argsAreNums: isNumberSet(rest) } });
   if (rest.length === 1) {
