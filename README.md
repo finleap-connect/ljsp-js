@@ -28,11 +28,14 @@
     - [isEmpty](#isempty)
     - [isString](#isstring)
     - [isObject](#isobject)
-    - [isRegExp](#isregexp) 
+    - [isRegExp](#isregexp)
+    - [isNumber](#isnumber)
+    - [isBoolean](#isboolean)  
     - [notEmpty](#notempty)
     - [void$](#void)
     - [diff](#diff)
     - [alike](#alike)
+    - [compare](#compare)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -985,6 +988,42 @@ console.log(isRegExp("one"));
 
 - `*` | The variable to test.
 
+### isBoolean
+
+Determines whether a value is a Boolean.
+
+```javascript
+import { isBoolean } from "@flc-ds/fii-js-core";
+
+console.log(isBoolean(true));
+// true
+
+console.log(isBoolean("one"));
+// false
+```
+
+#### Parameters
+
+- `*` | The variable to test.
+
+### isNumber
+
+Determines whether a value is a Number.
+
+```javascript
+import { isNumber } from "@flc-ds/fii-js-core";
+
+console.log(isNumber(1));
+// true
+
+console.log(isNumber("one"));
+// false
+```
+
+#### Parameters
+
+- `*` | The variable to test.
+
 ### void$
 
 Checks if value is either `null` or (`typeof`) `undefined`.
@@ -1096,6 +1135,70 @@ console.log(alike("one", 1));
 
 - `a` | `*` The left side
 - `b` | `*` The right side
+
+### compare
+
+Returns a negative number, zero, or a positive number
+when `x` is logically 'less than', 'equal to', or 'greater than'
+`y`. Works with `number`, `string`, and `boolean` values---as well as Arrays
+of those values. Compares numbers and Arrays in a type-independent
+manner; however the types compared must always match.
+  
+When comparing strings, a delta in a string returns the distance between
+the first two letters that don't match. See examples below for details.
+
+```javascript
+import { compare } from "@flc-ds/fii-js-core";
+
+/* NUMBERS */
+console.log(compare(1, 0));
+// 1
+
+console.log(compare(1, 1));
+// 0
+
+console.log(compare(0, 1));
+// -1
+
+/* STRINGS */
+console.log(compare("def", "abc"));
+// 3
+
+console.log(compare("abc", "abc"));
+// 0
+
+console.log(compare("a", "d"));
+// -3
+
+console.log(compare("abc", "aec"));
+// -3
+
+/* BOOLEANS */
+console.log(compare(true, false));
+// 1
+console.log(compare(false, true));
+// -1
+console.log(compare(true, true));
+// 0
+
+/* ARRAYS */
+
+console.log(compare([1, 2, 3], [0, 2, 3]));
+// 1
+console.log(compare(["d", "e", "f"], ["a", "b", "c"]));
+// 3
+console.log(compare([false, false, true], [true, false, true]));
+// -1
+
+// --> Arrays can have mixed values
+console.log(compare([true, "a", 2], [true, "a", 1]));
+// 1
+```
+
+#### Parameters
+
+- `left` | `*` The left side
+- `right` | `*` The right side
 
 ## Math Functions
 

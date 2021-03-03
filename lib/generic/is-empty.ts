@@ -1,5 +1,6 @@
 import { alike } from "./alike";
 import { isObject } from "./is-object";
+import { toStringComp } from "./internal/toStringComp";
 
 const STRING = "string";
 const FUNCTION = "function";
@@ -18,7 +19,7 @@ export function isEmpty(value) {
   if (Array.isArray(value) || typeof value === STRING || typeof value.splice === FUNCTION) {
     return !value.length;
   }
-  const tag = getString(value);
+  const tag = toStringComp(value);
   if (alike(tag, "[object Map]") || alike(tag, "[object Set]")) {
     return !value.size;
   }
@@ -26,9 +27,4 @@ export function isEmpty(value) {
     return !Object.keys(value).length;
   }
   return true;
-}
-
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-function getString(value) {
-  return value.toString();
 }
