@@ -20,6 +20,8 @@
     - [strSpace](#strspace)
     - [toPath](#topath)
     - [replaceFirst](#replacefirst)
+    - [upperCase](#uppercase)
+    - [titleCase](#titlecase)
   - [Generic Functions](#generic-functions)
     - [eq](#eq)
     - [deepEq](#deepeq)
@@ -276,6 +278,36 @@ console.log(replaceFirst("fabulous fodder foo food fodder", /Fodder/gi, "blodder
 - `string` | `String` 
 - `matcher` | `String | RegExp`
 - `replacement` | `String | String Pattern | Function` (See MDN docs for details)
+
+### titleCase
+
+Converts string to title case format
+
+```javascript
+import { titleCase } from "@flc-ds/fii-js-core";
+
+console.log(titleCase("fabulous fodder foo food fodder"));
+// Fabulous Blodder Foo Food Fodder
+```
+
+#### Parameters
+
+- `string` | `String` 
+
+### upperCase
+
+Converts string to uppercase format.
+
+```javascript
+import { upperCase } from "@flc-ds/fii-js-core";
+
+console.log(upperCase("fabulous fodder foo food fodder"));
+// FABULOUS BLODDER FOO FOOD FODDER
+```
+
+#### Parameters
+
+- `string` | `String`
 
 ### strInterpose
 
