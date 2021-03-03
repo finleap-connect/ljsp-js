@@ -6,8 +6,7 @@ import { nth } from "./nth";
  * @param set
  * @returns {*}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function first(set) {
-  spec({ func: "second", spec: { setIsArray: Array.isArray(set) } });
+export function first(set: Array<any>) {
+  spec({ func: "first", spec: { setIsArray: Array.isArray(set) } });
   return nth(set, 0);
 }
