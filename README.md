@@ -5,10 +5,14 @@
 [changelog]: CHANGELOG.md
 [version-badge]: https://img.shields.io/badge/version-0.1.0-blue.svg
 
+- [Introduction](#introduction)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Coding Standards](#coding-standards)
+  - [Release Process](#release-process)
+    - [Versioning](#versioning)
   - [Submission Guidelines](#submission-guidelines)
+  - [Local Run and Build](#local-run-and-build)
 
 * [Core](#core)
   - [String Functions](#string-functions)
@@ -140,6 +144,11 @@
 * [Branching Flow](#branching-flow)
 * [Deployment](#deployment)
 
+## Introduction
+
+`js-core` provides utility functions to do abstract away common operations.
+All utility functions are grouped. E.g. math, list, generic, object etc.
+
 ## Getting Started
 
 Clone from Git. Run `npm i`.
@@ -153,9 +162,27 @@ If you've followed the onboarding steps, you'll be setup correctly.
 
 Please see our coding standards, here, for more information [Coding Standards](https://finleap-connect.atlassian.net/wiki/spaces/DS/pages/2319745040/FE+Coding+Standards)
 
+### Release Process
+
+Once a merge request is merged to master, gitlab pipeline starts running. Once the pipeline finishes, you can see
+the new version with changelog and other details in the release section of gitlab project.
+
+#### Versioning 
+
+1. `js-core` uses [semantic versioning][semantic-versioning].
+2. `js-core` follows [conventional commits][conventional-commits]. For list of scopes, see [Contributing Guideline](CONTRIBUTING.md).
+3. Release happens automatically once the changes are merged to `master`.
+
 ### Submission Guidelines
 
-See the CONTRIBUTING.md
+See the [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### Local Run and Build
+
+As of today, building and testing locally is not integrated into the codebase. Please take advantage of
+`RunJS` or use `any live editor` you want to test out your changes. We hope to bring in some dev loop here soon.
+
+**Please test your changes thoroughly**.
 
 # Core
 
@@ -3111,3 +3138,6 @@ We use the Release Flow methodology for our branching and release flow. For deta
 # Deployment
 
 Deployment is handled by GitLab; for details see the `.gitlab-ci.yml`.
+
+[semantic-versioning]: https://semver.org/spec/v2.0.0.html
+[conventional-commits]: https://www.conventionalcommits.org/en/v1.0.0/
