@@ -3003,8 +3003,7 @@ console.log(fn(1, 2, 3, 4, 5, "22", () => {}));
 
 #### Parameters
 
-- `fn` | `Function` A function
-- `...args` | `*` Variadic arguments.
+- `value` | `*` A value.
 
 ## Object Functions
 
