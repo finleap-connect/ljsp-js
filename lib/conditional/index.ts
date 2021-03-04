@@ -13,3 +13,4 @@ export { everyPred } from "./every-pred";
 export { some$ } from "./some$";
 export { and } from "./and";
 export { or } from "./or";
+export { cases } from "./cases";
