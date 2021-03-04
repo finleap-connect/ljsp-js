@@ -12,8 +12,8 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "release": "npm publish",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --watch",
+    "test:once": "jest",
     "lint": "eslint lib/**/*.js --fix --max-warnings=0",
     "prettify:all": "prettier --write \"**/*.js*\""
   },
