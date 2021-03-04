@@ -67,7 +67,8 @@
     - [when](#when)
     - [whenNot](#whennot)
     - [cond](#cond)
-    - [condp](#condp)  
+    - [condp](#condp)
+    - [cases](#cases)  
     - [everyPred](#everypred)
     - [some$](#_some)
     - [ifBlank](#ifblank)
@@ -1860,6 +1861,67 @@ console.log(
 - `expr` |  An expression
 - `...rest` | `Expression | Function` An expression or function. If it is a function, the function must be unary.
 
+### cases
+
+Takes an expression, and a set of clauses.  Each clause can take the form of either:
+
+test-constant result-expr
+(test-constant1 ... test-constantN)  result-expr
+
+The test-constants are not evaluated. They must be compile-time
+literals.  If the expression is equal to a  test-constant, the corresponding 
+result-expr is returned. A single default expression can follow the clauses, 
+and its value will be returned if no clause matches. If no default expression 
+is provided and no clause matches, undefined is returned.
+All manner of constant expressions are acceptable in `cases`,
+including `numbers`, `strings`, `booleans`, `BigInts`, and `Symbols`. The
+test-constants need not be all the same type.
+
+
+```javascript
+import { cases } from "@flc-ds/fii-js-core";
+
+const myStr = "hello";
+
+console.log(
+  (cases(myStr,
+        "", 0,
+        "hello", "there"
+  ))
+);
+// there
+
+console.log(
+  (cases(myStr,
+    "", 0,
+    "no-match", "there",
+    "default"
+  ))
+);
+// default
+
+console.log(
+  (cases(myStr,
+    "", 0,
+    "hello", () => myStr.length
+  ))
+);
+// 5
+
+console.log(
+  (cases(myStr,
+    "", 0,
+    "no-match", "there"
+  ))
+);
+// undefined
+```
+
+#### Parameters
+
+- `expr` | `string | number | boolean | Symbol | BigInt` A compile-time literal expression.
+- `...rest` | `Expression | Function` See `cond`, above for details.
+
 ### everyPred
 
 Takes a set of predicates and returns a function `f` that returns true if all of its
@@ -2871,6 +2933,22 @@ console.log(sayHelloWithDefaults());
 
 console.log(sayHelloWithDefaults("Maxx"));
 // "Hello Maxx and Reed"
+```
+
+#### Parameters
+
+- `fn` | `Function` A function
+- `...args` | `*` Variadic arguments.
+
+### identity
+
+Returns its argument
+
+```javascript
+import { identity } from "@flc-ds/fii-js-core";
+
+console.log(identity("Scipio"));
+// "Scipio"
 ```
 
 #### Parameters
