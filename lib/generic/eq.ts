@@ -3,7 +3,7 @@ import { _eq } from "./internal/_eq";
 import { isObject } from "./is-object";
 import { isTypedSet } from "./is-typed-set";
 
-export function eq<T>(...rest: Array<T>) {
+export function eq(...rest: any) {
   spec({
     func: "eq",
     spec: { typeIsPrimitive: isTypedSet(rest, (item) => !isObject(item) && !Array.isArray(item)) }
@@ -11,6 +11,6 @@ export function eq<T>(...rest: Array<T>) {
   return _eq(rest, simpleNotEqual);
 }
 
-function simpleNotEqual<T>(left: T, right: T) {
+function simpleNotEqual(left: any, right: any) {
   return left !== right;
 }

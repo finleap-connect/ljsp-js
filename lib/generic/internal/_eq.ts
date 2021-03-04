@@ -1,6 +1,4 @@
-type ComparatorFn<T> = (x: T, y: T) => boolean;
-
-export function _eq<T>(args: Array<T>, comparator: ComparatorFn<T>): boolean {
+export function _eq(args: any, comparator: Function): boolean {
   if (args.length === 1) {
     return true;
   }
