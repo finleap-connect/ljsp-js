@@ -131,6 +131,7 @@
     - [trampoline](#trampoline)
     - [complement](#complement)
     - [fnil](#fnil)
+    - [constantly](#constantly)
   - [Object Functions](#object-functions)
     - [swap](#swap)
     - [updateIn](#updatein)
@@ -2909,6 +2910,22 @@ console.log(sayHelloWithDefaults("Maxx"));
 
 - `fn` | `Function` A function
 - `...args` | `*` Variadic arguments.
+
+### constantly
+
+Returns a function that takes any number of arguments and returns `x`.
+
+```javascript
+import { constantly } from "@flc-ds/fii-js-core";
+
+const fn = constantly(2);
+console.log(fn(1, 2, 3, 4, 5, "22", () => {}));
+// 2
+```
+
+#### Parameters
+
+- `value` | `*` A value
 
 ## Object Functions
 
