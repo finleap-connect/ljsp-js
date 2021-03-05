@@ -14,3 +14,4 @@ export { some$ } from "./some$";
 export { and } from "./and";
 export { or } from "./or";
 export { cases } from "./cases";
+export { ifArray } from "./if-array";

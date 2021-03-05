@@ -20,21 +20,23 @@
     - [strSpace](#strspace)
     - [toPath](#topath)
     - [replaceFirst](#replacefirst)
-    - [upperCase](#uppercase)
-    - [titleCase](#titlecase)
+    - [strInterpose](#strinterpose)
+    - [blank$](#blank)
   - [Generic Functions](#generic-functions)
     - [eq](#eq)
+    - [notEq](#noteq)  
     - [deepEq](#deepeq)
     - [doWork](#dowork)
     - [areDistinct](#aredistinct)
     - [isEmpty](#isempty)
+    - [notEmpty](#notempty)  
     - [isString](#isstring)
     - [isObject](#isobject)
     - [isRegExp](#isregexp)
+    - [isBoolean](#isboolean)      
     - [isNumber](#isnumber)
-    - [isBoolean](#isboolean)  
-    - [notEmpty](#notempty)
     - [void$](#void)
+    - [not](#not)  
     - [diff](#diff)
     - [alike](#alike)
     - [compare](#compare)
@@ -51,8 +53,8 @@
     - [pos$](#pos)
     - [neg$](#neg)
     - [zero$](#zero)
+    - [even$](#even)      
     - [odd$](#odd)
-    - [even$](#even)
     - [lt$](#lt)
     - [gt$](#gt)
     - [lte$](#lte)
@@ -65,19 +67,41 @@
     - [ifSome](#ifsome)
     - [ifYes](#ifyes)
     - [ifNo](#ifno)
+    - [ifBlank](#ifblank)      
     - [ifClass](#ifclass)
+    - [ifArray](#ifarray)
+    - [ifObj](#ifobj)      
     - [when](#when)
     - [whenNot](#whennot)
     - [cond](#cond)
     - [condp](#condp)
-    - [cases](#cases)  
+    - [cases](#cases)
     - [everyPred](#everypred)
     - [some$](#_some)
-    - [ifBlank](#ifblank)
-    - [ifObj](#ifobj)
+    - [and](#and)
+    - [or](#or)
   - [List Functions](#list-functions)
-    - [findInSetById](#findinsetbyid)
-    - [removeFromSetById](#removefromsetbyid)
+    - [mapcat](#mapcat)
+    - [reductions](#reductions)
+    - [forIt](#forit)
+    - [mapIt](#mapit)
+    - [filterIt](#filterit)
+    - [reduceIt](#reduceit)
+    - [nthnext](#nthnext)
+    - [index](#index)
+    - [randomSample](#randomsample)
+    - [keep](#keep)
+    - [nth](#nth)
+    - [ffirst](#ffirst)
+    - [second](#second)
+    - [first](#first)
+    - [fillVoid](#fillvoid)
+    - [extendArray](#extendarray)
+    - [reduce](#reduce)
+    - [reduced](#reduced)
+    - [reduced$](#reduced$)
+    - [findById](#findbyid)
+    - [removeById](#removebyid)
     - [updateSet](#updateset)
     - [getSectionFromSet](#getsectionfromset)
     - [rightDiff](#rightdiff)
@@ -98,6 +122,7 @@
     - [cons](#cons)
     - [sort](#sort)
     - [some](#some)
+    - [flattenChildTree](#flattenchildtree)  
     - [includes](#includes)
     - [notIncludes](#notincludes)
     - [interpose](#interpose)
@@ -110,28 +135,12 @@
     - [distinct$](#distinct)
     - [repeat](#repeat)
     - [splitAt](#splitat)
-    - [mapcat](#mapcat)
-    - [reductions](#reductions)
-    - [forIt](#forit)
-    - [mapIt](#mapit)
-    - [filterIt](#filterit)
-    - [reduceIt](#reduceit)
-    - [nthnext](#nthnext)
-    - [index](#index)
-    - [randomSample](#randomsample)
-    - [keep](#keep)
-    - [nth](#nth)
-    - [first](#first)
-    - [second](#second)
-    - [ffirst](#ffirst)
-    - [fillVoid](#fillvoid)
-    - [extendArray](#extendarray)
-    - [reduce](#reduce)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
     - [complement](#complement)
     - [fnil](#fnil)
+    - [identity](#identity)
     - [constantly](#constantly)
   - [Object Functions](#object-functions)
     - [swap](#swap)
@@ -142,11 +151,11 @@
     - [project](#project)
     - [rename](#rename)
     - [ownMethods](#ownmethods)
+  - [RegExp Functions](#regexp-functions)
+    - [cat](#cat)    
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
-  - [RegExp](#regexp)
-    - [cat](#cat)
   - [Spec](#spec)
 * [Branching Flow](#branching-flow)
 * [Deployment](#deployment)
@@ -174,7 +183,7 @@ Please see our coding standards, here, for more information [Coding Standards](h
 Once a merge request is merged to master, gitlab pipeline starts running. Once the pipeline finishes, you can see
 the new version with changelog and other details in the release section of gitlab project.
 
-#### Versioning 
+#### Versioning
 
 1. `js-core` uses [semantic versioning][semantic-versioning].
 2. `js-core` follows [conventional commits][conventional-commits]. For list of scopes, see [Contributing Guideline](CONTRIBUTING.md).
@@ -277,39 +286,9 @@ console.log(replaceFirst("fabulous fodder foo food fodder", /Fodder/gi, "blodder
 
 #### Parameters
 
-- `string` | `String` 
+- `string` | `String`
 - `matcher` | `String | RegExp`
 - `replacement` | `String | String Pattern | Function` (See MDN docs for details)
-
-### titleCase
-
-Converts string to title case format
-
-```javascript
-import { titleCase } from "@flc-ds/fii-js-core";
-
-console.log(titleCase("fabulous fodder foo food fodder"));
-// Fabulous Blodder Foo Food Fodder
-```
-
-#### Parameters
-
-- `string` | `String` 
-
-### upperCase
-
-Converts string to uppercase format.
-
-```javascript
-import { upperCase } from "@flc-ds/fii-js-core";
-
-console.log(upperCase("fabulous fodder foo food fodder"));
-// FABULOUS BLODDER FOO FOOD FODDER
-```
-
-#### Parameters
-
-- `string` | `String`
 
 ### strInterpose
 
@@ -365,464 +344,6 @@ console.log(blank$("hello"));
 #### Parameters
 
 - `str` | `String | null | undefined` The item to test for blankness.
-
-### mapcat
-
-Returns the result of applying concat to the result of applying map to f and colls. Thus function f should return a
-collection. Returns a partially applied function when no collections are provided
-
-```javascript
-import { mapcat } from "@flc-ds/fii-js-core";
-
-console.log(
-  mapcat(_.reverse, [
-    [3, 2, 1, 0],
-    [6, 5, 4],
-    [9, 8, 7]
-  ])
-);
-
-// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-function splitWord(item) {
-  return _.split(item, /(\d)/);
-}
-
-console.log(mapcat(splitWord, ["aa1bb", "cc2dd", "ee3ff"]));
-// ["aa", "1", "bb", "cc", "2", "dd", "ee", "3", "ff"]
-```
-
-#### Parameters
-
-- `func` | `Function` The function to apply map to.
-- `set` | `Array` [_optional_] The set to map over.
-
-### reductions
-
-Returns an iterator function that returns the intermediate values of a reduction (as per reduce) of set by f, starting
-with init. If init is not provided, the init value is the first item in set.
-
-```javascript
-import { reductions } from "@flc-ds/fii-js-core";
-
-function add(a, b) {
-  return a + b;
-}
-
-const test = reductions(add, 8, [1, 2, 3, 4]);
-console.log(test());
-// 9
-console.log(test());
-// 11
-console.log(test());
-// 14
-
-// WITHOUT INIT
-const test = reductions(add, [1, 2, 3, 4]);
-console.log(test());
-// 3
-console.log(test());
-// 6
-console.log(test());
-// 10
-```
-
-#### Parameters
-
-- `func` | `Function` The function to apply map to.
-- `init` | `*` [_optional_] The initial value.
-- `set` | `Array`
-
-### forIt
-
-Loops over all values in an iterator.
-
-```javascript
-import { forIt, reductions } from "@flc-ds/fii-js-core";
-
-const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
-const result = forIt(console.log, iterator);
-// 9, 11, 14
-```
-
-#### Parameters
-
-- `fn` | `Function` The function to run against a value from the iterator.
-- `Iterator` The iterator.
-
-### mapIt
-
-`map` over an iterator. Returns a new iterator.
-
-```javascript
-import { mapIt, reductions } from "@flc-ds/fii-js-core";
-
-const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
-const result = mapIt((a) => a * 2, iterator);
-// iterator of: 18, 22, 28
-```
-
-#### Parameters
-
-- `fn` | `Function` The mapping function.
-- `Iterator` The iterator.
-
-### filterIt
-
-`filter` over an iterator. Returns a new iterator.
-
-```javascript
-import { filterIt, reductions } from "@flc-ds/fii-js-core";
-
-const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
-const result = filterIt((a) => a > 12, test);
-// iterator of: 14
-```
-
-#### Parameters
-
-- `fn` | `Function` The mapping function.
-- `Iterator` The iterator.
-
-### reduceIt
-
-`reduce` over an iterator.
-
-```javascript
-import { filterIt, reductions } from "@flc-ds/fii-js-core";
-
-const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
-const result = reduceIt(add, test);
-// 6
-```
-
-#### Parameters
-
-- `fn` | `Function` The reducing function.
-- `init` | `*` [_optional_] The initial value.
-- `Iterator` The iterator.
-
-### nthnext
-
-Returns the nth next of set, An empty Array when n is 0.
-
-```javascript
-import { nthnext } from "@flc-ds/fii-js-core";
-
-console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4));
-// [5,6,7]
-```
-
-#### Parameters
-
-- `set` | `Array` The set.
-- `num` | `number` The number of items to drop from the front of the Array.
-
-### index
-
-Returns a map of the distinct values of `keys` in the `obj` mapped to a set of the objects in `obj` with the
-corresponding values of `keys`.
-
-```javascript
-import { index } from "@flc-ds/fii-js-core";
-
-const set = [
-  { name: "betsy", weight: 1000 },
-  { name: "jake", weight: 756 },
-  { name: "shaq", weight: 1000 }
-];
-
-console.log(index(set, ["weight"]));
-
-/**
- * {
- *   weight_1000: [
- *     {
- *       name: "betsy",
- *       weight: 1000
- *     }, {
- *       name: "shaq",
- *       weight: 1000
- *     }
- *   ],
- *   weight_756: [
- *     {
- *       name: "jake",
- *       weight: 756
- *     }
- *   ]
- * }
- */
-```
-
-#### Parameters
-
-- `objects` | `Array<Object>` An object or Array of objects of the same shape.
-- `keys` | `Array<string>` An Array of property names.
-
-### randomSample
-
-Returns items from coll with random probability of prob (0.0 - 1.0). Returns a partially applied function when no
-collection is provided.
-
-```javascript
-import { randomSample } from "@flc-ds/fii-js-core";
-
-console.log(randomSample(0.5, [1, 2, 3, 4, 5]));
-// [1,2,5]
-```
-
-#### Parameters
-
-- `prob` | `Float` A floating-point decimal between 0.0 and 1.0.
-- `set` | `Array` An Array to sample.
-
-### keep
-
-`keep` can be used to return a non nullish result of `fn(set)`.
-_`fn` should be free from any side effects_. **falsy values** are returned by the function. If `set` is not passed, it
-returns a transducer function `fn`, which accepts set as argument.
-
-```javascript
-import { keep, odd$ } from "@flc-ds/fii-js-core";
-
-function returnWithBool(val) {
-  return iff(odd(val), val, false);
-}
-
-function returnWithNull(val) {
-  return iff(odd(val), val, null);
-}
-
-function returnWithUndefined(val) {
-  return iff(odd(val), val, undefined);
-}
-
-console.log(keep(returnWithBool, range(5)));
-// [ false, 1, false, 3, false ]
-
-console.log(keep(returnWithNull, range(5)));
-// [ 1, 3 ]
-
-console.log(keep(returnWithUndefined, range(5)));
-// [ 1, 3 ]
-
-let keepFn = (arg) => keep(arg);
-
-console.log(keepFn(returnWithBool)(range(5)));
-// [ false, 1, false, 3, false ]
-
-console.log(keepFn(returnWithNull)(range(5)));
-// [ 1, 3 ]
-
-console.log(keepFn(returnWithUndefined)(range(5)));
-// [ 1, 3 ]
-```
-
-#### Parameters
-
-- `fn` | `Function` A predicate function.
-- `set` | `Array` An Array to filter.
-
-### nth
-
-Returns an index value from an Array.
-
-```javascript
-import { nth } from "@flc-ds/fii-js-core";
-
-console.log(nth([]));
-// undefined
-
-console.log(nth([[1, 2, 3]], 1));
-// 1
-```
-
-#### Parameters
-
-- `set` | `Array<Array>` An Array.
-
-### ffirst
-
-Same as (first (first x))
-
-```javascript
-import { ffirst } from "@flc-ds/fii-js-core";
-
-console.log(ffirst([]));
-// undefined
-
-console.log(ffirst([[1, 2, 3]]));
-// 1
-```
-
-#### Parameters
-
-- `set` | `Array<Array>` A two-dimensional Array.
-
-### second
-
-Same as (first (next x))
-
-```javascript
-import { second } from "@flc-ds/fii-js-core";
-
-console.log(second([]));
-// undefined
-
-console.log(second([1, 2, 3]));
-// 2
-```
-
-#### Parameters
-
-- `set` | `Array<Array>` A two-dimensional Array.
-
-### fillVoid
-
-A function which replaces void values in an array from the template and returns a new array.
-
-```javascript
-import { fillVoid } from "@flc-ds/fii-js-core";
-
-console.log(fillVoid([1, 2, null, 4], [1, 2, 3, 4]));
-// [1, 2, 3, 4]
-```
-
-#### Parameters
-
-- `source` | `Array<>` A one-dimensional Array.
-- `template` | `Array<>` A one-dimensional Array which should not have void values.
-
-### first
-
-A convenience export of Lodash's `first` function.
-
-```javascript
-import { first } from "@flc-ds/fii-js-core";
-
-console.log(first([]));
-// undefined
-
-console.log(first([1, 2, 3]));
-// 1
-```
-
-#### Parameters
-
-- `set` | `Array<Array>` A two-dimensional Array.
-
-### extendArray
-
-Extends original array with provided value or function which receives index as param.
-
-```javascript
-import { extendArray } from "@flc-ds/fii-js-core";
-import { identity } from "lodash";
-
-console.log(extendArray([1, 2, 3], 10, "x"));
-// [1, 2, 3,'x','x','x','x', 'x', 'x', 'x']
-
-console.log(extendArray([1, 2, 3], 10, identity));
-// [1,2,3,4,5,6,7,8,9]
-```
-
-#### Parameters
-
-- `source` | `[]` array.
-- `len` | `number` length.
-- `value` | `*` A function which receives the index or a static value
-
-### reduce
-
-NOTE: `js-core`'s `reduce` function varies from the standard JS Array.reduce pattern. Read below for more detail.
-
-`f` should be a function of 2 arguments. If `val` is not supplied, returns the result of applying `f` to the first 2
-items in `set`, then applying `f` to that result and the 3rd item, etc. If `set` contains no items, `f` must accept no
-arguments as well, and reduce returns the result of calling `f` with no arguments. If `set` has only 1 item, it is
-returned and `f` is not called. If `val` is supplied, returns the result of applying `f` to `val` and the first item
-in `set`, then applying `f` to that result and the 2nd item, etc. If coll contains no items, returns `val` and `f` is
-not called.
-
-Additionally, the reduction will terminate early if an intermediate result wraps its result in the `reduced` function.
-
-```javascript
-import { reduce, add, reduced } from "@flc-ds/fii-js-core";
-
-console.log(reduce(add, [1, 2, 3, 4]));
-// 10
-
-console.log(reduce(add, 2, [1, 2, 3, 4]));
-// 12
-
-console.log(reduce(add, 0, [1]));
-// 1
-
-console.log(reduce(add, 10, []));
-// 10
-
-console.log(
-  reduce(
-    (acc, cur) => {
-      return acc < 5 ? add(acc, cur) : reduced(acc);
-    },
-    0,
-    [1, 2, 3, 4, 5]
-  )
-);
-// 6
-```
-
-#### Parameters
-
-- `f` | `Function` The callback function. Must take 2 parameters: accumulator and current.
-- `val` | `*` An initializer value. The first value in the accumulation.
-- `set` | `Array` An array.
-
-### reduced
-
-Wraps `x` in a way such that a `reduce` will terminate with the value `x`
-
-```javascript
-import { reduce, add, reduced } from "@flc-ds/fii-js-core";
-
-console.log(
-  reduce(
-    (acc, cur) => {
-      return acc < 5 ? add(acc, cur) : reduced(acc);
-    },
-    0,
-    [1, 2, 3, 4, 5]
-  )
-);
-// 6
-```
-
-#### Parameters
-
-- `val` | `*` A value.
-
-### reduced$
-
-Returns true if `x` is the result of a call to `reduced`
-
-```javascript
-import { reduced$ } from "@flc-ds/fii-js-core";
-
-const test = 1;
-
-const reducedTest = reduced(test);
-
-console.log(reduced$(reducedTest));
-// true
-
-console.log(reduced$(12));
-// false
-```
-
-#### Parameters
-
-- `val` | `*` A value.
 
 ## Generic Functions
 
@@ -1177,7 +698,7 @@ when `x` is logically 'less than', 'equal to', or 'greater than'
 `y`. Works with `number`, `string`, and `boolean` values---as well as Arrays
 of those values. Compares numbers and Arrays in a type-independent
 manner; however the types compared must always match.
-  
+
 When comparing strings, a delta in a string returns the distance between
 the first two letters that don't match. See examples below for details.
 
@@ -1729,7 +1250,26 @@ console.log(ifClass(true, "Monkeys"));
 // "Monkeys"
 
 console.log(ifClass(false, "Birds"));
-// """
+// ""
+```
+
+#### Parameters
+
+- `condition` | A truthy value or expression that evaluates to a truthy value.
+- `trueCondition` | A value or expression that will return if the condition is true.
+
+### ifArray
+
+Returns the consequent if true, otherwise an empty Array.
+
+```javascript
+import { ifArray } from "@flc-ds/fii-js-core";
+
+console.log(ifArray(true, "Monkeys"));
+// "Monkeys"
+
+console.log(ifArray(false, "Birds"));
+// []
 ```
 
 #### Parameters
@@ -1855,11 +1395,11 @@ test-expr, result-expr
 test-expr, result-fn (must be a unary function)
 For each clause, `pred(test-expr, expr)` is evaluated. If it returns
 logical `true`, the clause is a match. If a binary clause matches, the
-result-expr is returned, if a function clause matches, it is called with 
-the result of the predicate as its argument, the result of that call 
-being the return value of `condp`. A single default expression can follow 
-the clauses, and its value will be returned if no clause matches. If no 
-default expression is provided and no clause matches, `undefined` is 
+result-expr is returned, if a function clause matches, it is called with
+the result of the predicate as its argument, the result of that call
+being the return value of `condp`. A single default expression can follow
+the clauses, and its value will be returned if no clause matches. If no
+default expression is provided and no clause matches, `undefined` is
 returned.
 
 ```javascript
@@ -1902,9 +1442,9 @@ test-constant result-expr
 (test-constant1 ... test-constantN)  result-expr
 
 The test-constants are not evaluated. They must be compile-time
-literals.  If the expression is equal to a  test-constant, the corresponding 
-result-expr is returned. A single default expression can follow the clauses, 
-and its value will be returned if no clause matches. If no default expression 
+literals.  If the expression is equal to a  test-constant, the corresponding
+result-expr is returned. A single default expression can follow the clauses,
+and its value will be returned if no clause matches. If no default expression
 is provided and no clause matches, undefined is returned.
 All manner of constant expressions are acceptable in `cases`,
 including `numbers`, `strings`, `booleans`, `BigInts`, and `Symbols`. The
@@ -2038,20 +1578,478 @@ console.log(or());
 
 ## List Functions
 
-### findInSetById
+### mapcat
+
+Returns the result of applying concat to the result of applying map to f and colls. Thus function f should return a
+collection. Returns a partially applied function when no collections are provided
+
+```javascript
+import { mapcat } from "@flc-ds/fii-js-core";
+
+console.log(
+  mapcat(_.reverse, [
+    [3, 2, 1, 0],
+    [6, 5, 4],
+    [9, 8, 7]
+  ])
+);
+
+// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+function splitWord(item) {
+  return _.split(item, /(\d)/);
+}
+
+console.log(mapcat(splitWord, ["aa1bb", "cc2dd", "ee3ff"]));
+// ["aa", "1", "bb", "cc", "2", "dd", "ee", "3", "ff"]
+```
+
+#### Parameters
+
+- `func` | `Function` The function to apply map to.
+- `set` | `Array` [_optional_] The set to map over.
+
+### reductions
+
+Returns an iterator function that returns the intermediate values of a reduction (as per reduce) of set by f, starting
+with init. If init is not provided, the init value is the first item in set.
+
+```javascript
+import { reductions } from "@flc-ds/fii-js-core";
+
+function add(a, b) {
+  return a + b;
+}
+
+const test = reductions(add, 8, [1, 2, 3, 4]);
+console.log(test());
+// 9
+console.log(test());
+// 11
+console.log(test());
+// 14
+
+// WITHOUT INIT
+const test = reductions(add, [1, 2, 3, 4]);
+console.log(test());
+// 3
+console.log(test());
+// 6
+console.log(test());
+// 10
+```
+
+#### Parameters
+
+- `func` | `Function` The function to apply map to.
+- `init` | `*` [_optional_] The initial value.
+- `set` | `Array`
+
+### forIt
+
+Loops over all values in an iterator.
+
+```javascript
+import { forIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = forIt(console.log, iterator);
+// 9, 11, 14
+```
+
+#### Parameters
+
+- `fn` | `Function` The function to run against a value from the iterator.
+- `Iterator` The iterator.
+
+### mapIt
+
+`map` over an iterator. Returns a new iterator.
+
+```javascript
+import { mapIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = mapIt((a) => a * 2, iterator);
+// iterator of: 18, 22, 28
+```
+
+#### Parameters
+
+- `fn` | `Function` The mapping function.
+- `Iterator` The iterator.
+
+### filterIt
+
+`filter` over an iterator. Returns a new iterator.
+
+```javascript
+import { filterIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = filterIt((a) => a > 12, test);
+// iterator of: 14
+```
+
+#### Parameters
+
+- `fn` | `Function` The mapping function.
+- `Iterator` The iterator.
+
+### reduceIt
+
+`reduce` over an iterator.
+
+```javascript
+import { filterIt, reductions } from "@flc-ds/fii-js-core";
+
+const iterator = reductions((a, b) => a + b, 8, [1, 2, 3]);
+const result = reduceIt(add, test);
+// 6
+```
+
+#### Parameters
+
+- `fn` | `Function` The reducing function.
+- `init` | `*` [_optional_] The initial value.
+- `Iterator` The iterator.
+
+### nthnext
+
+Returns the nth next of set, An empty Array when n is 0.
+
+```javascript
+import { nthnext } from "@flc-ds/fii-js-core";
+
+console.log(nthnext([1, 2, 3, 4, 5, 6, 7], 4));
+// [5,6,7]
+```
+
+#### Parameters
+
+- `set` | `Array` The set.
+- `num` | `number` The number of items to drop from the front of the Array.
+
+### index
+
+Returns a map of the distinct values of `keys` in the `obj` mapped to a set of the objects in `obj` with the
+corresponding values of `keys`.
+
+```javascript
+import { index } from "@flc-ds/fii-js-core";
+
+const set = [
+  { name: "betsy", weight: 1000 },
+  { name: "jake", weight: 756 },
+  { name: "shaq", weight: 1000 }
+];
+
+console.log(index(set, ["weight"]));
+
+/**
+ * {
+ *   weight_1000: [
+ *     {
+ *       name: "betsy",
+ *       weight: 1000
+ *     }, {
+ *       name: "shaq",
+ *       weight: 1000
+ *     }
+ *   ],
+ *   weight_756: [
+ *     {
+ *       name: "jake",
+ *       weight: 756
+ *     }
+ *   ]
+ * }
+ */
+```
+
+#### Parameters
+
+- `objects` | `Array<Object>` An object or Array of objects of the same shape.
+- `keys` | `Array<string>` An Array of property names.
+
+### randomSample
+
+Returns items from coll with random probability of prob (0.0 - 1.0). Returns a partially applied function when no
+collection is provided.
+
+```javascript
+import { randomSample } from "@flc-ds/fii-js-core";
+
+console.log(randomSample(0.5, [1, 2, 3, 4, 5]));
+// [1,2,5]
+```
+
+#### Parameters
+
+- `prob` | `Float` A floating-point decimal between 0.0 and 1.0.
+- `set` | `Array` An Array to sample.
+
+### keep
+
+`keep` can be used to return a non nullish result of `fn(set)`.
+_`fn` should be free from any side effects_. **falsy values** are returned by the function. If `set` is not passed, it
+returns a transducer function `fn`, which accepts set as argument.
+
+```javascript
+import { keep, odd$ } from "@flc-ds/fii-js-core";
+
+function returnWithBool(val) {
+  return iff(odd(val), val, false);
+}
+
+function returnWithNull(val) {
+  return iff(odd(val), val, null);
+}
+
+function returnWithUndefined(val) {
+  return iff(odd(val), val, undefined);
+}
+
+console.log(keep(returnWithBool, range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keep(returnWithNull, range(5)));
+// [ 1, 3 ]
+
+console.log(keep(returnWithUndefined, range(5)));
+// [ 1, 3 ]
+
+let keepFn = (arg) => keep(arg);
+
+console.log(keepFn(returnWithBool)(range(5)));
+// [ false, 1, false, 3, false ]
+
+console.log(keepFn(returnWithNull)(range(5)));
+// [ 1, 3 ]
+
+console.log(keepFn(returnWithUndefined)(range(5)));
+// [ 1, 3 ]
+```
+
+#### Parameters
+
+- `fn` | `Function` A predicate function.
+- `set` | `Array` An Array to filter.
+
+### nth
+
+Returns an index value from an Array.
+
+```javascript
+import { nth } from "@flc-ds/fii-js-core";
+
+console.log(nth([]));
+// undefined
+
+console.log(nth([[1, 2, 3]], 1));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` An Array.
+
+### ffirst
+
+Same as (first (first x))
+
+```javascript
+import { ffirst } from "@flc-ds/fii-js-core";
+
+console.log(ffirst([]));
+// undefined
+
+console.log(ffirst([[1, 2, 3]]));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
+### second
+
+Same as (first (next x))
+
+```javascript
+import { second } from "@flc-ds/fii-js-core";
+
+console.log(second([]));
+// undefined
+
+console.log(second([1, 2, 3]));
+// 2
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
+### first
+
+A convenience export of Lodash's `first` function.
+
+```javascript
+import { first } from "@flc-ds/fii-js-core";
+
+console.log(first([]));
+// undefined
+
+console.log(first([1, 2, 3]));
+// 1
+```
+
+#### Parameters
+
+- `set` | `Array<Array>` A two-dimensional Array.
+
+### fillVoid
+
+A function which replaces void values in an array from the template and returns a new array.
+
+```javascript
+import { fillVoid } from "@flc-ds/fii-js-core";
+
+console.log(fillVoid([1, 2, null, 4], [1, 2, 3, 4]));
+// [1, 2, 3, 4]
+```
+
+#### Parameters
+
+- `source` | `Array<>` A one-dimensional Array.
+- `template` | `Array<>` A one-dimensional Array which should not have void values.
+
+### extendArray
+
+Extends original array with provided value or function which receives index as param.
+
+```javascript
+import { extendArray } from "@flc-ds/fii-js-core";
+import { identity } from "lodash";
+
+console.log(extendArray([1, 2, 3], 10, "x"));
+// [1, 2, 3,'x','x','x','x', 'x', 'x', 'x']
+
+console.log(extendArray([1, 2, 3], 10, identity));
+// [1,2,3,4,5,6,7,8,9]
+```
+
+#### Parameters
+
+- `source` | `[]` array.
+- `len` | `number` length.
+- `value` | `*` A function which receives the index or a static value
+
+### reduce
+
+NOTE: `js-core`'s `reduce` function varies from the standard JS Array.reduce pattern. Read below for more detail.
+
+`f` should be a function of 2 arguments. If `val` is not supplied, returns the result of applying `f` to the first 2
+items in `set`, then applying `f` to that result and the 3rd item, etc. If `set` contains no items, `f` must accept no
+arguments as well, and reduce returns the result of calling `f` with no arguments. If `set` has only 1 item, it is
+returned and `f` is not called. If `val` is supplied, returns the result of applying `f` to `val` and the first item
+in `set`, then applying `f` to that result and the 2nd item, etc. If coll contains no items, returns `val` and `f` is
+not called.
+
+Additionally, the reduction will terminate early if an intermediate result wraps its result in the `reduced` function.
+
+```javascript
+import { reduce, add, reduced } from "@flc-ds/fii-js-core";
+
+console.log(reduce(add, [1, 2, 3, 4]));
+// 10
+
+console.log(reduce(add, 2, [1, 2, 3, 4]));
+// 12
+
+console.log(reduce(add, 0, [1]));
+// 1
+
+console.log(reduce(add, 10, []));
+// 10
+
+console.log(
+  reduce(
+    (acc, cur) => {
+      return acc < 5 ? add(acc, cur) : reduced(acc);
+    },
+    0,
+    [1, 2, 3, 4, 5]
+  )
+);
+// 6
+```
+
+#### Parameters
+
+- `f` | `Function` The callback function. Must take 2 parameters: accumulator and current.
+- `val` | `*` An initializer value. The first value in the accumulation.
+- `set` | `Array` An array.
+
+### reduced
+
+Wraps `x` in a way such that a `reduce` will terminate with the value `x`
+
+```javascript
+import { reduce, add, reduced } from "@flc-ds/fii-js-core";
+
+console.log(
+  reduce(
+    (acc, cur) => {
+      return acc < 5 ? add(acc, cur) : reduced(acc);
+    },
+    0,
+    [1, 2, 3, 4, 5]
+  )
+);
+// 6
+```
+
+#### Parameters
+
+- `val` | `*` A value.
+
+### reduced$
+
+Returns true if `x` is the result of a call to `reduced`
+
+```javascript
+import { reduced$ } from "@flc-ds/fii-js-core";
+
+const test = 1;
+
+const reducedTest = reduced(test);
+
+console.log(reduced$(reducedTest));
+// true
+
+console.log(reduced$(12));
+// false
+```
+
+#### Parameters
+
+- `val` | `*` A value_
+
+### findById
 
 Finds an item in a set of objects with ids by matching the value of each item's id property against the provided value.
 
 ```javascript
-import { findInSetById } from "@flc-ds/fii-js-core";
+import { findById } from "@flc-ds/fii-js-core";
 
 const set = [{ id: 1 }, { id: 2 }, { id: 3 }];
-const result = findInSetById(set, 2);
+const result = findById(set, 2);
 console.log(result);
 // {id: 2}
 
 const set = [{ name: 1 }, { name: 2 }, { name: 3 }];
-const result = findInSetById(set, 2, "name");
+const result = findById(set, 2, "name");
 console.log(result);
 // { name: 2 }
 ```
@@ -2062,22 +2060,22 @@ console.log(result);
 - `id` | `*` The id of the desired element.
 - `idProp` | `string` By default equal to `id`. Can be overridden if the "id" prop is not "id".
 
-### removeFromSetById
+### removeById
 
 Removes an item from a set of objects with ids by matching the value
 of each item's id property against the provided value. Returns a
 new set with the item removed.
 
 ```javascript
-import { removeFromSetById } from "@flc-ds/fii-js-core";
+import { removeById } from "@flc-ds/fii-js-core";
 
 const set = [{ id: 1 }, { id: 2 }, { id: 3 }];
-const result = removeFromSetById(set, 2);
+const result = removeById(set, 2);
 console.log(result);
 //  [{ id: 1 }, { id: 3 }]
 
 const set = [{ name: 1 }, { name: 2 }, { name: 3 }];
-const result = removeFromSetById(set, 2, "name");
+const result = removeById(set, 2, "name");
 console.log(result);
 //  [{ name: 1 }, { name: 3 }]
 ```
@@ -2973,7 +2971,6 @@ console.log(sayHelloWithDefaults("Maxx"));
 - `fn` | `Function` A function
 - `...args` | `*` Variadic arguments.
 
-
 ### identity
 
 Returns its argument
@@ -2985,25 +2982,27 @@ console.log(identity("Scipio"));
 // "Scipio"
 ```
 
-### Parameters
+#### Parameters
 
-- `value` | `*` A value
+- `fn` | `Function` A function
+- `...args` | `*` Variadic arguments.
 
 ### constantly
 
-Returns a function that takes any number of arguments and returns `x`.
+Returns a function that returns the same argument regardless of parameters.
 
 ```javascript
 import { constantly } from "@flc-ds/fii-js-core";
 
-const fn = constantly(2);
-console.log(fn(1, 2, 3, 4, 5, "22", () => {}));
+const same = constantly(2);
+
+console.log(constantly("Scipio"));
 // 2
 ```
 
 #### Parameters
 
-- `value` | `*` A value.
+- `value` | `*` A value
 
 ## Object Functions
 
@@ -3264,6 +3263,26 @@ console.log(
 
 - `obj | Object` An object
 
+## RegExp Functions
+
+### cat
+
+Takes key+pred pairs, e.g. Returns a regex function that matches (all) values in sequence, returning a map containing
+the keys of each matched regex and its corresponding value.
+
+```javascript
+import { cat } from "@flc-ds/fii-js-core";
+
+const regexSet = cat({ a: /a/, b: /b/ });
+
+console.log(regexSet(["ab", "bc"]));
+// [{a:["a"], b:["b"]},{a:null, b:["b"]}]
+```
+
+#### Parameters
+
+- `keyPred` | `Object` An Object with key-predicate pairs.
+
 ## Validation
 
 ### isPositiveInt
@@ -3338,26 +3357,6 @@ Supplied as an object with the following properties:
 
 - `func` | `String` The name of the function.
 - `spec` | `Object` An object, as described above.
-
-## RegExp
-
-### cat
-
-Takes key+pred pairs, e.g. Returns a regex function that matches (all) values in sequence, returning a map containing
-the keys of each matched regex and its corresponding value.
-
-```javascript
-import { cat } from "@flc-ds/fii-js-core";
-
-const regexSet = cat({ a: /a/, b: /b/ });
-
-console.log(regexSet(["ab", "bc"]));
-// [{a:["a"], b:["b"]},{a:null, b:["b"]}]
-```
-
-#### Parameters
-
-- `keyPred` | `Object` An Object with key-predicate pairs.
 
 ## Branching Flow
 
