@@ -1,4 +1,4 @@
-import { isEmpty } from "./is-empty";
+import { empty$ } from "./empty$";
 
 /**
  * @param item
@@ -6,5 +6,5 @@ import { isEmpty } from "./is-empty";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
 export function notEmpty(item) {
-  return !isEmpty(item);
+  return !empty$(item);
 }

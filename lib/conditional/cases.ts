@@ -1,7 +1,7 @@
 import { chunk, isFunction } from "lodash";
 import { first, second } from "../list";
 import { and } from "./and";
-import { eq, isObject, not } from "../generic";
+import { eq, not, object$ } from "../generic";
 import { Primitive } from "../types/primitive";
 import { spec } from "../spec";
 
@@ -21,7 +21,7 @@ import { spec } from "../spec";
  * test-constants need not be all of the same type.
  */
 export function cases(expression: Primitive, ...rest: any[]) {
-  spec({ func: "cases", spec: { expressionIsPrimitive: not(and(isObject(expression), isFunction(expression))) } });
+  spec({ func: "cases", spec: { expressionIsPrimitive: not(and(object$(expression), isFunction(expression))) } });
   const expressions = chunk(rest, 2);
   for (let i = 0; i < expressions.length; i++) {
     const cur = expressions[i];

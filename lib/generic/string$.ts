@@ -7,6 +7,6 @@ const STRING = "string";
  * @returns {boolean}
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-export function isString(value) {
+export function string$(value) {
   return eq(typeof value, STRING);
 }

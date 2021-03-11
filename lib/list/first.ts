@@ -1,5 +1,4 @@
-import { spec } from "../spec/spec";
-import { nth } from "./nth";
+import { spec } from "../spec";
 
 /**
  * Returns the first element of an Array
@@ -8,5 +7,5 @@ import { nth } from "./nth";
  */
 export function first(set: Array<any>) {
   spec({ func: "first", spec: { setIsArray: Array.isArray(set) } });
-  return nth(set, 0);
+  return set[0];
 }

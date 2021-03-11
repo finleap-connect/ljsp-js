@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import { cond, ELSE } from "../conditional/cond";
-import { isArraySet } from "../generic/is-array-set";
+import { arraySet$ } from "../generic/array-set$";
 import { spec } from "../spec/spec";
 import { first } from "./first";
 import { minLenList } from "./min-len-list";
@@ -12,7 +12,7 @@ import { minLenList } from "./min-len-list";
 // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
 export function interleave(...rest) {
   if (!isEmpty(rest)) {
-    spec({ func: "interleave", spec: { argsAreArrays: isArraySet(rest) } });
+    spec({ func: "interleave", spec: { argsAreArrays: arraySet$(rest) } });
   }
   // prettier-ignore
   return cond(

@@ -1,8 +1,8 @@
 import { spec } from "../spec/spec";
-import { isNumberSet } from "../generic/is-number-set";
+import { numberSet$ } from "../generic/number-set$";
 
 export function mult(...rest: Array<number>): number {
-  spec({ func: "mult", spec: { argsAreNums: isNumberSet(rest) } });
+  spec({ func: "mult", spec: { argsAreNums: numberSet$(rest) } });
   if (rest.length === 0) {
     return 1;
   }

@@ -1,6 +1,6 @@
 import { isEmpty } from "lodash";
 import { eq } from "../generic/eq";
-import { isPositiveInt$ } from "../math/is-positive-int$";
+import { pos$ } from "../math/pos$";
 import { spec } from "../spec/spec";
 
 /**
@@ -11,7 +11,7 @@ import { spec } from "../spec/spec";
 export function nthnext(set, num) {
   spec({
     func: "nthnext",
-    spec: { setIsArray: Array.isArray(set), numIsPositiveInt: isPositiveInt$(num) }
+    spec: { setIsArray: Array.isArray(set), numIsPositiveInt: pos$(num) }
   });
   if (isEmpty(set) || eq(num, 0)) {
     return [];

@@ -1,10 +1,10 @@
 import { spec } from "../spec/spec";
-import { isNumberSet } from "../generic/is-number-set";
+import { numberSet$ } from "../generic/number-set$";
 
 export function sub(...rest: Array<number>): number {
   spec({
     func: "subtract",
-    spec: { validArgNum: rest.length > 0, argsAreNums: isNumberSet(rest) }
+    spec: { validArgNum: rest.length > 0, argsAreNums: numberSet$(rest) }
   });
   if (rest.length === 1) {
     return -rest[0];

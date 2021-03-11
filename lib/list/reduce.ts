@@ -2,7 +2,7 @@ import { isFunction } from "lodash";
 import { and } from "../conditional/and";
 import { iff } from "../conditional/iff";
 import { eq } from "../generic/eq";
-import { isObject } from "../generic/is-object";
+import { object$ } from "../generic/object$";
 import { void$ } from "../generic/void$";
 import { lt$ } from "../math/lt$";
 import { spec } from "../spec/spec";
@@ -55,7 +55,7 @@ export function reduce(fn, val, set) {
   let index = -1;
 
   while (lt$(++index, length)) {
-    if (and(isObject(val), reduced$(val))) {
+    if (and(object$(val), reduced$(val))) {
       return val.item;
     }
     val = fn(val, nth(set, index));

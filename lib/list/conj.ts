@@ -1,6 +1,6 @@
 import { compact } from "lodash";
-import { isObject } from "../generic/is-object";
-import { spec } from "../spec/spec";
+import { object$ } from "../generic";
+import { spec } from "../spec";
 import { first } from "./first";
 
 /**
@@ -8,9 +8,8 @@ import { first } from "./first";
  * @param {[]|{}} rest
  * @returns {*[]|*|}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function conj(set, ...rest) {
-  spec({ func: "conj", spec: { setIsArrayOrObject: isObject(set) } });
+export function conj(set: Array<any>, ...rest: Array<any>) {
+  spec({ func: "conj", spec: { setIsArrayOrObject: object$(set) } });
   if (Array.isArray(set)) {
     const addition = first(compact(rest));
     return set.concat(addition);

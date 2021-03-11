@@ -1,5 +1,5 @@
 import { spec } from "../spec/spec";
-import { isNumberSet } from "../generic/is-number-set";
+import { numberSet$ } from "../generic/number-set$";
 
 /**
  * If no denominators are supplied, returns 1/numerator,
@@ -7,7 +7,7 @@ import { isNumberSet } from "../generic/is-number-set";
  * @param rest
  */
 export function div(...rest: Array<number>) {
-  spec({ func: "div", spec: { validArgNum: rest.length > 0, argsAreNums: isNumberSet(rest) } });
+  spec({ func: "div", spec: { validArgNum: rest.length > 0, argsAreNums: numberSet$(rest) } });
   if (rest.length === 1) {
     return 1 / rest[0];
   }

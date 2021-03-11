@@ -1,12 +1,12 @@
-import { spec } from "../spec/spec";
+import { spec } from "../spec";
 import { _eq } from "./internal/_eq";
-import { isObject } from "./is-object";
-import { isTypedSet } from "./is-typed-set";
+import { object$ } from "./object$";
+import { typedSet$ } from "./internal/typed-set$";
 
-export function eq(...rest: any) {
+export function eq(...rest: Array<any>) {
   spec({
     func: "eq",
-    spec: { typeIsPrimitive: isTypedSet(rest, (item) => !isObject(item) && !Array.isArray(item)) }
+    spec: { typeIsPrimitive: typedSet$(rest, (item) => !object$(item) && !Array.isArray(item)) }
   });
   return _eq(rest, simpleNotEqual);
 }

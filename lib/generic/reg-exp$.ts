@@ -4,6 +4,6 @@
  * @returns {boolean}
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-export function isRegExp(value) {
+export function regExp$(value) {
   return value instanceof RegExp;
 }

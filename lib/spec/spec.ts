@@ -1,5 +1,5 @@
 import { isEmpty, isString } from "lodash";
-import { isObject } from "../generic/is-object";
+import { object$ } from "../generic/object$";
 
 type Spec = { func: string; spec: Record<string, boolean> };
 
@@ -12,7 +12,7 @@ function getFailedSpecs(assertions: Record<string, any>): Array<string> {
 }
 
 export function spec({ func, spec }: Spec): void {
-  if (!func || !spec || !isObject(spec) || !isString(func)) {
+  if (!func || !spec || !object$(spec) || !isString(func)) {
     throw new Error(
       func && isString(func) ? `Malformed Spec in function: ${func}` : `Malformed Spec, missing function label`
     );

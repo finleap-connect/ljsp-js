@@ -1,7 +1,7 @@
 import { spec } from "../spec/spec";
-import { isNumberSet } from "../generic/is-number-set";
+import { numberSet$ } from "../generic/number-set$";
 
 export function min(...rest: Array<number>): number {
-  spec({ func: "min", spec: { argsAreNumbers: isNumberSet(rest) } });
+  spec({ func: "min", spec: { argsAreNumbers: numberSet$(rest) } });
   return Math.min(...rest);
 }

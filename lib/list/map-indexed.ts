@@ -1,6 +1,6 @@
 import { cond, ELSE } from "../conditional/cond";
-import { isObject } from "../generic/is-object";
-import { isString } from "../generic/is-string";
+import { object$ } from "../generic/object$";
+import { string$ } from "../generic/string$";
 import { spec } from "../spec/spec";
 
 /**
@@ -11,12 +11,12 @@ import { spec } from "../spec/spec";
 export function mapIndexed(fn, value) {
   spec({
     func: "mapIndexed",
-    spec: { validValue: Array.isArray(value) || isObject(value) || isString(value) }
+    spec: { validValue: Array.isArray(value) || object$(value) || string$(value) }
   });
   // prettier-ignore
   const _value = cond(
     () => Array.isArray(value), value,
-    () => isObject(value), () => Object.entries(value),
+    () => object$(value), () => Object.entries(value),
     ELSE, () => value.split("")
   );
 

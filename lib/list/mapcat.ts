@@ -1,4 +1,4 @@
-import { isEmpty } from "../generic/is-empty";
+import { empty$ } from "../generic/empty$";
 import { first } from "./first";
 
 /**
@@ -17,7 +17,7 @@ export function mapcat(fn, ...rest) {
     }, []);
   }
 
-  if (isEmpty(rest)) {
+  if (empty$(rest)) {
     // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
     return () => run(...rest);
   } else {

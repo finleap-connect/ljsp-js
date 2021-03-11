@@ -1,5 +1,5 @@
 import { cond, ELSE } from "../conditional/cond";
-import { isArraySet } from "../generic/is-array-set";
+import { arraySet$ } from "../generic/array-set$";
 import { spec } from "../spec/spec";
 
 /**
@@ -8,7 +8,7 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
 export function minLenList(...rest) {
-  spec({ func: "minLenList", spec: { argsAreArrays: isArraySet(rest) } });
+  spec({ func: "minLenList", spec: { argsAreArrays: arraySet$(rest) } });
   return rest.reduce((acc, cur) => {
     // prettier-ignore
     return cond(

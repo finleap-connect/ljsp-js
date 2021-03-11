@@ -1,5 +1,5 @@
 import { alike } from "./alike";
-import { isObject } from "./is-object";
+import { object$ } from "./object$";
 import { toStringComp } from "./internal/toStringComp";
 
 /**
@@ -7,6 +7,6 @@ import { toStringComp } from "./internal/toStringComp";
  * @param value
  * @returns {boolean|boolean}
  */
-export function isNumber(value: any) {
-  return typeof value === "number" || (isObject(value) && alike(toStringComp(value), "[object Number]"));
+export function number$(value: any) {
+  return typeof value === "number" || (object$(value) && alike(toStringComp(value), "[object Number]"));
 }

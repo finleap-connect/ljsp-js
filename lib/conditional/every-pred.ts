@@ -1,4 +1,4 @@
-import { isFunctionSet } from "../generic/is-function-set";
+import { functionSet$ } from "../generic/function-set$";
 import { spec } from "../spec/spec";
 
 /**
@@ -7,7 +7,7 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
 export function everyPred(...rest) {
-  spec({ func: "everyPred", spec: { typeIsFunction: isFunctionSet(rest) } });
+  spec({ func: "everyPred", spec: { typeIsFunction: functionSet$(rest) } });
   // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'args' implicitly has an 'any[]' ty... Remove this comment to see the full error message
   return (...args) => args.every((arg) => rest.every((fn) => Boolean(fn(arg))));
 }

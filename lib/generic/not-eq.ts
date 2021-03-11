@@ -1,6 +1,6 @@
 import { spec } from "../spec/spec";
-import { isObject } from "./is-object";
-import { isTypedSet } from "./is-typed-set";
+import { object$ } from "./object$";
+import { typedSet$ } from "./internal/typed-set$";
 
 /**
  * @param {*} rest
@@ -10,7 +10,7 @@ import { isTypedSet } from "./is-typed-set";
 export function notEq(...rest) {
   spec({
     func: "eq",
-    spec: { typeIsPrimitive: isTypedSet(rest, (item) => !isObject(item) && !Array.isArray(item)) }
+    spec: { typeIsPrimitive: typedSet$(rest, (item) => !object$(item) && !Array.isArray(item)) }
   });
   if (rest.length === 1) {
     return true;
