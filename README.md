@@ -135,6 +135,7 @@
     - [distinct$](#distinct)
     - [repeat](#repeat)
     - [splitAt](#splitat)
+    - [suffle](#shuffle)
   - [Function Functions](#function-functions)
     - [juxt](#juxt)
     - [trampoline](#trampoline)
@@ -2857,6 +2858,27 @@ console.log(splitAt(3, []));
 
 - `num` | `Number` The index at which to split the Array.
 - `set` | `Array` The Array to split.
+
+### shuffle
+
+Return a random permutation of set.
+
+```javascript
+import { shuffle } from "@flc-ds/fii-js-core";
+
+console.log(shuffle([0]));
+// [0]
+
+console.log(shuffle([0, 1]));
+// [1, 0]
+
+console.log(shuffle([0, 1, 2]))
+// One of many permutations, including [0, 2, 1]
+```
+
+#### Parameters
+
+- `set` | `Array` The Array to shuffle.
 
 ## Function Functions
 

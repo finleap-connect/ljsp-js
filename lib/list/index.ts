@@ -54,3 +54,4 @@ export { reduce } from "./reduce";
 export { reduced } from "./reduced";
 export { reduced$ } from "./reduced$";
 export { nth } from "./nth";
+export { shuffle } from "./shuffle";
