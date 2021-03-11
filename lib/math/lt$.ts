@@ -1,4 +1,4 @@
-import { numberSet$ } from "../generic";
+import { numberSet$ } from "../generic/number-set$";
 import { spec } from "../spec";
 import { _compareNums } from "./internal/compare-vals";
 
