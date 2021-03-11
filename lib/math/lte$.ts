@@ -1,16 +1,17 @@
-import { eq } from "../generic/eq";
-import { isNumberSet } from "../generic/is-number-set";
-import { spec } from "../spec/spec";
+import { numberSet$ } from "../generic";
+import { spec } from "../spec";
+import { _compareNums } from "./internal/compare-vals";
 
 /**
  * Returns true if nums are in monotonically increasing order,
  * otherwise false.
  * @param {number} rest
  */
-// @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
-export function lte$(...rest) {
-  spec({ func: "lt", spec: { isNumberSet: isNumberSet(rest) } });
-  return rest.reduce((acc, cur) => {
-    return eq(acc, false) ? acc : acc <= cur;
-  });
+export function lte$(...rest: Array<number>) {
+  spec({ func: "lte$", spec: { isNumberSet: numberSet$(rest) } });
+  return _compareNums(rest, lessThanEqual);
+}
+
+function lessThanEqual(a: number, b: number) {
+  return a <= b;
 }

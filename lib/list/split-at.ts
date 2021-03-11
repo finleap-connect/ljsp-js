@@ -1,5 +1,5 @@
 import { take, takeRight } from "lodash";
-import { isPositiveInt$ } from "../math/is-positive-int$";
+import { pos$ } from "../math/pos$";
 import { spec } from "../spec/spec";
 
 /**
@@ -10,7 +10,7 @@ import { spec } from "../spec/spec";
 export function splitAt(num, set) {
   spec({
     func: "splitAt",
-    spec: { numIsPositiveInt: isPositiveInt$(num), setIsArray: Array.isArray(set) }
+    spec: { numIsPositiveInt: pos$(num), setIsArray: Array.isArray(set) }
   });
   return [take(set, num), takeRight(set, set.length - num)];
 }

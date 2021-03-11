@@ -6,7 +6,7 @@ const FUNCTION = "function";
  * @returns {boolean}
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-export function isObject(value) {
+export function object$(value) {
   const type = typeof value;
   return value != null && (type === OBJECT || type === FUNCTION);
 }

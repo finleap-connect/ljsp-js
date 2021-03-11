@@ -1,5 +1,5 @@
 import { clone } from "lodash";
-import { spec } from "../spec/spec";
+import { spec } from "../spec";
 
 /**
  * @param {[]} set

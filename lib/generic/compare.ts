@@ -1,7 +1,7 @@
 import { cond } from "../conditional/cond";
-import { isNumber } from "./is-number";
-import { isBoolean } from "./is-boolean";
-import { isString } from "./is-string";
+import { number$ } from "./number$";
+import { boolean$ } from "./boolean$";
+import { string$ } from "./string$";
 import { split } from "../string/split";
 
 /**
@@ -19,9 +19,9 @@ import { split } from "../string/split";
 export function compare(left: any, right: any): number {
   // prettier-ignore
   return cond(
-    () => isNumber(left), () => compareNumbers(left, right),
-    () => isBoolean(left), () => compareBools(left, right),
-    () => isString(left), () => compareStrings(left, right),
+    () => number$(left), () => compareNumbers(left, right),
+    () => boolean$(left), () => compareBools(left, right),
+    () => string$(left), () => compareStrings(left, right),
     () => Array.isArray(left), () => compareArrays(left, right)
   );
 }

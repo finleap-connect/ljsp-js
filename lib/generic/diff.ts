@@ -1,7 +1,7 @@
 import { iff } from "../conditional/iff";
 import { spec } from "../spec/spec";
 import { eq } from "./eq";
-import { isObject } from "./is-object";
+import { object$ } from "./object$";
 
 /**
  * Recursively compares a and b, returning a tuple of
@@ -19,9 +19,9 @@ import { isObject } from "./is-object";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'a' implicitly has an 'any' type.
 export function diff(a, b) {
-  spec({ func: "diff", spec: { aIsObject: isObject(a), bIsObject: isObject(b) } });
+  spec({ func: "diff", spec: { aIsObject: object$(a), bIsObject: object$(b) } });
   return iff(
-    isObject(a),
+    object$(a),
     () => (Array.isArray(a) ? getArrayDiff(a, b) : getObjectDiff(a, b)),
     () => (eq(a, b) ? [null, null, a] : [a, b, null])
   );

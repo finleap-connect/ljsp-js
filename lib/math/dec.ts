@@ -1,5 +1,5 @@
 import { isNumber } from "lodash";
-import { spec } from "../spec/spec";
+import { spec } from "../spec";
 import { sub } from "./sub";
 
 /**

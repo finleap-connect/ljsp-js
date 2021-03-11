@@ -1,5 +1,5 @@
-import { isObject } from "../generic/is-object";
-import { isStringSet } from "../generic/is-string-set";
+import { object$ } from "../generic/object$";
+import { stringSet$ } from "../generic/string-set$";
 import { spec } from "../spec/spec";
 
 /**
@@ -11,7 +11,7 @@ import { spec } from "../spec/spec";
 export function dissoc(obj, ...rest) {
   spec({
     func: "dissociate",
-    spec: { firstIsObject: isObject(obj), propIsString: isStringSet(rest) }
+    spec: { firstIsObject: object$(obj), propIsString: stringSet$(rest) }
   });
   return Object.entries(obj).reduce((acc, [key, val]) => {
     if (!rest.includes(key)) {

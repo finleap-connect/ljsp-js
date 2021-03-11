@@ -1,4 +1,4 @@
-import { isRegExp } from "../generic/is-regexp";
+import { regExp$ } from "../generic/reg-exp$";
 
 /**
  * Replaces the first instance of match with replacement in s. Functions
@@ -9,7 +9,7 @@ import { isRegExp } from "../generic/is-regexp";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'str' implicitly has an 'any' type.
 export function replaceFirst(str, matcher, replacement) {
-  if (isRegExp(matcher)) {
+  if (regExp$(matcher)) {
     const regExStr = matcher.toString();
     const lastIndex = regExStr.lastIndexOf("/");
     const parsed = regExStr.slice(1, lastIndex);

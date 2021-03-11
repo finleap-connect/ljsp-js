@@ -1,4 +1,4 @@
-import { isPositiveInt$ } from "../math/is-positive-int$";
+import { pos$ } from "../math/pos$";
 import { spec } from "../spec/spec";
 
 /**
@@ -13,8 +13,8 @@ export function getSectionFromSet(set, section, sectionSize) {
     func: "getPage",
     spec: {
       data: Array.isArray(set),
-      section: isPositiveInt$(section),
-      sectionSize: isPositiveInt$(sectionSize),
+      section: pos$(section),
+      sectionSize: pos$(sectionSize),
       validSection: getSectionIndex(section, sectionSize) <= set.length
     }
   });

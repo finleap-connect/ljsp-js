@@ -1,5 +1,5 @@
 import { alike } from "./alike";
-import { isObject } from "./is-object";
+import { object$ } from "./object$";
 import { toStringComp } from "./internal/toStringComp";
 
 const STRING = "string";
@@ -12,7 +12,7 @@ const FUNCTION = "function";
  * @returns {boolean}
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-export function isEmpty(value) {
+export function empty$(value) {
   if (alike(value, null)) {
     return true;
   }
@@ -23,7 +23,7 @@ export function isEmpty(value) {
   if (alike(tag, "[object Map]") || alike(tag, "[object Set]")) {
     return !value.size;
   }
-  if (isObject(value)) {
+  if (object$(value)) {
     return !Object.keys(value).length;
   }
   return true;

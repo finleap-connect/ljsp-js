@@ -1,6 +1,6 @@
 import { isFunction } from "lodash";
 import { iff } from "../conditional/iff";
-import { isPositiveInt$ } from "../math/is-positive-int$";
+import { pos$ } from "../math/pos$";
 import { spec } from "../spec/spec";
 
 /**
@@ -14,7 +14,7 @@ import { spec } from "../spec/spec";
 export function extendArray(source, len, value = null) {
   spec({
     func: "extendArray",
-    spec: { sourceIsArray: Array.isArray(source), lenIsPositiveInt: isPositiveInt$(len) }
+    spec: { sourceIsArray: Array.isArray(source), lenIsPositiveInt: pos$(len) }
   });
 
   source.length = len;
