@@ -15,7 +15,7 @@ export { selectKeys } from "./select-keys";
 export { interleave } from "./interleave";
 export { minLenList } from "./min-len-list";
 export { reduceKv } from "./reduce-kv";
-export { subset } from "./subset";
+export { subset$ } from "./subset$";
 export { frequencies } from "./frequencies";
 export { rest } from "./rest";
 export { cons } from "./cons";
