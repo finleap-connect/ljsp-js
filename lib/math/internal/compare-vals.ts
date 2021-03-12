@@ -1,5 +1,6 @@
-import { eq, not } from "../../generic";
-import { first } from "../../list";
+import { eq } from "../../generic/eq";
+import { not } from "../../generic/not";
+import { first } from "../../list/first";
 
 export function _compareNums(values: Array<number>, comparator: Function) {
   if (eq(values.length, 1)) {
