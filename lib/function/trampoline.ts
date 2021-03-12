@@ -18,8 +18,7 @@ import { spec } from "../spec/spec";
 export function trampoline(fn, ...rest) {
   spec({ func: "trampoline", spec: { fnIsFunction: isFunction(fn) } });
   let result = fn(...rest);
-  // @ts-expect-error ts-migrate(2686) FIXME: '_' refers to a UMD global, but the current file i... Remove this comment to see the full error message
-  while (_.isFunction(result)) {
+  while (isFunction(result)) {
     result = result();
   }
   return result;

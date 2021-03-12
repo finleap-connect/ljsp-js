@@ -1346,11 +1346,11 @@ console.log(
 Evaluates test. If falsey, evaluates body in an implicit doWork.
 
 ```javascript
-import { when } from "@flc-ds/fii-js-core";
+import { whenNot } from "@flc-ds/fii-js-core";
 
 console.log(
-  when(
-    true,
+  whenNot(
+    false,
     () => "one",
     () => "two",
     () => "three"
