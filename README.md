@@ -24,22 +24,23 @@
     - [blank$](#blank)
   - [Generic Functions](#generic-functions)
     - [eq](#eq)
-    - [notEq](#noteq)  
+    - [notEq](#noteq)
     - [deepEq](#deepeq)
     - [doWork](#dowork)
     - [areDistinct](#aredistinct)
     - [isEmpty](#isempty)
-    - [notEmpty](#notempty)  
+    - [notEmpty](#notempty)
     - [isString](#isstring)
     - [isObject](#isobject)
     - [isRegExp](#isregexp)
-    - [isBoolean](#isboolean)      
+    - [isBoolean](#isboolean)
     - [isNumber](#isnumber)
     - [void$](#void)
-    - [not](#not)  
+    - [not](#not)
     - [diff](#diff)
     - [alike](#alike)
     - [compare](#compare)
+    - [empty](#empty)
   - [Math Functions](#math-functions)
     - [add](#add)
     - [sub](#sub)
@@ -53,7 +54,7 @@
     - [pos$](#pos)
     - [neg$](#neg)
     - [zero$](#zero)
-    - [even$](#even)      
+    - [even$](#even)
     - [odd$](#odd)
     - [lt$](#lt)
     - [gt$](#gt)
@@ -67,10 +68,10 @@
     - [ifSome](#ifsome)
     - [ifYes](#ifyes)
     - [ifNo](#ifno)
-    - [ifBlank](#ifblank)      
+    - [ifBlank](#ifblank)
     - [ifClass](#ifclass)
     - [ifArray](#ifarray)
-    - [ifObj](#ifobj)      
+    - [ifObj](#ifobj)
     - [when](#when)
     - [whenNot](#whennot)
     - [cond](#cond)
@@ -122,7 +123,7 @@
     - [cons](#cons)
     - [sort](#sort)
     - [some](#some)
-    - [flattenChildTree](#flattenchildtree)  
+    - [flattenChildTree](#flattenchildtree)
     - [includes](#includes)
     - [notIncludes](#notincludes)
     - [interpose](#interpose)
@@ -153,7 +154,7 @@
     - [rename](#rename)
     - [ownMethods](#ownmethods)
   - [RegExp Functions](#regexp-functions)
-    - [cat](#cat)    
+    - [cat](#cat)
   - [Validation](#validation)
     - [isPositiveInt](#ispositiveint)
     - [isNonNegativeInt](#isnonnegativeint)
@@ -756,6 +757,27 @@ console.log(compare([true, "a", 2], [true, "a", 1]));
 - `left` | `*` The left side
 - `right` | `*` The right side
 
+### empty
+
+Returns an empty collection of the same category as coll, or undefined.
+
+```javascript
+import { empty } from "@flc-ds/fii-js-core";
+
+console.log(empty([1, 2, 3]));
+// []
+
+console.log(empty({ one: 1, two: 1 }));
+// {}
+
+console.log(empty(1));
+// undefined
+```
+
+#### Parameters
+
+- `set` | `Array | Object | Map | WeakMap | Set | WeakSet` A set.
+
 ## Math Functions
 
 ### add
@@ -1305,12 +1327,12 @@ Evaluates test. If truthy, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-        when(
-                true,
-                () => "one",
-                () => "two",
-                () => "three"
-        )
+  when(
+    true,
+    () => "one",
+    () => "two",
+    () => "three"
+  )
 );
 // "three"
 ```
@@ -1327,12 +1349,12 @@ Evaluates test. If falsey, evaluates body in an implicit doWork.
 import { when } from "@flc-ds/fii-js-core";
 
 console.log(
-        when(
-                true,
-                () => "one",
-                () => "two",
-                () => "three"
-        )
+  when(
+    true,
+    () => "one",
+    () => "two",
+    () => "three"
+  )
 );
 // "three"
 ```
@@ -1406,44 +1428,28 @@ returned.
 ```javascript
 import { condp, lt$ } from "@flc-ds/fii-js-core";
 
-console.log(
-  condp(lt$, 15,
-    1, "one",
-    10, "ten",
-    100, "hundred",
-    1000, "thousand",
-    "default"
-  )
-);
+console.log(condp(lt$, 15, 1, "one", 10, "ten", 100, "hundred", 1000, "thousand", "default"));
 // hundred
 
-console.log(
-  condp(lt$, 2500,
-    1, "one",
-    10, "ten",
-    100, "hundred",
-    1000, "thousand",
-    "default"
-  )
-);
+console.log(condp(lt$, 2500, 1, "one", 10, "ten", 100, "hundred", 1000, "thousand", "default"));
 // default
 ```
 
 #### Parameters
 
 - `pred` | `Function` A binary function
-- `expr` |  An expression
+- `expr` | An expression
 - `...rest` | `Expression | Function` An expression or function. If it is a function, the function must be unary.
 
 ### cases
 
-Takes an expression, and a set of clauses.  Each clause can take the form of either:
+Takes an expression, and a set of clauses. Each clause can take the form of either:
 
 test-constant result-expr
-(test-constant1 ... test-constantN)  result-expr
+(test-constant1 ... test-constantN) result-expr
 
 The test-constants are not evaluated. They must be compile-time
-literals.  If the expression is equal to a  test-constant, the corresponding
+literals. If the expression is equal to a test-constant, the corresponding
 result-expr is returned. A single default expression can follow the clauses,
 and its value will be returned if no clause matches. If no default expression
 is provided and no clause matches, undefined is returned.
@@ -1451,43 +1457,21 @@ All manner of constant expressions are acceptable in `cases`,
 including `numbers`, `strings`, `booleans`, `BigInts`, and `Symbols`. The
 test-constants need not be all the same type.
 
-
 ```javascript
 import { cases } from "@flc-ds/fii-js-core";
 
 const myStr = "hello";
 
-console.log(
-  (cases(myStr,
-        "", 0,
-        "hello", "there"
-  ))
-);
+console.log(cases(myStr, "", 0, "hello", "there"));
 // there
 
-console.log(
-  (cases(myStr,
-    "", 0,
-    "no-match", "there",
-    "default"
-  ))
-);
+console.log(cases(myStr, "", 0, "no-match", "there", "default"));
 // default
 
-console.log(
-  (cases(myStr,
-    "", 0,
-    "hello", () => myStr.length
-  ))
-);
+console.log(cases(myStr, "", 0, "hello", () => myStr.length));
 // 5
 
-console.log(
-  (cases(myStr,
-    "", 0,
-    "no-match", "there"
-  ))
-);
+console.log(cases(myStr, "", 0, "no-match", "there"));
 // undefined
 ```
 
@@ -1507,9 +1491,9 @@ argument that triggers a logical false result against the original predicates.
 import { everyPred } from "@flc-ds/fii-js-core";
 
 const isGtZeroIntMultipleTwo = everyPred(
-        (a) => Number.isInteger(a),
-        (a) => a > 0,
-        (a) => a % 2 === 0
+  (a) => Number.isInteger(a),
+  (a) => a > 0,
+  (a) => a % 2 === 0
 );
 
 console.log(isGtZeroIntMultipleTwo(2, 4, 6));
@@ -2035,7 +2019,7 @@ console.log(reduced$(12));
 
 #### Parameters
 
-- `val` | `*` A value_
+- `val` | `*` A value\_
 
 ### findById
 
@@ -2536,33 +2520,33 @@ contains objects that have a children property, which is nested.
 import { flattenChildTree } from "@flc-ds/fii-js-core";
 
 console.log(
-        JSON.stringify(
-                flattenChildTree([
-                  {
-                    one: 1,
-                    children: [
-                      {
-                        two: 2,
-                        children: [
-                          {
-                            three: 3,
-                            children: []
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    one: 1,
-                    children: [
-                      {
-                        two: 2,
-                        children: []
-                      }
-                    ]
-                  }
-                ])
-        )
+  JSON.stringify(
+    flattenChildTree([
+      {
+        one: 1,
+        children: [
+          {
+            two: 2,
+            children: [
+              {
+                three: 3,
+                children: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        one: 1,
+        children: [
+          {
+            two: 2,
+            children: []
+          }
+        ]
+      }
+    ])
+  )
 );
 /*  [
  *    { one: 1, children: [{ two: 2, children: [{ three: 3, children: [] }] }] },
@@ -2759,11 +2743,11 @@ console.log(walk(
 // 30
 
 console.log(
-        walk(
-                ([key, value]) => [key, value + 1],
-                (set) => set,
-                { one: 1, two: 2, three: 3 }
-        )
+  walk(
+    ([key, value]) => [key, value + 1],
+    (set) => set,
+    { one: 1, two: 2, three: 3 }
+  )
 );
 /**
  * {
@@ -2895,8 +2879,8 @@ args (left-to-right).
 import { juxt } from "@flc-ds/fii-js-core";
 
 const test = juxt(
-        (n) => n * 2,
-        (n) => n + 1
+  (n) => n * 2,
+  (n) => n + 1
 );
 
 console.log(test(3));
@@ -3212,13 +3196,13 @@ console.log(project({ one: 1, two: 2, three: 3 }, ["one", "three"]));
 //  { one: 1, three: 3 }
 
 console.log(
-        project(
-                [
-                  { one: 1, two: 2, three: 3 },
-                  { one: 1, two: 2, three: 3 }
-                ],
-                ["one", "three"]
-        )
+  project(
+    [
+      { one: 1, two: 2, three: 3 },
+      { one: 1, two: 2, three: 3 }
+    ],
+    ["one", "three"]
+  )
 );
 // [{ one: 1, three: 3 }, { one: 1, three: 3 }]
 ```
@@ -3264,19 +3248,19 @@ Returns an Array of an object's own methods. Returns an empty Array if no method
 import { ownMethods } from "@flc-ds/fii-js-core";
 
 console.log(
-        ownMethods({
-          one() {},
-          two() {},
-          three() {},
-          name: "Pete"
-        })
+  ownMethods({
+    one() {},
+    two() {},
+    three() {},
+    name: "Pete"
+  })
 );
 // [ one(){}, two(){}, three(){} ]
 
 console.log(
-        ownMethods({
-          name: "Pete"
-        })
+  ownMethods({
+    name: "Pete"
+  })
 );
 // []
 ```
