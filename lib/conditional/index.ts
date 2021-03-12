@@ -5,6 +5,7 @@ export { ifNot } from "./if-not";
 export { ifObj } from "./if-obj";
 export { when } from "./when";
 export { whenNot } from "./when-not";
+export { whenFirst } from "./when-first";
 export { ifClass } from "./if-class";
 export { ifBlank } from "./if-blank";
 export { iff } from "./iff";
