@@ -1,14 +1,5 @@
-import { spec } from "../spec/spec";
-import { functionSet$ } from "./function-set$";
+import { _returnLast } from "../conditional/internal/_return-last";
 
-type FnType = (args?: Array<any>) => any;
-
-export function doWork(...rest: Array<FnType>): any {
-  spec({ func: "doWork", spec: { typeIsFunction: functionSet$(rest) } });
-  if (rest.length === 0) {
-    return undefined;
-  }
-  return rest.reduce((acc, cur) => {
-    return cur();
-  });
+export function doWork(...rest: Array<any>): any {
+  return _returnLast(rest);
 }
