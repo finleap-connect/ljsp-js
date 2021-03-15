@@ -3,7 +3,7 @@ export { removeById } from "./remove-by-id";
 export { conj } from "./conj";
 export { findById } from "./find-by-id";
 export { getSectionFromSet } from "./get-section-from-set";
-export { leftDiff } from "./left-diff";
+export { difference } from "./difference";
 export { updateSet } from "./update-set";
 export { rightDiff } from "./right-diff";
 export { dissoc } from "./dissoc";
