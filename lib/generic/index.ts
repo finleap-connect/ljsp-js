@@ -19,3 +19,4 @@ export { alike } from "./alike";
 export { empty } from "./empty";
 export { true$ } from "./true$";
 export { false$ } from "./false$";
+export { doTimes } from "./do-times";
