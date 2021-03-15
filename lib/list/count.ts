@@ -5,15 +5,13 @@ import { toStringComp } from "../generic/internal/toStringComp";
 import { or } from "../conditional/or";
 import { objectTypes } from "../enums/object-types";
 import { void$ } from "../generic/void$";
-
-const STRING = "string";
-const FUNCTION = "function";
+import { arrayLike$ } from "../generic";
 
 export function count(set: null | undefined | Array<any> | Map<any, any> | Set<any> | Object) {
   if (void$(set)) {
     return 0;
   }
-  if (or(Array.isArray(set), eq(typeof set, STRING), eq(typeof set.splice, FUNCTION))) {
+  if (arrayLike$(set)) {
     return set.length;
   }
   const test = toStringComp(set);
