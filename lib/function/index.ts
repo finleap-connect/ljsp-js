@@ -6,3 +6,4 @@ export { identity } from "./identity";
 export { constantly } from "./constantly";
 export { tf } from "./tf";
 export { apply } from "./apply";
+export { comp } from "./comp";
