@@ -56,5 +56,6 @@ export { reduced$ } from "./reduced$";
 export { nth } from "./nth";
 export { shuffle } from "./shuffle";
 export { assoc } from "./assoc";
+export { intersection } from "./intersection";
 export { assocIn } from "./assoc-in";
 export { count } from "./count";
