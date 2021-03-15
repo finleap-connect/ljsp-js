@@ -1,13 +1,11 @@
 import { isFunction } from "lodash";
-import { empty$ } from "../generic/empty$";
 
 /**
  * @param {*} rest
  * @returns {undefined|*}
  */
-// @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
-export function or(...rest) {
-  if (empty$(rest)) return undefined;
+export function or(...rest: Array<any>) {
+  if (rest.length === 0) return undefined;
 
   let result;
   for (let x = 0; x < rest.length; x++) {
