@@ -57,3 +57,4 @@ export { nth } from "./nth";
 export { shuffle } from "./shuffle";
 export { assoc } from "./assoc";
 export { assocIn } from "./assoc-in";
+export { count } from "./count";
