@@ -1,13 +1,14 @@
 // @ts-nocheck
 import { object$ } from "../generic/object$";
-import { eq } from "../generic/eq";
 import { toStringComp } from "../generic/internal/toStringComp";
-import { or } from "../conditional/or";
 import { objectTypes } from "../enums/object-types";
 import { void$ } from "../generic/void$";
-import { arrayLike$ } from "../generic";
+import { arrayLike$ } from "../generic/arrayLike$";
+import { Collection } from "../types/collection";
+import { eq } from "../generic/eq";
+import { or } from "../conditional/or";
 
-export function count(set: null | undefined | Array<any> | Map<any, any> | Set<any> | Object) {
+export function count(set: null | undefined | Collection) {
   if (void$(set)) {
     return 0;
   }
