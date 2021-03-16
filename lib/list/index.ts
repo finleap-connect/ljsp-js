@@ -59,3 +59,5 @@ export { assoc } from "./assoc";
 export { intersection } from "./intersection";
 export { assocIn } from "./assoc-in";
 export { count } from "./count";
+export { contains$ } from "./contains$";
+export { get } from "./get";

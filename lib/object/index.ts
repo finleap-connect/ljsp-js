@@ -6,3 +6,4 @@ export { merge } from "./merge";
 export { project } from "./project";
 export { rename } from "./rename";
 export { ownMethods } from "./own-methods";
+export { find } from "./find";

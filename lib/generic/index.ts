@@ -20,3 +20,4 @@ export { empty } from "./empty";
 export { true$ } from "./true$";
 export { false$ } from "./false$";
 export { dotimes } from "./dotimes";
+export { arrayLike$ } from "./array-like$";
