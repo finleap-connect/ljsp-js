@@ -1,11 +1,14 @@
 import { spec } from "../spec/spec";
+import { object$ } from "../generic/object$";
+import { AnyObject } from "../types/any-object";
 
 /**
  * @param {[]} set
  * @returns {*}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function rest(set) {
-  spec({ func: "rest", spec: { setIsArray: Array.isArray(set) } });
+export function rest(set: Array<any> | AnyObject) {
+  spec({ func: "rest", spec: { setIsArrayOrObject: object$(set) } });
+  set = Array.isArray(set) ? set : Object.entries(set);
+  // @ts-ignore
   return set.slice(1);
 }
