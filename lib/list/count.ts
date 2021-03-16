@@ -3,7 +3,7 @@ import { object$ } from "../generic/object$";
 import { toStringComp } from "../generic/internal/toStringComp";
 import { objectTypes } from "../enums/object-types";
 import { void$ } from "../generic/void$";
-import { arrayLike$ } from "../generic/arrayLike$";
+import { arrayLike$ } from "../generic/array-like$";
 import { Collection } from "../types/collection";
 import { eq } from "../generic/eq";
 import { or } from "../conditional/or";
