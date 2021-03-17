@@ -1,12 +1,10 @@
-const OBJECT = "object";
-const FUNCTION = "function";
+import { BaseTypes } from "../enums/base-types";
 
 /**
  * @param value
  * @returns {boolean}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
-export function object$(value) {
+export function object$(value: any) {
   const type = typeof value;
-  return value != null && (type === OBJECT || type === FUNCTION);
+  return value != null && !Array.isArray(value) && type === BaseTypes.Object;
 }

@@ -1,7 +1,8 @@
 import { iff } from "../conditional/iff";
 import { spec } from "../spec/spec";
 import { eq } from "./eq";
-import { object$ } from "./object$";
+import { objectLike$ } from "./object-like$";
+import { TAnyObject } from "../types/t-any-object";
 
 /**
  * Recursively compares a and b, returning a tuple of
@@ -17,11 +18,10 @@ import { object$ } from "./object$";
  * @param a
  * @param b
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'a' implicitly has an 'any' type.
-export function diff(a, b) {
-  spec({ func: "diff", spec: { aIsObject: object$(a), bIsObject: object$(b) } });
+export function diff(a: TAnyObject, b: TAnyObject) {
+  spec({ func: "diff", spec: { aIsObject: objectLike$(a), bIsObject: objectLike$(b) } });
   return iff(
-    object$(a),
+    objectLike$(a),
     () => (Array.isArray(a) ? getArrayDiff(a, b) : getObjectDiff(a, b)),
     () => (eq(a, b) ? [null, null, a] : [a, b, null])
   );

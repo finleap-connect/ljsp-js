@@ -1,7 +1,7 @@
 import { compact } from "lodash";
-import { object$ } from "../generic";
 import { spec } from "../spec";
 import { first } from "./first";
+import { objectLike$ } from "../generic/object-like$";
 
 /**
  * @param {[]|{}} set
@@ -9,7 +9,7 @@ import { first } from "./first";
  * @returns {*[]|*|}
  */
 export function conj(set: Array<any>, ...rest: Array<any>) {
-  spec({ func: "conj", spec: { setIsArrayOrObject: object$(set) } });
+  spec({ func: "conj", spec: { setIsArrayOrObject: objectLike$(set) } });
   if (Array.isArray(set)) {
     const addition = first(compact(rest));
     return set.concat(addition);
