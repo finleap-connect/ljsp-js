@@ -1,4 +1,4 @@
-const { identity } = require("./identity");
+const { identity } = require("../../lib/function/identity");
 
 describe("identity", () => {
   it("returns what it is given", () => {

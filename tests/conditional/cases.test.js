@@ -1,4 +1,4 @@
-const { cases } = require("./cases");
+const { cases } = require("../../lib/conditional/cases");
 
 describe("case", () => {
   it("returns a matching value", () => {

@@ -1,4 +1,4 @@
-const { ifYes } = require("./if-yes");
+const { ifYes } = require("../../lib/conditional/if-yes");
 
 describe("ifYes", () => {
   it("should return value when true", () => {

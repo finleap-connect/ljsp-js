@@ -1,4 +1,4 @@
-const { ifBlank } = require("./if-blank");
+const { ifBlank } = require("../../lib/conditional/if-blank");
 
 describe("ifBlank", () => {
   it("if truthy, returns value", () => {

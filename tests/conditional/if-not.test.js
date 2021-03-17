@@ -1,4 +1,4 @@
-const { ifNot } = require("./if-not");
+const { ifNot } = require("../../lib/conditional/if-not");
 
 describe("ifNot", () => {
   it("should return value if expression is truthy", function () {

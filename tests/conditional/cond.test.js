@@ -1,4 +1,4 @@
-const { cond, ELSE } = require("./cond");
+const { cond, ELSE } = require("../../lib/conditional/cond");
 
 describe("cond", () => {
   it("evaluates expression, returns value", () => {
