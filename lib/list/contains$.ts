@@ -1,17 +1,17 @@
 // @ts-nocheck
 import { TCollection } from "../types/t-collection";
-import { eq, object$ } from "../generic";
-import { or } from "../conditional";
+import { object$ } from "../generic";
 import { arrayLike$ } from "../generic/array-like$";
-import { _getType } from "../internal/_get-type";
 import { BaseTypes } from "../enums/base-types";
+import { _getType } from "../internal/_get-type";
+import { orEq } from "../generic/or-eq";
 
 export function contains$(set: TCollection, key: string) {
   if (arrayLike$(set)) {
     return set.includes(key);
   }
   const test = _getType(set);
-  if (or(eq(test, BaseTypes.Map), eq(test, BaseTypes.Set))) {
+  if (orEq(test, BaseTypes.Map, BaseTypes.Set)) {
     return set.has(key);
   }
   if (object$(set)) {

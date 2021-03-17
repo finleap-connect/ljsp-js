@@ -1,6 +1,7 @@
 export enum BaseTypes {
   Function = "function",
   String = "string",
+  Object = "object",
   Array = "array",
   Map = "map",
   Set = "set",
@@ -10,6 +11,5 @@ export enum BaseTypes {
   Undefined = "undefined",
   Promise = "promise",
   Date = "date",
-  Symbol = "symbol",
-  Object = "object"
+  Symbol = "symbol"
 }
