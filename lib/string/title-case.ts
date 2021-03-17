@@ -1,7 +1,5 @@
-function capitalizeWord(str: string): string {
-  return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
-}
+import { capitalize } from "./capitalize";
 
 export function titleCase(str: string): string {
-  return str.split(" ").map(capitalizeWord).join(" ");
+  return str.split(" ").map(capitalize).join(" ");
 }

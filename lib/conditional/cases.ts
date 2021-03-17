@@ -2,7 +2,7 @@ import { chunk, isFunction } from "lodash";
 import { first, second } from "../list";
 import { and } from "./and";
 import { eq, not, object$ } from "../generic";
-import { Primitive } from "../types/primitive";
+import { TPrimitive } from "../types/TPrimitive";
 import { spec } from "../spec";
 
 /**
@@ -20,7 +20,7 @@ import { spec } from "../spec";
  * including numbers, strings, booleans, and Symbols. The
  * test-constants need not be all of the same type.
  */
-export function cases(expression: Primitive, ...rest: any[]) {
+export function cases(expression: TPrimitive, ...rest: any[]) {
   spec({ func: "cases", spec: { expressionIsPrimitive: not(and(object$(expression), isFunction(expression))) } });
   const expressions = chunk(rest, 2);
   for (let i = 0; i < expressions.length; i++) {
