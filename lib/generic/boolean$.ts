@@ -1,6 +1,7 @@
 import { alike } from "./alike";
-import { toStringComp } from "./internal/toStringComp";
 import { objectLike$ } from "./object-like$";
+import { _getType } from "../internal/_get-type";
+import { BaseTypes } from "../enums/base-types";
 
 /**
  * Whether a value is Boolean
@@ -8,5 +9,5 @@ import { objectLike$ } from "./object-like$";
  * @returns {boolean|*}
  */
 export function boolean$(value: any) {
-  return value === true || value === false || (objectLike$(value) && alike(toStringComp(value), "[object Boolean]"));
+  return value === true || value === false || (objectLike$(value) && alike(_getType(value), BaseTypes.Boolean));
 }
