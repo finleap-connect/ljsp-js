@@ -2,7 +2,7 @@
 import { object$ } from "../generic/object$";
 import { void$ } from "../generic/void$";
 import { arrayLike$ } from "../generic/array-like$";
-import { TCollection } from "../types/TCollection";
+import { TCollection } from "../types/t-collection";
 import { _getType } from "../internal/_get-type";
 import { BaseTypes } from "../enums/base-types";
 import { orEq } from "../generic/or-eq";

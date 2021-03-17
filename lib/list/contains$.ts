@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { TCollection } from "../types/TCollection";
+import { TCollection } from "../types/t-collection";
 import { eq, object$ } from "../generic";
 import { or } from "../conditional";
 import { arrayLike$ } from "../generic/array-like$";
