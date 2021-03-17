@@ -1,5 +1,5 @@
-const { condp } = require("./condp");
-const { lt$ } = require("../math");
+const { condp } = require("../../lib/conditional/condp");
+const { lt$ } = require("../../lib/math");
 
 describe("condp", () => {
   it("evaluates a binary predicate, matches test expression, returns result expression", () => {

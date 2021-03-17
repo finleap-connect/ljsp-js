@@ -1,4 +1,4 @@
-const { juxt } = require("./juxt");
+const { juxt } = require("../../lib/function/juxt");
 
 describe("juxt", () => {
   it("returns an array containing the juxtaposition of the composed functions", () => {

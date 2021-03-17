@@ -1,4 +1,4 @@
-const { ifClass } = require("./if-class");
+const { ifClass } = require("../../lib/conditional/if-class");
 
 describe("ifClass", () => {
   it("if truthy, returns value", () => {

@@ -1,4 +1,4 @@
-const { trampoline } = require("./trampoline");
+const { trampoline } = require("../../lib/function/trampoline");
 
 describe("trampoline", () => {
   it("creates a recursable function", () => {
