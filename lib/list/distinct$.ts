@@ -1,6 +1,6 @@
-import { Primitive } from "../types/primitive";
+import { TPrimitive } from "../types/TPrimitive";
 
-export function distinct$(...rest: Array<Primitive>) {
+export function distinct$(...rest: Array<TPrimitive>) {
   const map = {};
   return rest.every((arg) => {
     //@ts-ignore

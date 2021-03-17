@@ -1,4 +1,4 @@
-import { Collection } from "../types/collection";
+import { TCollection } from "../types/TCollection";
 import { count } from "../list/count";
 import { eq } from "./eq";
 
@@ -8,6 +8,6 @@ import { eq } from "./eq";
  * @param value
  * @returns {boolean}
  */
-export function empty$(value: null | undefined | Collection) {
+export function empty$(value: null | undefined | TCollection) {
   return eq(count(value), 0);
 }

@@ -4,11 +4,11 @@ import { toStringComp } from "../generic/internal/toStringComp";
 import { objectTypes } from "../enums/object-types";
 import { void$ } from "../generic/void$";
 import { arrayLike$ } from "../generic/array-like$";
-import { Collection } from "../types/collection";
+import { TCollection } from "../types/TCollection";
 import { eq } from "../generic/eq";
 import { or } from "../conditional/or";
 
-export function count(set: null | undefined | Collection) {
+export function count(set: null | undefined | TCollection) {
   if (void$(set)) {
     return 0;
   }
