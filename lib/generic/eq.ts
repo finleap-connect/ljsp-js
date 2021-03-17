@@ -2,9 +2,9 @@ import { spec } from "../spec";
 import { _eq } from "./internal/_eq";
 import { object$ } from "./object$";
 import { typedSet$ } from "./internal/typed-set$";
-import { Primitive } from "../types/primitive";
+import { TPrimitive } from "../types/TPrimitive";
 
-export function eq(...rest: Array<Primitive>) {
+export function eq(...rest: Array<TPrimitive>) {
   spec({
     func: "eq",
     spec: { typeIsPrimitive: typedSet$(rest, (item) => !object$(item) && !Array.isArray(item)) }

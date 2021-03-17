@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { Collection } from "../types/collection";
+import { TCollection } from "../types/TCollection";
 import { eq, object$ } from "../generic";
 import { or } from "../conditional";
 import { toStringComp } from "../generic/internal/toStringComp";
 import { objectTypes } from "../enums/object-types";
 import { arrayLike$ } from "../generic/array-like$";
 
-export function contains$(set: Collection, key: string) {
+export function contains$(set: TCollection, key: string) {
   if (arrayLike$(set)) {
     return set.includes(key);
   }
