@@ -1,4 +1,4 @@
-const { memoize } = require("../../lib/function/memoize");
+const { memoize } = require("function");
 
 // takes an argument to return the fibonacci value
 const fibonacci = (n) => {

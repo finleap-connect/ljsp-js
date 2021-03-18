@@ -1,5 +1,5 @@
-const { complement } = require("../../lib/function/complement");
-const { odd$ } = require("../../lib/math");
+const { complement } = require("function");
+const { odd$ } = require("math");
 
 describe("complement", () => {
   it("returns complement value", () => {

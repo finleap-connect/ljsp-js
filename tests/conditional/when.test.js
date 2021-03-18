@@ -1,4 +1,4 @@
-const { when } = require("../../lib/conditional/when");
+const { when } = require("conditional");
 
 describe("when", () => {
   it("should return undefined when false", function () {

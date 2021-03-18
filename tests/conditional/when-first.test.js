@@ -1,4 +1,4 @@
-const { whenFirst } = require("../../lib/conditional/when-first");
+const { whenFirst } = require("conditional");
 
 describe("whenFirst", () => {
   it("should get the first item in an Array, if it is truthy, it will run body, making the first item available to any functions", () => {

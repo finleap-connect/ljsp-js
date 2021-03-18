@@ -1,4 +1,4 @@
-const { constantly } = require("../../lib/function/constantly");
+const { constantly } = require("function");
 
 describe("constantly", () => {
   it("always returns the same value", () => {

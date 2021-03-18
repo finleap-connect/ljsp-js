@@ -1,6 +1,6 @@
-const { max } = require("../../lib/math");
-const { add } = require("../../lib/math");
-const { apply } = require("../../lib/function/apply");
+const { max } = require("math");
+const { add } = require("math");
+const { apply } = require("function");
 
 describe("apply", () => {
   it("should apply a function to a list of operands", () => {
