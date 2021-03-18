@@ -8,3 +8,4 @@ export { rename } from "./rename";
 export { ownMethods } from "./own-methods";
 export { find } from "./find";
 export { vals } from "./vals";
+export { keys } from "./keys";
