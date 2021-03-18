@@ -1,17 +1,8 @@
-import { spec } from "../spec/spec";
-import { object$ } from "./object$";
-import { typedSet$ } from "./internal/typed-set$";
-
 /**
  * @param {*} rest
  * @returns {boolean}
  */
-// @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
-export function notEq(...rest) {
-  spec({
-    func: "eq",
-    spec: { typeIsPrimitive: typedSet$(rest, (item) => !object$(item) && !Array.isArray(item)) }
-  });
+export function notEq(...rest: Array<any>) {
   if (rest.length === 1) {
     return true;
   }
