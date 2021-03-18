@@ -9,6 +9,7 @@ import { second } from "./second";
 import { void$ } from "../generic/void$";
 import { eq } from "../generic/eq";
 import { cloneDeep } from "lodash";
+import { objectSet$ } from "../generic";
 
 /**
  * assoc[iate]. When applied to a map, returns a new map of the
@@ -24,7 +25,7 @@ export function assoc(map: Object | Array<any>, ...set: Array<any>) {
   spec({
     func: "assoc",
     spec: {
-      setTypesMatch: or(and(Array.isArray(_map), Array.isArray(_set)), and(object$(_map), object$(_set))),
+      setTypesMatch: or(and(Array.isArray(_map), Array.isArray(_set)), and(object$(_map), objectSet$(_set))),
       arrayArgsIsTwo: iff(isArray, eq(_set.length, 2), true)
     }
   });

@@ -1,5 +1,5 @@
-import { object$ } from "./object$";
 import { alike } from "./alike";
+import { objectLike$ } from "./object-like$";
 import { _getType } from "../internal/_get-type";
 import { BaseTypes } from "../enums/base-types";
 
@@ -9,5 +9,5 @@ import { BaseTypes } from "../enums/base-types";
  * @returns {boolean|*}
  */
 export function boolean$(value: any) {
-  return value === true || value === false || (object$(value) && alike(_getType(value), BaseTypes.Boolean));
+  return value === true || value === false || (objectLike$(value) && alike(_getType(value), BaseTypes.Boolean));
 }

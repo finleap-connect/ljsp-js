@@ -1,6 +1,7 @@
-import { flow, identity, isFunction, isObject, map } from "lodash";
+import { flow, identity, isFunction, map } from "lodash";
 import { spec } from "../spec/spec";
 import { castEntriesArrayToObject } from "./internal/cast-entries-array-to-object";
+import { objectLike$ } from "../generic/object-like$";
 
 /**
  * @param {Function} inner
@@ -14,7 +15,7 @@ export function walk(inner, outer, set) {
     spec: {
       innerIsFunction: isFunction(inner),
       outerIsFunction: isFunction(outer),
-      setIsArrayOrObject: Array.isArray(set) || isObject(set)
+      setIsArrayOrObject: objectLike$(set)
     }
   });
   const isSetArray = Array.isArray(set);
