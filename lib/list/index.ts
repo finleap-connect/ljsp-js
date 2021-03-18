@@ -62,3 +62,6 @@ export { count } from "./count";
 export { contains$ } from "./contains$";
 export { get } from "./get";
 export { ffor } from "./ffor";
+export { every$ } from "./every$";
+export { notEvery$ } from "./not-every$";
+export { superset$ } from "./superset";
