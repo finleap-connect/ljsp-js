@@ -62,3 +62,4 @@ export { count } from "./count";
 export { contains$ } from "./contains$";
 export { get } from "./get";
 export { ffor } from "./ffor";
+export { disj } from "./disj";
