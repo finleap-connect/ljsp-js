@@ -67,3 +67,4 @@ export { notEvery$ } from "./not-every$";
 export { superset$ } from "./superset";
 export { disj } from "./disj";
 export { pop } from "./pop";
+export { groupBy } from "./group-by";
