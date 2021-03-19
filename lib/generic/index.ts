@@ -17,6 +17,7 @@ export { object$ } from "./object$";
 export { string$ } from "./string$";
 export { alike } from "./alike";
 export { empty } from "./empty";
+export { notEmpty } from "./not-empty";
 export { true$ } from "./true$";
 export { false$ } from "./false$";
 export { dotimes } from "./dotimes";
