@@ -1,7 +1,5 @@
 // @ts-nocheck
 import { TCollection } from "../types/t-collection";
-import { spec } from "../spec";
-import { collection$ } from "../generic/collection$";
 import { BaseTypes } from "../enums/base-types";
 import { eq } from "../generic/eq";
 import { string$ } from "../generic/string$";
@@ -15,8 +13,6 @@ import { iff } from "../conditional";
 import { first } from "../list";
 
 export function Collection(coll: TCollection, clone = true) {
-  spec({ func: "Collection", spec: { isCollectionable: collection$(coll) } });
-
   const type = _getType(coll);
 
   let set = clone && string$(coll) ? coll : cloneDeep(coll);

@@ -1,5 +1,4 @@
-import { get, isEmpty, isFunction, isObject, set } from "lodash";
-import { spec } from "../spec/spec";
+import { get, set } from "lodash";
 import { swap } from "./swap";
 
 /**
@@ -11,15 +10,6 @@ import { swap } from "./swap";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'coll' implicitly has an 'any' type.
 export function updateIn(coll, keys, fn, ...rest) {
-  spec({
-    func: "updateIn",
-    spec: {
-      collIsObject: isObject(coll),
-      fnIsFunction: isFunction(fn),
-      keysIsArray: Array.isArray(keys),
-      keysIsNotEmpty: !isEmpty(keys)
-    }
-  });
   const propertyPath = keys.join(".");
   const updateValue = get(coll, propertyPath);
   const result = fn(updateValue, ...rest);

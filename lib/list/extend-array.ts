@@ -1,7 +1,5 @@
 import { isFunction } from "lodash";
 import { iff } from "../conditional/iff";
-import { pos$ } from "../math/pos$";
-import { spec } from "../spec/spec";
 
 /**
  * Extends original array with provided value or function which receives index as param.
@@ -12,11 +10,6 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'source' implicitly has an 'any' type.
 export function extendArray(source, len, value = null) {
-  spec({
-    func: "extendArray",
-    spec: { sourceIsArray: Array.isArray(source), lenIsPositiveInt: pos$(len) }
-  });
-
   source.length = len;
   for (let idx = 0; idx < source.length; idx++) {
     if (!source[idx]) {

@@ -1,5 +1,3 @@
-import { isNumber } from "lodash";
-import { spec } from "../spec";
 import { sub } from "./sub";
 
 /**
@@ -7,6 +5,5 @@ import { sub } from "./sub";
  * @param {number} num
  */
 export function dec(num: number) {
-  spec({ func: "dec", spec: { isInteger: isNumber(num) } });
   return sub(num, 1);
 }

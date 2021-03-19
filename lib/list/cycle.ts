@@ -1,4 +1,3 @@
-import { spec } from "../spec/spec";
 import { first } from "./first";
 
 /**
@@ -6,7 +5,6 @@ import { first } from "./first";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
 export function cycle(set) {
-  spec({ func: "cycle", spec: { setIsArray: Array.isArray(set) } });
   let count = 0;
   return function sequence() {
     if (count < set.length) {

@@ -1,5 +1,4 @@
 import { isFunction } from "lodash";
-import { spec } from "../spec/spec";
 
 /**
  * `trampoline` can be used to convert recursive algorithms
@@ -16,7 +15,6 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
 export function trampoline(fn, ...rest) {
-  spec({ func: "trampoline", spec: { fnIsFunction: isFunction(fn) } });
   let result = fn(...rest);
   while (isFunction(result)) {
     result = result();

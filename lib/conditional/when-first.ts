@@ -1,6 +1,4 @@
-import { isFunction } from "lodash";
 import { first } from "../list";
-import { spec } from "../spec";
 import { _returnLast } from "./internal/_return-last";
 
 /**
@@ -10,7 +8,6 @@ import { _returnLast } from "./internal/_return-last";
  * Roughly the same as (when (seq xs) (let [x (first xs)] body)) but xs is evaluated only once
  */
 export function whenFirst(set: Array<any>, ...rest: any) {
-  spec({ func: "whenFirst", spec: { setIsArray: Array.isArray(set) } });
   const boundItem = first(set);
   if (boundItem) {
     return _returnLast(rest, boundItem);

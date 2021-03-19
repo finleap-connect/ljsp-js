@@ -1,6 +1,3 @@
-import { pos$ } from "../math/pos$";
-import { spec } from "../spec/spec";
-
 /**
  * @param {number} count
  * @param {sequence} sequence
@@ -8,7 +5,6 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'count' implicitly has an 'any' type.
 export function takeS(count, sequence) {
-  spec({ func: "takeS", spec: { countIsPositiveInt: pos$(count) } });
   const limit = count;
   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'sequence' implicitly has an 'any' type.
   function run(sequence) {
