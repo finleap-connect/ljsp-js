@@ -2,7 +2,7 @@ import { eq } from "../../generic/eq";
 import { not } from "../../generic/not";
 import { first } from "../../list/first";
 
-export function _compareNums(values: Array<number>, comparator: Function) {
+export function _compare(values: Array<number | string>, comparator: Function) {
   if (eq(values.length, 1)) {
     return true;
   }
