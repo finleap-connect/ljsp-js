@@ -1,4 +1,4 @@
-import { TCollection } from "../types/TCollection";
+import { TCollection } from "../types/t-collection";
 import { count } from "../list/count";
 import { eq } from "./eq";
 

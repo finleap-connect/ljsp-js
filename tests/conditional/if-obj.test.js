@@ -1,4 +1,4 @@
-const { ifObj } = require("../../lib/conditional/if-obj");
+const { ifObj } = require("conditional");
 
 describe("ifObj", () => {
   it("returns value if true", () => {

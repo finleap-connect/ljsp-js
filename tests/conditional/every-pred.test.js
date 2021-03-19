@@ -1,4 +1,4 @@
-const { everyPred } = require("../../lib/conditional/every-pred");
+const { everyPred } = require("conditional");
 
 describe("everyPred", () => {
   const isGtZeroIntMultipleTwo = everyPred(

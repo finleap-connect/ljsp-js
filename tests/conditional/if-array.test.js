@@ -1,4 +1,4 @@
-const { ifArray } = require("../../lib/conditional/if-array");
+const { ifArray } = require("conditional");
 
 describe("if-array", () => {
   it("returns a value if true", () => {

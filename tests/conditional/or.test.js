@@ -1,4 +1,4 @@
-const { or } = require("../../lib/conditional/or");
+const { or } = require("conditional");
 
 describe("or", () => {
   it("return value if a form returns a logical true, and doesn't evaluate any of the other expressions", () => {

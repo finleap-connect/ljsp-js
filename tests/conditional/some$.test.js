@@ -1,4 +1,4 @@
-const { some$ } = require("../../lib/conditional/some$");
+const { some$ } = require("conditional");
 
 describe("some$", () => {
   it("returns true if not nil", () => {

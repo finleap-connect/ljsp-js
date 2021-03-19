@@ -1,10 +1,11 @@
 import { chunk, isFunction } from "lodash";
 import { first, second } from "../list";
 import { and } from "./and";
-import { eq, not } from "../generic";
 import { TPrimitive } from "../types/TPrimitive";
 import { spec } from "../spec";
 import { objectLike$ } from "../generic/object-like$";
+import { not } from "../generic/not";
+import { eq } from "../generic/eq";
 
 /**
  * Takes an expression, and a set of clauses.

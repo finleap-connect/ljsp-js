@@ -9,7 +9,7 @@ import { second } from "./second";
 import { void$ } from "../generic/void$";
 import { eq } from "../generic/eq";
 import { cloneDeep } from "lodash";
-import { objectSet$ } from "../generic";
+import { objectSet$ } from "../generic/object-set$";
 
 /**
  * assoc[iate]. When applied to a map, returns a new map of the
