@@ -1,4 +1,4 @@
-import { TCollection } from "../types/TCollection";
+import { TCollection } from "../types/t-collection";
 import { Collection } from "../internal/collection";
 import { dec } from "../math/dec";
 

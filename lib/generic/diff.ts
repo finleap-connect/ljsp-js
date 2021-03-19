@@ -1,5 +1,4 @@
 import { iff } from "../conditional/iff";
-import { spec } from "../spec/spec";
 import { eq } from "./eq";
 import { objectLike$ } from "./object-like$";
 import { TAnyObject } from "../types/t-any-object";
@@ -19,7 +18,6 @@ import { TAnyObject } from "../types/t-any-object";
  * @param b
  */
 export function diff(a: TAnyObject, b: TAnyObject) {
-  spec({ func: "diff", spec: { aIsObject: objectLike$(a), bIsObject: objectLike$(b) } });
   return iff(
     objectLike$(a),
     () => (Array.isArray(a) ? getArrayDiff(a, b) : getObjectDiff(a, b)),

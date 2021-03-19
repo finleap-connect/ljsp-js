@@ -1,7 +1,5 @@
-import { isFunction } from "lodash";
 import { empty$ } from "../generic/empty$";
 import { object$ } from "../generic/object$";
-import { spec } from "../spec/spec";
 
 /**
  * @param {Function} fn
@@ -10,10 +8,6 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
 export function reduceKv(fn, init, coll) {
-  spec({
-    func: "reduceKv",
-    spec: { fnIsFunction: isFunction(fn), collIsArrayOrObj: Array.isArray(coll) || object$(coll) }
-  });
   if (empty$(coll)) {
     return init;
   }

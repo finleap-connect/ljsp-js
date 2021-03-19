@@ -1,5 +1,4 @@
-import { cloneDeep, isFunction, isObject } from "lodash";
-import { spec } from "../spec/spec";
+import { cloneDeep } from "lodash";
 import { watcher } from "./internal/constants";
 
 /**
@@ -10,10 +9,6 @@ import { watcher } from "./internal/constants";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'map' implicitly has an 'any' type.
 export function swap(map, fn, ...rest) {
-  spec({
-    func: "swap",
-    spec: { mapIsObject: isObject(map) && !isFunction(map), fnIsFunction: isFunction(fn) }
-  });
   let clone = cloneDeep(map);
   if (map.hasOwnProperty(watcher)) {
     clone = new Proxy(clone, map.__watcher.setHandler);

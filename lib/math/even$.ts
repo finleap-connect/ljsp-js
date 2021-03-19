@@ -1,4 +1,3 @@
-import { spec } from "../spec";
 import { eq } from "../generic";
 
 /**
@@ -6,6 +5,5 @@ import { eq } from "../generic";
  * @param num
  */
 export function even$(num: number): boolean {
-  spec({ func: "even$", spec: { numIsInt: Number.isInteger(num) } });
   return eq(num, 0) ? false : eq(num % 2, 0);
 }

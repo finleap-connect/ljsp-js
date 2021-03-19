@@ -1,6 +1,4 @@
-import { isFunction, isUndefined } from "lodash";
 import { void$ } from "../generic/void$";
-import { spec } from "../spec/spec";
 import { reduceKv } from "./reduce-kv";
 
 /**
@@ -13,14 +11,6 @@ import { reduceKv } from "./reduce-kv";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
 export function keep(fn, set) {
-  spec({
-    func: "keep",
-    spec: {
-      fnIsValid: isFunction(fn),
-      restIsValid: isUndefined(set) || Array.isArray(set)
-    }
-  });
-
   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'acc' implicitly has an 'any' type.
   function filter(acc, key, value) {
     let val = fn(value);

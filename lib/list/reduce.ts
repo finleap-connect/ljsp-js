@@ -1,11 +1,9 @@
-import { isFunction } from "lodash";
 import { and } from "../conditional/and";
 import { iff } from "../conditional/iff";
 import { eq } from "../generic/eq";
 import { object$ } from "../generic/object$";
 import { void$ } from "../generic/void$";
 import { lt$ } from "../math/lt$";
-import { spec } from "../spec/spec";
 import { first } from "./first";
 import { nth } from "./nth";
 import { reduced$ } from "./reduced$";
@@ -27,14 +25,6 @@ import { reduced$ } from "./reduced$";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
 export function reduce(fn, val, set) {
-  spec({
-    func: "reduce",
-    spec: {
-      fnIsFunction: isFunction(fn),
-      setIsArray: iff(void$(set), Array.isArray(val), Array.isArray(set))
-    }
-  });
-
   if (void$(set)) {
     set = val;
     val = first(set);
