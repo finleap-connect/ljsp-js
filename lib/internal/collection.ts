@@ -10,6 +10,9 @@ import { assoc } from "../list/assoc";
 import { cloneDeep, get } from "lodash";
 import { notEq } from "../generic/not-eq";
 import { _getType } from "./_get-type";
+import { number$ } from "../generic/number$";
+import { iff } from "../conditional";
+import { first } from "../list";
 
 export function Collection(coll: TCollection, clone = true) {
   spec({ func: "Collection", spec: { isCollectionable: collection$(coll) } });
@@ -36,7 +39,9 @@ export function Collection(coll: TCollection, clone = true) {
       } else if (eq(type, BaseTypes.Set)) {
         return Array.from(set)[index];
       } else {
-        return get(set, index);
+        // Either get an entry in the object by index, order not guaranteed
+        // or a specific item by path
+        return number$(index) ? Object.entries(set)[index] : get(set, index);
       }
     },
     add(item, index) {
@@ -96,7 +101,13 @@ export function Collection(coll: TCollection, clone = true) {
       } else if (orEq(type, BaseTypes.Set, BaseTypes.Map)) {
         set.delete(item);
       } else if (eq(type, BaseTypes.Object)) {
-        delete set[item];
+        iff(
+          Array.isArray(item),
+          // a kv-pair array is being sent in
+          () => delete set[first(item)],
+          // a simple property name is being sent in
+          () => delete set[item]
+        );
       } else {
         set = set.replace(item, "");
       }
