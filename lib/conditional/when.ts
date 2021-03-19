@@ -1,5 +1,3 @@
-import { functionSet$ } from "../generic/function-set$";
-import { spec } from "../spec/spec";
 import { _returnLast } from "./internal/_return-last";
 
 /**
@@ -7,7 +5,6 @@ import { _returnLast } from "./internal/_return-last";
  * @param rest
  */
 export function when(condition: any, ...rest: Array<any>) {
-  spec({ func: "when", spec: { typeIsFunction: functionSet$(rest) } });
   if (condition) {
     return _returnLast(rest);
   }

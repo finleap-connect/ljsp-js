@@ -1,27 +1,21 @@
 import { cond, ELSE } from "../conditional/cond";
 import { object$ } from "../generic/object$";
-import { string$ } from "../generic/string$";
-import { spec } from "../spec/spec";
+import { TCollection } from "../types/t-collection";
 
 /**
  * @param {Function} fn
- * @param {[]} value
+ * @param {[]} coll
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
-export function mapIndexed(fn, value) {
-  spec({
-    func: "mapIndexed",
-    spec: { validValue: Array.isArray(value) || object$(value) || string$(value) }
-  });
+export function mapIndexed(fn: Function, coll: TCollection) {
   // prettier-ignore
   const _value = cond(
-    () => Array.isArray(value), value,
-    () => object$(value), () => Object.entries(value),
-    ELSE, () => value.split("")
+    () => Array.isArray(coll), coll,
+    () => object$(coll), () => Object.entries(coll),
+    // @ts-ignore
+    ELSE, () => coll.split("")
   );
 
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
-  return _value.map((item, index) => {
+  return _value.map((item: any, index: number) => {
     return fn(index, item);
   });
 }
