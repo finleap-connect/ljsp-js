@@ -108,6 +108,17 @@ export function Collection(coll: TCollection, clone = true) {
         set = set.replace(item, "");
       }
     },
+    slice(base: number, end?: number) {
+      if (orEq(type, BaseTypes.Array, BaseTypes.String)) {
+        return set.slice(base, end);
+      } else if (eq(type, BaseTypes.Set)) {
+        return new Set(Array.from(set).slice(base, end));
+      } else if (eq(type, BaseTypes.Map)) {
+        return new Map(Array.from(set).slice(base, end));
+      } else {
+        return Object.fromEntries(Object.entries(set).slice(base, end));
+      }
+    },
     get source() {
       return set;
     }
