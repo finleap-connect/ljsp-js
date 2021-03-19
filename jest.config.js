@@ -1,5 +1,6 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  testPathIgnorePatterns: ["<rootDir>/lib/spec/"]
+  testPathIgnorePatterns: ["<rootDir>/lib/spec/"],
+  modulePaths: ["<rootDir>/lib"]
 };

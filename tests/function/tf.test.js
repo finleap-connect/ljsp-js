@@ -1,6 +1,6 @@
-const { first } = require("../../lib/list");
-const { upperCase } = require("../../lib/string");
-const { tf } = require("../../lib/function/tf");
+const { first } = require("list");
+const { upperCase } = require("string");
+const { tf } = require("function");
 
 describe("thread first", () => {
   it("runs the functions top to bottom", () => {

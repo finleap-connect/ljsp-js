@@ -1,4 +1,4 @@
-const { and } = require("../../lib/conditional/and");
+const { and } = require("conditional");
 
 describe("and", () => {
   it("exits and returns value when false", () => {

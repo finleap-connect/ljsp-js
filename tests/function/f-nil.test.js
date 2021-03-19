@@ -1,5 +1,5 @@
-const { fNil } = require("../../lib/function/f-nil");
-const { str } = require("../../lib/string");
+const { fNil } = require("function");
+const { str } = require("string");
 
 describe("fNil", () => {
   function sayHello(first, other) {
