@@ -23,8 +23,7 @@ import { reduced$ } from "./reduced$";
  * @param set
  * @returns {*}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
-export function reduce(fn, val, set) {
+export function reduce(fn: Function, val: any, set: any[]) {
   if (void$(set)) {
     set = val;
     val = first(set);

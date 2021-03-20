@@ -70,3 +70,4 @@ export { pop } from "./pop";
 export { groupBy } from "./group-by";
 export { natJoin } from "./nat-join";
 export { notAny$ } from "./not-any$";
+export { map } from "./map";
