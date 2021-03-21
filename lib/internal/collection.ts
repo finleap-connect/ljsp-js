@@ -9,6 +9,8 @@ import { notEq } from "../generic/not-eq";
 import { _getType } from "./_get-type";
 import { number$ } from "../generic/number$";
 import { iff } from "../conditional/iff";
+import { array$ } from "../generic";
+import { inc } from "../math";
 
 export function Collection(coll: TCollection, clone = true): ICollection {
   if (coll instanceof Collection) {
@@ -34,7 +36,7 @@ export function Collection(coll: TCollection, clone = true): ICollection {
       if (orEq(type, BaseTypes.Array, BaseTypes.String)) {
         return set[index];
       } else if (eq(type, BaseTypes.Map)) {
-        return set.get(index);
+        return getMapItem(set, index);
       } else if (eq(type, BaseTypes.Set)) {
         return Array.from(set)[index];
       } else {
@@ -117,24 +119,41 @@ export function Collection(coll: TCollection, clone = true): ICollection {
       } else if (orEq(type, BaseTypes.Set, BaseTypes.Map)) {
         return set.has(item);
       } else {
-        return item in set;
+        if (array$(item)) {
+          const [key, val] = item;
+          const test = Object.entries(set).find(([k, v]) => k === key && v === val);
+          return Boolean(test);
+        } else {
+          return item in set;
+        }
       }
     },
     remove(item) {
       if (eq(type, BaseTypes.Array)) {
         set = set.filter((val) => notEq(val, item));
-      } else if (orEq(type, BaseTypes.Set, BaseTypes.Map)) {
+      } else if (eq(type, BaseTypes.Set)) {
         set.delete(item);
+      } else if (eq(type, BaseTypes.Map)) {
+        set.delete(array$(item) ? item[0] : item);
       } else if (eq(type, BaseTypes.Object)) {
-        iff(
-          Array.isArray(item),
-          // a kv-pair array is being sent in
-          () => delete set[item[0]],
-          // a simple property name is being sent in
-          () => delete set[item]
-        );
+        delete set[array$(item) ? item[0] : item];
       } else {
         set = set.replace(item, "");
+      }
+    },
+    removeIdx(index) {
+      if (eq(type, BaseTypes.Array)) {
+        set.splice(index, 1);
+      } else if (eq(type, BaseTypes.Set)) {
+        set.delete(index);
+      } else if (eq(type, BaseTypes.Map)) {
+        const item = getMapItem(set, index);
+        set.delete(item[0]);
+      } else if (eq(type, BaseTypes.Object)) {
+        const key = Object.keys(set)[index];
+        delete set[key];
+      } else {
+        set = set.slice(0, index) + set.slice(inc(index));
       }
     },
     slice(base: number, end?: number) {
@@ -154,10 +173,23 @@ export function Collection(coll: TCollection, clone = true): ICollection {
   };
 }
 
+function getMapItem(set: Map, index: number) {
+  let result = undefined;
+  let x = 0;
+  set.forEach((value, key) => {
+    if (eq(x, index)) {
+      result = [key, value];
+    }
+    x++;
+  });
+  return result;
+}
+
 interface ICollection {
   slice: (base: number, end?: number) => any;
   source: TCollection;
   remove: (item: any) => void;
+  removeIdx: (item: any) => void;
   contains$: (item: any) => boolean;
   clear: () => void;
   empty$: boolean;
