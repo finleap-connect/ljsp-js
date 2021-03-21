@@ -1,9 +1,8 @@
-/**
- * @param {*} item
- * @param {[]} set
- * @returns {*[]}
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
-export function cons(item, set) {
-  return [item, ...set];
+import { Collection } from "../internal/collection";
+import { TCollection } from "../types/t-collection";
+
+export function cons(item: any, set: TCollection) {
+  const _set = Collection(set);
+  _set.prepend(item);
+  return _set.source;
 }

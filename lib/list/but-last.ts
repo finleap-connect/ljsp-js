@@ -1,11 +1,9 @@
-import { clone } from "lodash";
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
+import { eq } from "../generic";
 
-/**
- * @param {[]} set
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function butLast(set) {
-  const list = clone(set);
-  list.pop();
-  return list;
+export function butLast(set: TCollection) {
+  const _set = Collection(set);
+  if (eq(_set.count, 1)) return _set.empty;
+  return _set.slice(0, _set.count - 1);
 }

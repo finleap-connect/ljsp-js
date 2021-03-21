@@ -1,5 +1,5 @@
 import { cond, ELSE } from "../conditional/cond";
-import { conj } from "./conj";
+import { concat } from "./concat";
 
 /**
  * @param {[]} to
@@ -13,10 +13,10 @@ export function into(to, from, xFrom) {
   return cond(
     () => !to, () => [],
     () => !from, () => to,
-    () => !xFrom, () => conj(to, from),
+    () => !xFrom, () => concat(to, from),
     ELSE, () => {
       const result = from(xFrom);
-      return conj(to, result);
+      return concat(to, result);
     }
   );
 }

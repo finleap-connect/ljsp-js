@@ -4,20 +4,23 @@ import { BaseTypes } from "../enums/base-types";
 import { eq } from "../generic/eq";
 import { string$ } from "../generic/string$";
 import { orEq } from "../generic/or-eq";
-import { assoc } from "../list/assoc";
 import { cloneDeep, get } from "lodash";
 import { notEq } from "../generic/not-eq";
 import { _getType } from "./_get-type";
 import { number$ } from "../generic/number$";
-import { iff } from "../conditional";
-import { first } from "../list";
+import { iff } from "../conditional/iff";
 
-export function Collection(coll: TCollection, clone = true) {
+export function Collection(coll: TCollection, clone = true): ICollection {
+  if (coll instanceof Collection) {
+    return coll;
+  }
+
+  // prettier-ignore
   const type = _getType(coll);
-
   let set = clone && string$(coll) ? coll : cloneDeep(coll);
 
   return {
+    __proto__: Collection.prototype,
     get count() {
       if (orEq(type, BaseTypes.Array, BaseTypes.String)) {
         return set.length;
@@ -40,20 +43,33 @@ export function Collection(coll: TCollection, clone = true) {
         return number$(index) ? Object.entries(set)[index] : get(set, index);
       }
     },
-    add(item, index) {
+    append(item) {
       if (eq(type, BaseTypes.Array)) {
         set.push(item);
       } else if (eq(type, BaseTypes.Set)) {
         set.add(item);
       } else if (eq(type, BaseTypes.Map)) {
-        set.set(index, item);
+        set.set(...item);
       } else if (eq(type, BaseTypes.Object)) {
-        set[index] = item;
+        set = Object.assign(set, item);
       } else {
         set += item;
       }
     },
-    addAll(coll) {
+    prepend(item, index) {
+      if (eq(type, BaseTypes.Array)) {
+        set.unshift(item);
+      } else if (eq(type, BaseTypes.Set)) {
+        set = new Set([...item, ...set]);
+      } else if (eq(type, BaseTypes.Map)) {
+        set = new Map([...item, ...set]);
+      } else if (eq(type, BaseTypes.Object)) {
+        set = Object.assign(item, set);
+      } else {
+        set = item + set;
+      }
+    },
+    appendAll(coll) {
       if (eq(type, BaseTypes.Array)) {
         set = set.concat(coll);
       } else if (eq(type, BaseTypes.Set)) {
@@ -61,13 +77,26 @@ export function Collection(coll: TCollection, clone = true) {
       } else if (eq(type, BaseTypes.Map)) {
         set = new Map([...set, ...coll]);
       } else if (eq(type, BaseTypes.Object)) {
-        set = assoc(set, coll);
+        set = Object.assign(set, coll);
       } else {
         set += coll;
       }
     },
-    get empty() {
+    get empty$() {
       return eq(this.count, 0);
+    },
+    get empty() {
+      if (eq(type, BaseTypes.Array)) {
+        return [];
+      } else if (eq(type, BaseTypes.Set)) {
+        return new Set();
+      } else if (eq(type, BaseTypes.Map)) {
+        return new Map();
+      } else if (eq(type, BaseTypes.Object)) {
+        return {};
+      } else {
+        return "";
+      }
     },
     clear() {
       if (eq(type, BaseTypes.Array)) {
@@ -82,7 +111,7 @@ export function Collection(coll: TCollection, clone = true) {
         set = "";
       }
     },
-    contains(item) {
+    contains$(item) {
       if (orEq(type, BaseTypes.Array, BaseTypes.String)) {
         return set.includes(item);
       } else if (orEq(type, BaseTypes.Set, BaseTypes.Map)) {
@@ -100,7 +129,7 @@ export function Collection(coll: TCollection, clone = true) {
         iff(
           Array.isArray(item),
           // a kv-pair array is being sent in
-          () => delete set[first(item)],
+          () => delete set[item[0]],
           // a simple property name is being sent in
           () => delete set[item]
         );
@@ -108,8 +137,35 @@ export function Collection(coll: TCollection, clone = true) {
         set = set.replace(item, "");
       }
     },
+    slice(base: number, end?: number) {
+      if (orEq(type, BaseTypes.Array, BaseTypes.String)) {
+        return set.slice(base, end);
+      } else if (eq(type, BaseTypes.Set)) {
+        return new Set(Array.from(set).slice(base, end));
+      } else if (eq(type, BaseTypes.Map)) {
+        return new Map(Array.from(set).slice(base, end));
+      } else {
+        return Object.fromEntries(Object.entries(set).slice(base, end));
+      }
+    },
     get source() {
       return set;
     }
   };
+}
+
+interface ICollection {
+  slice: (base: number, end?: number) => any;
+  source: TCollection;
+  remove: (item: any) => void;
+  contains$: (item: any) => boolean;
+  clear: () => void;
+  empty$: boolean;
+  appendAll: (coll: TCollection) => void;
+  append: (item: any) => void;
+  prepend: (item: any) => void;
+  get: (index: number | string) => any;
+  count: number;
+  empty: TCollection;
+  __proto__: Object;
 }

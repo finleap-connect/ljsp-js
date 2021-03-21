@@ -1,11 +1,11 @@
-import { Collection } from "../internal/collection";
 import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
 
-export function conj(set: TCollection, ...rest: Array<any>) {
+export function concat(set: TCollection, ...rest: Array<any>) {
   const _set = Collection(set);
 
   rest.forEach((item) => {
-    _set.append(item);
+    _set.appendAll(item);
   });
 
   return _set.source;
