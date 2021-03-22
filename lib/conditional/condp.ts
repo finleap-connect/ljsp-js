@@ -6,8 +6,6 @@ import { second } from "../list/second";
 import { spec } from "../spec/spec";
 import { and } from "./and";
 
-export const ELSE = "else";
-
 /**
  * Takes a binary predicate, an expression, and a set of clauses.
  * Each clause can take the form of either:
@@ -38,7 +36,7 @@ export function condp(pred, expr, ...rest) {
     const rawComparator = first(currentClause);
     // If this is the default case, then return it.
     if (and(eq(i, clauses.length - 1), eq(currentClause.length, 1))) {
-      return rawComparator;
+      return isFunction(rawComparator) ? rawComparator() : rawComparator;
     }
     const comparison = isFunction(rawComparator) ? rawComparator() : rawComparator;
     const result = pred(expr, comparison);

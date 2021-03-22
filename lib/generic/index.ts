@@ -25,3 +25,4 @@ export { arrayLike$ } from "./array-like$";
 export { array$ } from "./array$";
 export { number$ } from "./number$";
 export { distinct$ } from "../generic/distinct$";
+export { regExp$ } from "./reg-exp$";
