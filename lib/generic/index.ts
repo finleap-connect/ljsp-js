@@ -23,4 +23,5 @@ export { false$ } from "./false$";
 export { dotimes } from "./dotimes";
 export { arrayLike$ } from "./array-like$";
 export { array$ } from "./array$";
+export { number$ } from "./number$";
 export { regExp$ } from "./reg-exp$";

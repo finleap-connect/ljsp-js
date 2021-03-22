@@ -1,7 +1,3 @@
-/**
- * @param {*} rest
- * @returns {boolean}
- */
 export function notEq(...rest: Array<any>) {
   if (rest.length === 1) {
     return true;

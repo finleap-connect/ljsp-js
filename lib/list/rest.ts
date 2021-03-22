@@ -1,11 +1,12 @@
-import { TAnyObject } from "../types/t-any-object";
+// @ts-nocheck
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
 
 /**
  * @param {[]} set
  * @returns {*}
  */
-export function rest(set: Array<any> | TAnyObject) {
-  set = Array.isArray(set) ? set : Object.entries(set);
-  // @ts-ignore
-  return set.slice(1);
+export function rest(set: TCollection) {
+  const _set = Collection(set);
+  return _set.slice(1);
 }

@@ -1,8 +1,6 @@
-/**
- * Returns the first element of an Array
- * @param set
- * @returns {*}
- */
-export function first(set: Array<any>) {
-  return set[0];
+import { TCollection } from "../types/t-collection";
+import { nth } from "./nth";
+
+export function first(set: TCollection): any {
+  return nth(set, 0);
 }
