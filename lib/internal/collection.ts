@@ -8,7 +8,6 @@ import { cloneDeep, get } from "lodash";
 import { notEq } from "../generic/not-eq";
 import { _getType } from "./_get-type";
 import { number$ } from "../generic/number$";
-import { iff } from "../conditional/iff";
 import { array$ } from "../generic";
 import { inc } from "../math";
 
@@ -53,7 +52,7 @@ export function Collection(coll: TCollection, clone = true): ICollection {
       } else if (eq(type, BaseTypes.Map)) {
         set.set(...item);
       } else if (eq(type, BaseTypes.Object)) {
-        set = Object.assign(set, item);
+        set = Object.assign(set, array$(item) ? { [item[0]]: item[1] } : item);
       } else {
         set += item;
       }
