@@ -9,3 +9,4 @@ export { apply } from "./apply";
 export { memoize } from "./memoize";
 export { comp } from "./comp";
 export { repeatedly } from "./repeatedly";
+export { partial } from "./partial";
