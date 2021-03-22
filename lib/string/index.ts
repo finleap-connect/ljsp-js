@@ -11,3 +11,4 @@ export { subs } from "./subs";
 export { split } from "./split";
 export { titleCase } from "./title-case";
 export { capitalize } from "./capitalize";
+export { escape } from "./escape";
