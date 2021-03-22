@@ -70,3 +70,4 @@ export { natJoin } from "./nat-join";
 export { notAny$ } from "./not-any$";
 export { map } from "./map";
 export { mReplace } from "./m-replace";
+export { drop } from "./drop";
