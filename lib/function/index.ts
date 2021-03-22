@@ -8,3 +8,4 @@ export { tf } from "./tf";
 export { apply } from "./apply";
 export { memoize } from "./memoize";
 export { comp } from "./comp";
+export { repeatedly } from "./repeatedly";

@@ -1,11 +1,10 @@
-import { isObject } from "lodash";
 import { and } from "../conditional/and";
+import { object$ } from "../generic/object$";
 
 /**
  * Returns true if `x` is the result of a call to `reduced`
  * @param {*} item
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'item' implicitly has an 'any' type.
-export function reduced$(item) {
-  return and(isObject(item), item.hasOwnProperty("____reduced"));
+export function reduced$(item: any) {
+  return and(object$(item), () => item.hasOwnProperty("____reduced"));
 }
