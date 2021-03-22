@@ -48,7 +48,7 @@ export function reduce(fn, val, set) {
     if (and(object$(val), reduced$(val))) {
       return val.item;
     }
-    val = fn(val, nth(set, index));
+    val = fn(val, nth(set, index), true);
   }
   return val;
 }
