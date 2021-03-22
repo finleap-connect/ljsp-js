@@ -1,16 +1,17 @@
-/**
- * @param {[]} set
- * @returns {*}
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function frequencies(set) {
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'acc' implicitly has an 'any' type.
-  return set.reduce((acc, cur) => {
-    if (acc.hasOwnProperty(cur)) {
-      acc[cur] = acc[cur] + 1;
+// @ts-nocheck
+import { Collection } from "../internal/collection";
+
+export function frequencies(set: any[] | string) {
+  const _set = Collection(set, false);
+  const result = {};
+
+  for (let x = 0; x < _set.count; x++) {
+    const cur = _set.get(x);
+    if (result.hasOwnProperty(cur)) {
+      result[cur] = result[cur] + 1;
     } else {
-      acc[cur] = 1;
+      result[cur] = 1;
     }
-    return acc;
-  }, {});
+  }
+  return result;
 }

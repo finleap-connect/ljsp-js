@@ -1,14 +1,13 @@
 import { first } from "./first";
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
 
-/**
- * @param {[]} set
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function cycle(set) {
+export function cycle(set: TCollection) {
+  const _set = Collection(set, false);
   let count = 0;
   return function sequence() {
-    if (count < set.length) {
-      let value = set[count];
+    if (count < _set.count) {
+      let value = _set.get(count);
       count += 1;
       return value;
     } else {

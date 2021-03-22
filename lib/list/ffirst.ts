@@ -1,9 +1,5 @@
 import { first } from "./first";
 
-/** Same as (first (first x))
- * @param set
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function ffirst(set) {
+export function ffirst(set: any[]) {
   return first(first(set));
 }

@@ -6,10 +6,17 @@
  * Type, per se. As above, it is the Object's `specification defined classification`.
  * However, this accurately serves, for most instances (except, perhaps, those
  * that are vendor dependent), to return an item's "type". Works on primitives.
+ *
+ * NOTE: According to the ECMAScript spec -
+ * Historically, this function was occasionally used to access the String value of the [[Class]]
+ * internal slot that was used in **previous editions** of this specification as a nominal type tag
+ * for various built-in objects. The above definition of toString preserves compatibility for
+ * legacy code that uses toString as a test for those specific kinds of built-in objects. It does
+ * not provide a reliable type testing mechanism for other kinds of built-in or program defined objects.
+ * In addition, programs can use @@toStringTag in ways that will invalidate the reliability of
+ * such legacy type tests.
  */
 export function _getType(value: any) {
   const rawType = Object.prototype.toString.call(value);
-  const matches = rawType.match(/\[object\s(.*?)]/);
-  // @ts-ignore
-  return matches[1].toLowerCase();
+  return rawType.slice(8, -1).toLowerCase();
 }

@@ -1,9 +1,7 @@
-/**
- * @param {[]} set
- * @param {*} rest
- * @returns {*[]}
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function includes(set, ...rest) {
-  return rest.every((item) => set.includes(item));
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
+
+export function includes(set: TCollection, ...rest: any[]) {
+  const _set = Collection(set, false);
+  return rest.every((item) => _set.contains$(item));
 }
