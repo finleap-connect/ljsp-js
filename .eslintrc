@@ -1,14 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "plugin:prettier/recommended",
-    "prettier/standard"
-  ],
-  "plugins": ["prettier"],
+  "extends": ["prettier/standard", "plugin:prettier/recommended", "plugin:jest/recommended"],
+  "plugins": ["prettier", "jest"],
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["node_modules", "./lib", "./docs"]
+        "moduleDirectory": ["node_modules", "./lib"]
       }
     }
   },
@@ -16,6 +13,40 @@
     "prettier/prettier": ["error", { "printWidth": 120 }],
     "array-bracket-spacing": ["error", "never"],
     "semi": ["error", "always"],
-    "no-restricted-globals": 0
-  }
+    "no-restricted-globals": 0,
+    "@typescript-eslint/quotes": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "no-plusplus": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "prefer-spread": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "@typescript-eslint/indent": "off"
+  },
+  "env": {
+    "jest/globals": true
+  },
+  "overrides": [
+    {
+      "files": ["lib/**/*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "extends": ["prettier/standard", "plugin:prettier/recommended"],
+      "plugins": ["@typescript-eslint", "prettier"],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "moduleDirectory": ["node_modules", "./lib"]
+          }
+        }
+      },
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    }
+  ]
 }

@@ -7,7 +7,7 @@ describe("when", () => {
   it("should execute body when true", () => {
     expect(when(true, () => "one")).toEqual("one");
   });
-  it("should execute body when true", () => {
+  it("should execute body and return last function when true", () => {
     expect(
       when(
         true,
