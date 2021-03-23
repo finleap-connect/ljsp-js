@@ -1,4 +1,4 @@
-const { split } = require("./split");
+const { split } = require("../../lib/string/split");
 
 describe("split", () => {
   it("should split a string on a RegExp", () => {
