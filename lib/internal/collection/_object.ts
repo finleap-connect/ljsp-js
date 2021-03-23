@@ -12,10 +12,10 @@ export class _Object extends _Collection implements ICollection {
     return Object.entries(this.set)[index];
   }
   append(item: any) {
-    this.set = Object.assign(this.set, item);
+    this.set = Object.assign(this.set, array$(item) ? { [item[0]]: item[1] } : item);
   }
   prepend(item: any) {
-    this.set = Object.assign(item, this.set);
+    this.set = Object.assign(array$(item) ? { [item[0]]: item[1] } : item, this.set);
   }
   appendAll(coll: TCollection) {
     this.set = Object.assign(this.set, coll);
