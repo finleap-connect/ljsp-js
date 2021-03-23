@@ -1,6 +1,8 @@
 import { isEmpty } from "lodash";
 import { lt$ } from "../math/lt$";
 import { rand } from "../generic/rand";
+import { lt$ } from "../math/lt$";
+import { empty$ } from "../generic/empty$";
 
 /**
  * Returns items from coll with random probability of prob (0.0 - 1.0)
@@ -15,5 +17,5 @@ export function randomSample(prob: number, set: any[] = []) {
     });
   }
 
-  return isEmpty(set) ? run(set) : run;
+  return empty$(set) ? run(set) : run;
 }

@@ -1,15 +1,13 @@
-import { isEmpty } from "lodash";
 import { eq } from "../generic/eq";
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
+import { or } from "../conditional/or";
 
-/**
- * @param {[]} set
- * @param {number} num
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function nthnext(set, num) {
-  if (isEmpty(set) || eq(num, 0)) {
+export function nthnext(set: TCollection, num: number) {
+  const _set = Collection(set, false);
+  if (or(_set.empty$, eq(num, 0))) {
     return [];
   } else {
-    return set.slice(num, set.length);
+    return _set.slice(num, _set.count);
   }
 }
