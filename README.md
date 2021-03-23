@@ -20,7 +20,6 @@
     - [strSpace](#strspace)
     - [toPath](#topath)
     - [replaceFirst](#replacefirst)
-    - [strInterpose](#strinterpose)
     - [blank$](#blank)
   - [Generic Functions](#generic-functions)
     - [eq](#eq)
@@ -291,28 +290,6 @@ console.log(replaceFirst("fabulous fodder foo food fodder", /Fodder/gi, "blodder
 - `string` | `String`
 - `matcher` | `String | RegExp`
 - `replacement` | `String | String Pattern | Function` (See MDN docs for details)
-
-### strInterpose
-
-Returns a string separated by sep. If no string is provided, returns a partially applied `strInterpose` function.
-
-```javascript
-import { strInterpose } from "@flc-ds/fii-js-core";
-
-console.log(strInterpose("-", "my name is bob"));
-// "my-name-is-bob"
-
-console.log(strInterpose(12, "my-name-is-bob", "-"));
-// "my12name12is12bob"
-
-console.log(strInterpose(1, null, "-"));
-/**
- * function run(str) {
- *   sep = sep.toString();
- *   return str.split(splitter).join(sep);
- * }
- */
-```
 
 #### Parameters
 

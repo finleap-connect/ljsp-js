@@ -1,4 +1,4 @@
-const { titleCase } = require("./title-case");
+const { titleCase } = require("../../lib/string/title-case");
 
 describe("title case", () => {
   it('"hello world" to "Hello World"', () => {

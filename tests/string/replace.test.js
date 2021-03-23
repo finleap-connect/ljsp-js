@@ -1,4 +1,4 @@
-const { replace } = require("./replace");
+const { replace } = require("../../lib/string/replace");
 
 describe("replace", () => {
   it("should replace all instances when provided a regular expression", () => {

@@ -1,4 +1,4 @@
-const { upperCase } = require("./upper-case");
+const { upperCase } = require("../../lib/string/upper-case");
 
 describe("uppercase", () => {
   it("transforms to uppercase", () => {

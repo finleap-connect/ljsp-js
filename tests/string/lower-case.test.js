@@ -1,4 +1,4 @@
-const { lowerCase } = require("./lower-case");
+const { lowerCase } = require("../../lib/string/lower-case");
 
 describe("lower case", function () {
   it("should transform string to lower case", function () {

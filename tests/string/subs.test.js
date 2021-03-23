@@ -1,4 +1,4 @@
-const { subs } = require("./subs");
+const { subs } = require("../../lib/string/subs");
 
 describe("subs", () => {
   it("should return a substring, capped at str.len by default", () => {
