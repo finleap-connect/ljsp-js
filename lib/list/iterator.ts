@@ -1,13 +1,12 @@
-/**
- * @param {[]} set
- * @returns {function(): (*|undefined)}
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'set' implicitly has an 'any' type.
-export function iterator(set) {
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
+
+export function iterator(set: TCollection) {
+  const _set = Collection(set, false);
   let count = 0;
   return function () {
-    if (count < set.length) {
-      let value = set[count];
+    if (count < _set.count) {
+      let value = _set.get(count);
       count += 1;
       return value;
     }
