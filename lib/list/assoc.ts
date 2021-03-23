@@ -8,8 +8,8 @@ import { number$ } from "../generic/number$";
 import { second } from "./second";
 import { void$ } from "../generic/void$";
 import { eq } from "../generic/eq";
-import { cloneDeep } from "lodash";
 import { objectSet$ } from "../generic/object-set$";
+import { cloneDeep } from "../generic/clone-deep";
 
 /**
  * assoc[iate]. When applied to a map, returns a new map of the

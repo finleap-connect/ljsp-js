@@ -20,6 +20,7 @@ export default [
       resolve({
         preferBuiltins: true
       }),
+      typescript(),
       babel({
         plugins: [
           "@babel/plugin-proposal-object-rest-spread",
@@ -30,7 +31,6 @@ export default [
         exclude: ["node_modules/**", "lib", "bin"]
       }),
       commonjs(),
-      typescript(),
       copy({
         targets: [
           {

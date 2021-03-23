@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { TCollection } from "../types/t-collection";
 import { string$ } from "../generic/string$";
-import { cloneDeep } from "lodash";
 import { _getType } from "./_get-type";
 import { ICollection, ICollectionMap } from "./collection/i-collection";
 import { _Array } from "./collection/_array";
@@ -10,6 +9,8 @@ import { _Object } from "./collection/_object";
 import { _Set } from "./collection/_set";
 import { _Map } from "./collection/_map";
 import { _Collection } from "./collection/_meta-collection";
+import { _getType } from "./_get-type";
+import { cloneDeep } from "../generic/clone-deep";
 
 export function Collection(coll: TCollection, clone = true): ICollection {
   if (coll instanceof _Collection) {

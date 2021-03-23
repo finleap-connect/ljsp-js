@@ -1,6 +1,7 @@
-import { cloneDeep } from "lodash";
+// @ts-nocheck
 import { first } from "./first";
 import { second } from "./second";
+import { cloneDeep } from "../generic/clone-deep";
 
 export function assocIn(set: Array<any>, keys: Array<any>, value: any) {
   const result = cloneDeep(set);
