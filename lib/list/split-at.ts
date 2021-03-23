@@ -1,10 +1,13 @@
-import { take, takeRight } from "lodash";
+import { take } from "./take";
+import { takeLast } from "./take-last";
+import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
 
 /**
  * @param {number} num
  * @param {[]} set
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'num' implicitly has an 'any' type.
-export function splitAt(num, set) {
-  return [take(set, num), takeRight(set, set.length - num)];
+export function splitAt(num: number, set: TCollection) {
+  const _set = Collection(set, false);
+  return [take(num, _set), takeLast(_set.count - num, set)];
 }

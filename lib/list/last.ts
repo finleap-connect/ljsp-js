@@ -1,12 +1,8 @@
-import { toPairs } from "lodash";
 import { TCollection } from "../types/t-collection";
+import { Collection } from "../internal/collection";
+import { first } from "./first";
 
-/**
- * @param {[]} set
- * @returns {[string, unknown]}
- */
 export function last(set: TCollection) {
-  // @ts-ignore
-  const coll = Array.isArray(set) ? set : toPairs(set);
-  return coll[coll.length - 1];
+  const _set = Collection(set, false);
+  return first(_set.slice(_set.count - 1));
 }
