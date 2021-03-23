@@ -1,5 +1,7 @@
-import { isEmpty, isString } from "lodash";
 import { object$ } from "../generic/object$";
+import { notEmpty$ } from "../generic/not-empty$";
+import { string$ } from "../generic/string$";
+import { not } from "../generic/not";
 
 type Spec = { func: string; spec: Record<string, boolean> };
 
@@ -12,13 +14,13 @@ function getFailedSpecs(assertions: Record<string, any>): Array<string> {
 }
 
 export function spec({ func, spec }: Spec): void {
-  if (!func || !spec || !object$(spec) || !isString(func)) {
+  if (!func || !spec || !object$(spec) || not(string$(func))) {
     throw new Error(
-      func && isString(func) ? `Malformed Spec in function: ${func}` : `Malformed Spec, missing function label`
+      func && string$(func) ? `Malformed Spec in function: ${func}` : `Malformed Spec, missing function label`
     );
   }
   const failedSpecs = getFailedSpecs(spec);
-  if (!isEmpty(failedSpecs)) {
+  if (notEmpty$(failedSpecs)) {
     throw new Error(`Assertion Failed at function ${func}: ${failedSpecs.join(", ")}`);
   }
 }

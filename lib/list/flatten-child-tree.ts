@@ -1,6 +1,7 @@
 // @ts-nocheck
-import { flatten, isEmpty } from "lodash";
+import { flatten } from "lodash";
 import { cons } from "./cons";
+import { empty$ } from "../generic/empty$";
 
 /**
  * @param {[{}]} tree
@@ -9,7 +10,7 @@ import { cons } from "./cons";
 export function flattenChildTree(tree) {
   return flatten(
     tree.map((node) => {
-      return isEmpty(node.children) ? node : flatten(cons(node, flattenChildTree(node.children)));
+      return empty$(node.children) ? node : flatten(cons(node, flattenChildTree(node.children)));
     })
   );
 }

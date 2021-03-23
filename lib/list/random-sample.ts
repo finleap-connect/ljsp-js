@@ -1,5 +1,6 @@
-import { isEmpty, random } from "lodash";
+import { random } from "lodash";
 import { lt$ } from "../math/lt$";
+import { empty$ } from "../generic/empty$";
 
 /**
  * Returns items from coll with random probability of prob (0.0 - 1.0)
@@ -7,14 +8,12 @@ import { lt$ } from "../math/lt$";
  * @param {number} prob
  * @param {[]} set
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'prob' implicitly has an 'any' type.
-export function randomSample(prob, set = []) {
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'coll' implicitly has an 'any' type.
-  function run(coll) {
+export function randomSample(prob: number, set = []) {
+  function run(coll: any[]) {
     return coll.filter(() => {
       return lt$(random(1), prob);
     });
   }
 
-  return isEmpty(set) ? run(set) : run;
+  return empty$(set) ? run(set) : run;
 }
