@@ -1,7 +1,8 @@
-import { isEmpty } from "lodash";
 import { cond, ELSE } from "../conditional/cond";
 import { first } from "./first";
 import { minLenList } from "./min-len-list";
+import { notEmpty$ } from "../generic/not-empty$";
+import { empty$ } from "../generic/empty$";
 
 /**
  * @param {[]} rest
@@ -9,11 +10,11 @@ import { minLenList } from "./min-len-list";
  */
 // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
 export function interleave(...rest) {
-  if (!isEmpty(rest)) {
+  if (notEmpty$(rest)) {
   }
   // prettier-ignore
   return cond(
-    () => isEmpty(rest), () => undefined,
+    () => empty$(rest), () => undefined,
     () => rest.length === 1, first(rest),
     ELSE, () => {
       // find the shortest list

@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash";
+import { notEmpty$ } from "../generic/not-empty$";
 
 /**
  * @param {*} sep
@@ -11,7 +11,7 @@ export function interpose(sep, set) {
   function run(set) {
     // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'acc' implicitly has an 'any' type.
     return set.reduce((acc, cur) => {
-      return !isEmpty(acc) ? acc.concat([sep, cur]) : [cur].concat(sep);
+      return notEmpty$(acc) ? acc.concat([sep, cur]) : [cur].concat(sep);
     }, []);
   }
   if (!set) {
