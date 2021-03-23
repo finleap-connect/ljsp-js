@@ -1,10 +1,5 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep } from "../generic/clone-deep";
 
-/**
- * @param {{}} first
- * @param {{}[]}rest
- * @returns {*}
- */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'first' implicitly has an 'any' type.
 export function merge(first, ...rest) {
   const target = cloneDeep(first);
