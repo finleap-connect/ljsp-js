@@ -23,11 +23,9 @@
     "consistent-return": "off",
     "func-names": "off",
     "prefer-spread": "off",
-    "no-prototype-builtins": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
-    "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/indent": "off"
   },
   "env": {
@@ -37,12 +35,12 @@
     {
       "files": ["lib/**/*.ts"],
       "parser": "@typescript-eslint/parser",
-      "extends": ["prettier/standard", "plugin:prettier/recommended", "plugin:jest/recommended"],
-      "plugins": ["@typescript-eslint", "prettier", "jest"],
+      "extends": ["prettier/standard", "plugin:prettier/recommended"],
+      "plugins": ["@typescript-eslint", "prettier"],
       "settings": {
         "import/resolver": {
           "node": {
-            "moduleDirectory": ["node_modules", "./lib", "./docs"]
+            "moduleDirectory": ["node_modules", "./lib"]
           }
         }
       },
