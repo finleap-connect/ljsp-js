@@ -2,6 +2,10 @@ import { reduced$ } from "./reduced$";
 import { void$ } from "../generic/void$";
 import { notEmpty$ } from "../generic/not-empty$";
 
+/**
+ * Returns a lazy seq of the elements of coll separated by sep.
+ * Returns a stateful transducer when no collection is provided.
+ */
 export function interpose(sep: any, set?: any[]) {
   if (void$(set)) {
     return function (step: Function) {
