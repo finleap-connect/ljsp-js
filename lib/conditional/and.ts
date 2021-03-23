@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../generic/function$";
 import { empty$ } from "../generic";
 
 export function and(...rest: Array<any>) {
@@ -7,7 +7,7 @@ export function and(...rest: Array<any>) {
   let result;
   for (let x = 0; x < rest.length; x++) {
     const current = rest[x];
-    result = isFunction(current) ? current() : current;
+    result = function$(current) ? current() : current;
     if (!result) {
       return result;
     }

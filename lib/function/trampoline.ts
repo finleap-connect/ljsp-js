@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../generic/function$";
 
 /**
  * `trampoline` can be used to convert recursive algorithms
@@ -16,7 +16,7 @@ import { isFunction } from "lodash";
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'fn' implicitly has an 'any' type.
 export function trampoline(fn, ...rest) {
   let result = fn(...rest);
-  while (isFunction(result)) {
+  while (function$(result)) {
     result = result();
   }
   return result;

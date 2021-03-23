@@ -1,8 +1,9 @@
-import { chunk, isFunction } from "lodash";
+import { chunk } from "lodash";
 import { first, second } from "../list";
 import { and } from "./and";
 import { TPrimitive } from "../types/TPrimitive";
 import { eq } from "../generic/eq";
+import { function$ } from "../generic/function$";
 
 /**
  * Takes an expression, and a set of clauses.
@@ -30,7 +31,7 @@ export function cases(expression: TPrimitive, ...rest: any[]) {
     }
     if (eq(predicate, expression)) {
       const winner = second(cur);
-      return isFunction(winner) ? winner() : winner;
+      return function$(winner) ? winner() : winner;
     }
   }
 }

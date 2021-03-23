@@ -1,9 +1,9 @@
-import { isFunction } from "lodash";
 import { spec } from "../spec/spec";
 import { watcher } from "./internal/constants";
 import { object$ } from "../generic/object$";
 import { string$ } from "../generic/string$";
 import { cloneDeep } from "../generic/clone-deep";
+import { function$ } from "../generic/function$";
 
 /**
  * @param {{}} map
@@ -18,7 +18,7 @@ export function addWatch(map, key, watchFn) {
     spec: {
       mapIsObject: object$(map),
       validKey: string$(key) && key.trim() !== "",
-      watchIsFunction: isFunction(watchFn),
+      watchIsFunction: function$(watchFn),
       watchHasFourArgs: watchFn.length === 4
     }
   });

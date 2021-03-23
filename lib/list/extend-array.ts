@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../generic/function$";
 import { iff } from "../conditional/iff";
 
 /**
@@ -14,7 +14,7 @@ export function extendArray(source, len, value = null) {
   for (let idx = 0; idx < source.length; idx++) {
     if (!source[idx]) {
       // @ts-expect-error ts-migrate(2721) FIXME: Cannot invoke an object which is possibly 'null'.
-      source[idx] = iff(isFunction(value), () => value(idx), value);
+      source[idx] = iff(function$(value), () => value(idx), value);
     }
   }
   return source;

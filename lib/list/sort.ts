@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../generic/function$";
 import { spec } from "../spec/spec";
 
 /**
@@ -10,7 +10,7 @@ export function sort(comp, set) {
   spec({
     func: "sort",
     spec: {
-      validComp: !set ? Array.isArray(comp) : isFunction(comp),
+      validComp: !set ? Array.isArray(comp) : function$(comp),
       validSet: set ? Array.isArray(set) : true
     }
   });
