@@ -4,12 +4,13 @@ import { BaseTypes } from "../enums/base-types";
 import { eq } from "../generic/eq";
 import { string$ } from "../generic/string$";
 import { orEq } from "../generic/or-eq";
-import { cloneDeep, get } from "lodash";
+import { get } from "lodash";
 import { notEq } from "../generic/not-eq";
 import { _getType } from "./_get-type";
 import { number$ } from "../generic/number$";
 import { array$ } from "../generic";
 import { inc } from "../math";
+import { cloneDeep } from "../generic/clone-deep";
 
 export function Collection(coll: TCollection, clone = true): ICollection {
   if (coll instanceof Collection) {

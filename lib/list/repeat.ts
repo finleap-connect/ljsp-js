@@ -1,6 +1,7 @@
-import { cloneDeep, isObject } from "lodash";
+import { isObject } from "lodash";
 import { cycle } from "./cycle";
 import { iterator } from "./iterator";
+import { cloneDeep } from "../generic/clone-deep";
 
 /**
  * @param {*|number} num

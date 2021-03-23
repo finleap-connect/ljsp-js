@@ -1,6 +1,7 @@
-import { cloneDeep, isFunction, isObject, isString } from "lodash";
+import { isFunction, isObject, isString } from "lodash";
 import { spec } from "../spec/spec";
 import { watcher } from "./internal/constants";
+import { cloneDeep } from "../generic/clone-deep";
 
 /**
  * @param {{}} map
