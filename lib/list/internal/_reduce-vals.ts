@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../../generic/function$";
 import { first } from "../first";
 
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'init' implicitly has an 'any' type.
@@ -12,7 +12,7 @@ export function _reduceVals(init, set) {
   } else {
     // There is no init, acc's base value if the first elem of set
     // If this is an iterator, call it, otherwise get the first item
-    acc = isFunction(coll) ? coll() : first(coll);
+    acc = function$(coll) ? coll() : first(coll);
     count = 1;
   }
   return { count, coll, acc };

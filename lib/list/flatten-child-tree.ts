@@ -3,10 +3,6 @@ import { flatten } from "lodash";
 import { cons } from "./cons";
 import { empty$ } from "../generic/empty$";
 
-/**
- * @param {[{}]} tree
- * @returns {*}
- */
 export function flattenChildTree(tree) {
   return flatten(
     tree.map((node) => {

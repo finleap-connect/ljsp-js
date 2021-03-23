@@ -1,4 +1,4 @@
-import { isFunction } from "lodash";
+import { function$ } from "../generic/function$";
 
 /**
  * Returns all the own methods obj in an Array
@@ -7,5 +7,5 @@ import { isFunction } from "lodash";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'obj' implicitly has an 'any' type.
 export function ownMethods(obj) {
-  return Object.values(obj).filter((item) => isFunction(item));
+  return Object.values(obj).filter((item) => function$(item));
 }

@@ -1,7 +1,7 @@
-import { isFunction } from "lodash";
+import { function$ } from "../../generic/function$";
 
 export function _returnLast(body: Array<any>, arg?: any) {
   return body.reduce((acc: any, cur: any) => {
-    return isFunction(cur) ? cur(arg) : cur;
+    return function$(cur) ? cur(arg) : cur;
   }, undefined);
 }

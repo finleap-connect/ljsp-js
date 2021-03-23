@@ -1,10 +1,11 @@
-import { chunk, isFunction } from "lodash";
+import { chunk } from "lodash";
 import { eq } from "../generic/eq";
 import { first } from "../list/first";
 import { nth } from "../list/nth";
 import { second } from "../list/second";
 import { spec } from "../spec/spec";
 import { and } from "./and";
+import { function$ } from "../generic/function$";
 
 /**
  * Takes a binary predicate, an expression, and a set of clauses.
@@ -29,20 +30,20 @@ export function condp(pred, expr, ...rest) {
   if (eq(rest.length, 0)) {
     return undefined;
   }
-  spec({ func: "condp", spec: { predIsFunction: isFunction(pred) } });
+  spec({ func: "condp", spec: { predIsFunction: function$(pred) } });
   const clauses = chunk(rest, 2);
   for (let i = 0; i < clauses.length; i++) {
     const currentClause = nth(clauses, i);
     const rawComparator = first(currentClause);
     // If this is the default case, then return it.
     if (and(eq(i, clauses.length - 1), eq(currentClause.length, 1))) {
-      return isFunction(rawComparator) ? rawComparator() : rawComparator;
+      return function$(rawComparator) ? rawComparator() : rawComparator;
     }
-    const comparison = isFunction(rawComparator) ? rawComparator() : rawComparator;
+    const comparison = function$(rawComparator) ? rawComparator() : rawComparator;
     const result = pred(expr, comparison);
     if (result) {
       const winner = second(currentClause);
-      return isFunction(winner) ? winner(result) : winner;
+      return function$(winner) ? winner(result) : winner;
     }
   }
 }
