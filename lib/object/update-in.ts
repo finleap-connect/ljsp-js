@@ -1,5 +1,6 @@
-import { get, set } from "lodash";
+import { set } from "lodash";
 import { swap } from "./swap";
+import { get } from "../list/get";
 
 /**
  * @param {{}} coll
