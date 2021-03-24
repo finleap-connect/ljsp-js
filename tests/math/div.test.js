@@ -1,4 +1,4 @@
-const { div } = require("./div");
+const { div } = require("../../lib/math/div");
 
 describe("div", () => {
   it("divides a set of numbers", () => {

@@ -1,13 +1,13 @@
-const { neg$ } = require("./neg$");
+const { pos$ } = require("../../lib/math/pos$");
 
-describe("neg$", () => {
+describe("pos$", () => {
   it("returns true if provided a negative number", () => {
-    expect(neg$(-1)).toBe(true);
+    expect(pos$(1)).toBe(true);
   });
   it("returns false if provided a positive number", () => {
-    expect(neg$(1)).toBe(false);
+    expect(pos$(-1)).toBe(false);
   });
   it("returns false if provided zero", () => {
-    expect(neg$(0)).toBe(false);
+    expect(pos$(0)).toBe(false);
   });
 });

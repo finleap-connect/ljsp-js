@@ -1,4 +1,4 @@
-const { dec } = require("./dec");
+const { dec } = require("../../lib/math/dec");
 
 describe("dec", () => {
   it("decrements a number", () => {

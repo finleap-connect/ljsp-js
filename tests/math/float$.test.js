@@ -1,4 +1,4 @@
-const { float$ } = require("./float$");
+const { float$ } = require("../../lib/math/float$");
 
 describe("float$", () => {
   it("returns true if a number is a float", () => {
