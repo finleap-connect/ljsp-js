@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { TCollection } from "../../types/t-collection";
-import { array$, eq } from "../../generic";
+import { array$, eq, not } from "../../generic";
 import { _Collection } from "./_meta-collection";
 import { ICollection } from "./i-collection";
 
@@ -39,6 +39,12 @@ export class _Map extends _Collection implements ICollection {
   slice(base: number, end?: number) {
     return new Map(Array.from(this.set).slice(base, end));
   }
+  indexOf(item: any) {
+    return getIndex(this.set, item);
+  }
+  lastIndexOf(item: any) {
+    return getIndex(this.set, item, true);
+  }
 }
 
 function getMapItem(set: Map, index: number) {
@@ -47,6 +53,19 @@ function getMapItem(set: Map, index: number) {
   set.forEach((value, key) => {
     if (eq(x, index)) {
       result = [key, value];
+    }
+    x++;
+  });
+  return result;
+}
+
+function getIndex(set: Map, item: any, getFromLast = false) {
+  let result = -1;
+  let x = 0;
+  set.forEach((value, _) => {
+    if (eq(item, value)) {
+      result = x;
+      if (not(getFromLast)) return result;
     }
     x++;
   });
