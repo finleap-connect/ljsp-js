@@ -1,4 +1,4 @@
-export { part } from "./part";
+export { partition } from "./partition";
 export { removeById } from "./remove-by-id";
 export { conj } from "./conj";
 export { findById } from "./find-by-id";
