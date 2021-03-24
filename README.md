@@ -3036,7 +3036,7 @@ console.log(updateIn(base, ["a", "b"], inc));
 /*
  * {
  * a: {
- *   b: 4
+ *   b: 5
  * }
  */
 

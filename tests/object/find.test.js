@@ -1,4 +1,4 @@
-const { find } = require("./find");
+const { find } = require("../../lib/object/find");
 
 describe("find", () => {
   it("should find a string-based property in an object", () => {

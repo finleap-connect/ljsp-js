@@ -1,4 +1,4 @@
-const { dissoc } = require("./dissoc");
+const { dissoc } = require("../../lib/object/dissoc");
 
 describe("dissoc", function () {
   it("should dissoc keys from object", function () {
