@@ -1,4 +1,4 @@
-const { orEq } = require("./or-eq");
+const { orEq } = require("../../lib/generic/or-eq");
 
 describe("orEq", () => {
   it("should return true if a base value is equal to one or more options", () => {

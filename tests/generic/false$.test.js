@@ -1,4 +1,4 @@
-const { false$ } = require("./false$");
+const { false$ } = require("../../lib/generic/false$");
 describe("false$", () => {
   it("should return true if the argument is false", () => {
     expect(false$(false)).toEqual(true);

@@ -1,4 +1,4 @@
-const { diff } = require("./diff");
+const { diff } = require("../../lib/generic/diff");
 
 describe("diff", function () {
   describe("arrays", function () {

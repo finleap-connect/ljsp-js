@@ -1,4 +1,4 @@
-const { deepEq } = require("./deep-eq");
+const { deepEq } = require("../../lib/generic/deep-eq");
 
 describe("deepEq", function () {
   it("compares arrays", function () {

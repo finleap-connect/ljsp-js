@@ -1,4 +1,4 @@
-const { void$ } = require("./void$");
+const { void$ } = require("../../lib/generic/void$");
 
 describe("void$", function () {
   it("should return true for null", function () {

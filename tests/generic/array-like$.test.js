@@ -1,4 +1,4 @@
-const { arrayLike$ } = require("./array-like$");
+const { arrayLike$ } = require("../../lib/generic/array-like$");
 
 describe("array$", () => {
   it("should return true if passed a string", () => {

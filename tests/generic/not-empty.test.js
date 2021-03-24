@@ -1,4 +1,4 @@
-const { notEmpty } = require("./not-empty");
+const { notEmpty } = require("../../lib/generic/not-empty");
 
 describe("notEmpty", () => {
   it("should return its argument if the argument is not empty", () => {
