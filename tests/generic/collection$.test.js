@@ -1,4 +1,4 @@
-const { collection$ } = require("./collection$");
+const { collection$ } = require("../../lib/generic/collection$");
 
 describe("collection$", () => {
   it("should return true if the item is an object", () => {

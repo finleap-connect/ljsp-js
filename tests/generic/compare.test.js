@@ -1,4 +1,4 @@
-const { compare } = require("./compare");
+const { compare } = require("../../lib/generic/compare");
 
 describe("compare", () => {
   describe("number comparisons", () => {

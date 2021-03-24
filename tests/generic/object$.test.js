@@ -1,4 +1,4 @@
-const { object$ } = require("./object$");
+const { object$ } = require("../../lib/generic/object$");
 
 describe("object$", () => {
   it("should return true if given an object", () => {

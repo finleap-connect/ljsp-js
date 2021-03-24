@@ -10,6 +10,7 @@ import { _Map } from "./collection/_map";
 import { _Collection } from "./collection/_meta-collection";
 import { _getType } from "./_get-type";
 import { cloneDeep } from "../generic/clone-deep";
+import { not } from "../generic/not";
 
 export function Collection(coll: TCollection, clone = true): ICollection {
   if (coll instanceof _Collection) {
@@ -17,7 +18,7 @@ export function Collection(coll: TCollection, clone = true): ICollection {
   }
 
   const type = _getType(coll);
-  let set = clone && string$(coll) ? coll : cloneDeep(coll);
+  let set = not(clone) || string$(coll) ? coll : cloneDeep(coll);
 
   return new CollectionMap[type](set);
 }

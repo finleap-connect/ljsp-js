@@ -1,4 +1,4 @@
-const { empty$ } = require("./empty$");
+const { empty$ } = require("../../lib/generic/empty$");
 
 describe("empty$", () => {
   it("should return true if an Array has no elements", () => {

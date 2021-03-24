@@ -1,4 +1,4 @@
-const { true$ } = require("./true$");
+const { true$ } = require("../../lib/generic/true$");
 
 describe("true$", () => {
   it("should return true if the argument is true", () => {

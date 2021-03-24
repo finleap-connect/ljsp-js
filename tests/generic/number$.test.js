@@ -1,10 +1,10 @@
-const { boolean$ } = require("./boolean$");
+const { number$ } = require("../../lib/generic/number$");
 
 describe("isBoolean", () => {
   it("returns true if value is Bool", () => {
-    expect(boolean$(false)).toBe(true);
+    expect(number$(1)).toBe(true);
   });
   it("returns false if value is NOT Bool", () => {
-    expect(boolean$(1)).toBe(false);
+    expect(number$("23")).toBe(false);
   });
 });

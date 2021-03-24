@@ -1,4 +1,4 @@
-const { objectLike$ } = require("./object-like$");
+const { objectLike$ } = require("../../lib/generic/object-like$");
 
 describe("objectLike$", () => {
   it("should return true when passed an object", () => {

@@ -1,4 +1,4 @@
-const { distinct$ } = require("./distinct$");
+const { distinct$ } = require("../../lib/generic/distinct$");
 
 describe("distinct$", () => {
   it("should return true when items are distinct", () => {

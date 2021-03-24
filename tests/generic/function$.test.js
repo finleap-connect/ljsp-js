@@ -1,4 +1,4 @@
-const { function$ } = require("./function$");
+const { function$ } = require("../../lib/generic/function$");
 
 describe("function$", function () {
   it("should return true if the test is an arrow function", function () {

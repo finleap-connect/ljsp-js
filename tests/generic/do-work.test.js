@@ -1,4 +1,4 @@
-const { doWork } = require("./do-work");
+const { doWork } = require("../../lib/generic/do-work");
 
 describe("doWork", function () {
   it("should return undefined when no args provided", function () {

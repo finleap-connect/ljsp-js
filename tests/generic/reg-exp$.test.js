@@ -1,4 +1,4 @@
-const { regExp$ } = require("./reg-exp$");
+const { regExp$ } = require("../../lib/generic/reg-exp$");
 
 describe("isRegExp", function () {
   it("should return true for regex", function () {

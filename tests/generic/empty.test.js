@@ -1,4 +1,4 @@
-const { empty } = require("./empty");
+const { empty } = require("../../lib/generic/empty");
 
 describe("empty", () => {
   it("should return an empty array when passed an array", () => {
