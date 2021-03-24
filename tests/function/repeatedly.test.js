@@ -1,4 +1,4 @@
-const { repeatedly } = require("./repeatedly");
+const { repeatedly } = require("../../lib/function/repeatedly");
 
 describe("repeatedly", () => {
   it("should call a function n times, and return an Array of the results", () => {

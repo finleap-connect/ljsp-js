@@ -1,5 +1,5 @@
-const { mult } = require("../math");
-const { partial } = require("./partial");
+const { mult } = require("../../lib/math");
+const { partial } = require("../../lib/function/partial");
 
 describe("partial", function () {
   it("should partially apply a function", function () {
