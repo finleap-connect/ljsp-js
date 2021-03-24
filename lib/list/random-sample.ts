@@ -1,7 +1,5 @@
-import { isEmpty } from "lodash";
 import { lt$ } from "../math/lt$";
 import { rand } from "../generic/rand";
-import { lt$ } from "../math/lt$";
 import { empty$ } from "../generic/empty$";
 
 /**
