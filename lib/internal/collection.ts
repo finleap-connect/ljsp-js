@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { TCollection } from "../types/t-collection";
 import { string$ } from "../generic/string$";
-import { _getType } from "./_get-type";
 import { ICollection, ICollectionMap } from "./collection/i-collection";
 import { _Array } from "./collection/_array";
 import { _String } from "./collection/_string";

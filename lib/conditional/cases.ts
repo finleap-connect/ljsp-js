@@ -1,8 +1,7 @@
-import { chunk } from "lodash";
 import { first, second } from "../list";
-import { and } from "./and";
 import { TPrimitive } from "../types/TPrimitive";
 import { eq } from "../generic/eq";
+import { partition } from "../list/partition";
 import { function$ } from "../generic/function$";
 
 /**
@@ -21,16 +20,17 @@ import { function$ } from "../generic/function$";
  * test-constants need not be all of the same type.
  */
 export function cases(expression: TPrimitive, ...rest: any[]) {
-  const expressions = chunk(rest, 2);
+  const def = Symbol();
+  const expressions = partition(2, 2, [def], rest);
   for (let i = 0; i < expressions.length; i++) {
     const cur = expressions[i];
     const predicate = first(cur);
+    const winner = second(cur);
     // If this is the default case, then return it.
-    if (and(eq(i, expressions.length - 1), eq(cur.length, 1))) {
+    if (eq(winner, def)) {
       return predicate;
     }
     if (eq(predicate, expression)) {
-      const winner = second(cur);
       return function$(winner) ? winner() : winner;
     }
   }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-// Credit where credit is due: Taken from David Clements (rfdc)
+// Credit where credit is due: Taken from David Clements (rfdc)[https://github.com/davidmarkclements/rfdc]
 export const cloneDeepNoCircularRefs = _clone();
 
 export const cloneDeep = _clone({ circles: true });
@@ -36,6 +36,8 @@ function _clone(opts) {
     if (Array.isArray(o)) return cloneArray(o, clone);
     if (o instanceof Map) return new Map(cloneArray(Array.from(o), clone));
     if (o instanceof Set) return new Set(cloneArray(Array.from(o), clone));
+    if (o instanceof WeakMap) return new WeakMap(cloneArray(Array.from(o), clone));
+    if (o instanceof WeakSet) return new WeakSet(cloneArray(Array.from(o), clone));
     const o2 = {};
     for (let k in o) {
       if (Object.hasOwnProperty.call(o, k) === false) continue;
@@ -63,6 +65,8 @@ function _clone(opts) {
     if (Array.isArray(o)) return cloneArray(o, cloneProto);
     if (o instanceof Map) return new Map(cloneArray(Array.from(o), cloneProto));
     if (o instanceof Set) return new Set(cloneArray(Array.from(o), cloneProto));
+    if (o instanceof WeakMap) return new WeakMap(cloneArray(Array.from(o), cloneProto));
+    if (o instanceof WeakSet) return new WeakSet(cloneArray(Array.from(o), cloneProto));
     const o2 = {};
     for (let k in o) {
       const cur = o[k];
@@ -120,6 +124,8 @@ function rfdcCircles(opts) {
     if (Array.isArray(o)) return cloneArray(o, clone);
     if (o instanceof Map) return new Map(cloneArray(Array.from(o), clone));
     if (o instanceof Set) return new Set(cloneArray(Array.from(o), clone));
+    if (o instanceof WeakMap) return new WeakMap(cloneArray(Array.from(o), clone));
+    if (o instanceof WeakSet) return new WeakSet(cloneArray(Array.from(o), clone));
     const o2 = {};
     refs.push(o);
     refsNew.push(o2);
@@ -156,6 +162,8 @@ function rfdcCircles(opts) {
     if (Array.isArray(o)) return cloneArray(o, cloneProto);
     if (o instanceof Map) return new Map(cloneArray(Array.from(o), cloneProto));
     if (o instanceof Set) return new Set(cloneArray(Array.from(o), cloneProto));
+    if (o instanceof WeakMap) return new WeakMap(cloneArray(Array.from(o), cloneProto));
+    if (o instanceof WeakSet) return new WeakSet(cloneArray(Array.from(o), cloneProto));
     const o2 = {};
     refs.push(o);
     refsNew.push(o2);
