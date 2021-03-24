@@ -1,5 +1,5 @@
-import { random } from "lodash";
 import { lt$ } from "../math/lt$";
+import { rand } from "../generic/rand";
 import { empty$ } from "../generic/empty$";
 
 /**
@@ -8,10 +8,10 @@ import { empty$ } from "../generic/empty$";
  * @param {number} prob
  * @param {[]} set
  */
-export function randomSample(prob: number, set = []) {
+export function randomSample(prob: number, set: any[] = []) {
   function run(coll: any[]) {
     return coll.filter(() => {
-      return lt$(random(1), prob);
+      return lt$(Math.floor(rand(prob)), prob);
     });
   }
 

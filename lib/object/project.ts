@@ -1,14 +1,17 @@
-import { pick } from "lodash";
 import { makeArray } from "../list/make-array";
+import { TAnyObject } from "../types/t-any-object";
 
-/**
- * @param {{}|{}[]} objects
- * @param {string[]} keys
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'objects' implicitly has an 'any' type.
-export function project(objects, keys) {
+export function project(objects: TAnyObject[] | TAnyObject, keys: string[]) {
   const set = makeArray(objects);
   return set.map((item) => {
-    return pick(item, keys);
+    return _pick(item, keys);
   });
+}
+
+function _pick(object: TAnyObject, keys: string[]) {
+  return Object.fromEntries(
+    Object.entries(object).filter(([key]) => {
+      return keys.includes(key);
+    })
+  );
 }

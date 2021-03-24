@@ -4,9 +4,10 @@ import { gt$ } from "../math/gt$";
 import { not } from "../generic/not";
 import { ensureReduced } from "./ensure-reduced";
 import { dec } from "../math/dec";
-import { eq } from "../generic";
+import { eq } from "../generic/eq";
+import { TCollection } from "../types/t-collection";
 
-export function take(num: number, coll: Array<any>): any {
+export function take(num: number, coll: TCollection): any {
   if (void$(coll)) {
     return (step: Function) => {
       return (acc: any, cur: any, isLjsp: boolean = false) => {
