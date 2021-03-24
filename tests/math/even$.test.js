@@ -1,4 +1,4 @@
-const { even$ } = require("./even$");
+const { even$ } = require("../../lib/math/even$");
 
 describe("even$", () => {
   it("returns true if a number is even", () => {

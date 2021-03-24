@@ -1,4 +1,4 @@
-const { add } = require("./add");
+const { add } = require("../../lib/math/add");
 
 describe("add", () => {
   it("adds numbers", () => {

@@ -1,4 +1,4 @@
-const { gte$ } = require("./gte$");
+const { gte$ } = require("../../lib/math/gte$");
 
 describe("gte$", () => {
   it("returns true if nums are in monotonically decreasing order", () => {

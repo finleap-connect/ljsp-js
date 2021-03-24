@@ -1,4 +1,4 @@
-const { lte$ } = require("./lte$");
+const { lte$ } = require("../../lib/math/lte$");
 
 describe("lte$", () => {
   it("returns true if nums are in monotonically increasing order", () => {

@@ -1,4 +1,4 @@
-const { odd$ } = require("./odd$");
+const { odd$ } = require("../../lib/math/odd$");
 
 describe("odd$", () => {
   it("returns true if provided an odd number", () => {
