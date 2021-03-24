@@ -1,4 +1,4 @@
-const { project } = require("./project");
+const { project } = require("../../lib/object/project");
 
 describe("project", function () {
   it("should strip out unwanted properties pairs from an Object", function () {

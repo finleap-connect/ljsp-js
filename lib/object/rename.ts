@@ -1,4 +1,5 @@
 import { reduceKv } from "../list/reduce-kv";
+import { iff } from "../conditional";
 
 /**
  * @param {Object[]} collection
@@ -9,8 +10,11 @@ import { reduceKv } from "../list/reduce-kv";
 export function rename(collection, mapper) {
   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'acc' implicitly has an 'any' type.
   function renameProperties(acc, key, value) {
-    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'iff'.
-    let newKey = iff(mapper[key], mapper[key], key);
+    let newKey = iff(
+      mapper[key],
+      () => mapper[key],
+      () => key
+    );
     acc[newKey] = value;
     return acc;
   }

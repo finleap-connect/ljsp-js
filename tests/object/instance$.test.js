@@ -1,4 +1,4 @@
-const { instance$ } = require("./instance$");
+const { instance$ } = require("../../lib/object/instance$");
 describe("instance$", () => {
   it("returns true if the second argument is an instance of a primitive", () => {
     expect(instance$(String, "1")).toEqual(true);
