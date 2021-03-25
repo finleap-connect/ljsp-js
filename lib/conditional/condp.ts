@@ -1,10 +1,7 @@
 import { eq } from "../generic/eq";
-import { first } from "../list/first";
-import { nth } from "../list/nth";
-import { second } from "../list/second";
 import { spec } from "../spec/spec";
-import { partition } from "../list/partition";
 import { function$ } from "../generic/function$";
+import { undefined$ } from "../generic/undefined$";
 
 /**
  * Takes a binary predicate, an expression, and a set of clauses.
@@ -29,15 +26,13 @@ export function condp(pred, expr, ...rest) {
   if (eq(rest.length, 0)) {
     return undefined;
   }
-    spec({ func: "condp", spec: { predIsFunction: function$(pred) } });
-  const def = Symbol();
-  const clauses = partition(2, 2, [def], rest);
-  for (let i = 0; i < clauses.length; i++) {
-    const currentClause = nth(clauses, i);
-    const rawComparator = first(currentClause);
-    const winner = second(currentClause);
+  spec({ func: "condp", spec: { predIsFunction: function$(pred) } });
+  let i = 0;
+  while (i < rest.length) {
+    const rawComparator = rest[i];
+    const winner = rest[i + 1];
     // If this is the default case, then return it.
-    if (eq(winner, def)) {
+    if (undefined$(winner)) {
       return function$(rawComparator) ? rawComparator() : rawComparator;
     }
     const comparison = function$(rawComparator) ? rawComparator() : rawComparator;
@@ -45,5 +40,6 @@ export function condp(pred, expr, ...rest) {
     if (result) {
       return function$(winner) ? winner(result) : winner;
     }
+    i = i + 2;
   }
 }

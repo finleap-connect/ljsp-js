@@ -1,6 +1,7 @@
 import { TPrimitive } from "../types/TPrimitive";
 import { eq } from "../generic/eq";
 import { function$ } from "../generic/function$";
+import { undefined$ } from "../generic/undefined$";
 
 /**
  * Takes an expression, and a set of clauses.
@@ -23,7 +24,7 @@ export function cases(expression: TPrimitive, ...rest: any[]) {
     const predicate = rest[i];
     const winner = rest[i + 1];
     // If this is the default case, then return it.
-    if (eq(winner, undefined)) {
+    if (undefined$(winner)) {
       return predicate;
     }
     if (eq(predicate, expression)) {

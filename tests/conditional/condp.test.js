@@ -26,7 +26,7 @@ describe("condp", () => {
     expect(result).toStrictEqual("evaluates true");
   });
 
-  it("does not matches any test expression, returns undefined", () => {
+  it("does not match any test expression, returns undefined", () => {
     // prettier-ignore
     const result = condp(lt$, 3000,
       1, "one",
@@ -37,7 +37,7 @@ describe("condp", () => {
     expect(result).toStrictEqual(undefined);
   });
 
-  it("does not matches test expression, returns default result expression", () => {
+  it("does not match test expression, returns default result expression", () => {
     // prettier-ignore
     const result = condp(lt$, 2000,
       1, "one",
