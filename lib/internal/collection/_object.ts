@@ -5,8 +5,13 @@ import { _Collection } from "./_meta-collection";
 import { ICollection } from "./i-collection";
 
 export class _Object extends _Collection implements ICollection {
+  constructor(set) {
+    super(set);
+    this.keys = Object.keys(set);
+    this.entries = Object.entries(set);
+  }
   get count() {
-    return Object.keys(this.set).length;
+    return this.keys.length;
   }
   get(index: number) {
     return Object.entries(this.set)[index];
@@ -29,7 +34,7 @@ export class _Object extends _Collection implements ICollection {
   contains$(item: any) {
     if (array$(item)) {
       const [key, val] = item;
-      const test = Object.entries(this.set).find(([k, v]) => k === key && v === val);
+      const test = this.entries.find(([k, v]) => k === key && v === val);
       return Boolean(test);
     } else {
       return item in this.set;
