@@ -62,7 +62,7 @@ export { get } from "./get";
 export { ffor } from "./ffor";
 export { every$ } from "./every$";
 export { notEvery$ } from "./not-every$";
-export { superset$ } from "./superset";
+export { superset$ } from "./superset$";
 export { disj } from "./disj";
 export { pop } from "./pop";
 export { groupBy } from "./group-by";
