@@ -3,6 +3,6 @@
  * @param {[]} subset
  * @returns {*}
  */
-export function subset$(set: Array<any>, subset: Array<any>) {
+export function subset$(set: any[], subset: any[]) {
   return subset.every((item) => set.includes(item));
 }
