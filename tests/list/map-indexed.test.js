@@ -4,7 +4,7 @@ const { when } = require("../../lib/conditional");
 const { mapIndexed } = require("../../lib/list/map-indexed");
 
 describe("mapIndexed", () => {
-  it("should", () => {
+  it("should map an index with a single value", () => {
     const fn = (idx, itm) => [idx, itm];
     expect(mapIndexed(fn, "foobar")).toEqual([
       [0, "f"],
@@ -15,7 +15,7 @@ describe("mapIndexed", () => {
       [5, "r"]
     ]);
   });
-  it("should map an index", () => {
+  it("should map an index with a set of values", () => {
     expect(
       mapIndexed(
         (a, b) => {
