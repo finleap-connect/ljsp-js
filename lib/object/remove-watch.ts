@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { spec } from "../spec/spec";
 import { watcher } from "./internal/constants";
 import { notEmpty$ } from "../generic/not-empty$";
@@ -9,13 +10,11 @@ export function removeWatch(map: TAnyObject, key: string) {
   spec({
     func: "removeWatch",
     spec: {
-      mapIsWatched: map.hasOwnProperty(watcher) && Array.isArray(map.keys) && notEmpty$(map.keys),
+      mapIsWatched: map.hasOwnProperty(watcher),
       keyIsString: string$(key)
     }
   });
-  // @ts-ignore
   delete map.__watcher.keys[key];
-  // @ts-ignore
   if (empty$(map.__watcher.keys)) {
     delete map.__watcher;
   }
