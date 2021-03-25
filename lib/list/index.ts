@@ -23,7 +23,7 @@ export { into } from "./into";
 export { flattenChildTree } from "./flatten-child-tree";
 export { some } from "./some";
 export { includes } from "./includes";
-export { notIncludes } from "./not-includes";
+export { notIncludes$ } from "./not-includes$";
 export { interpose } from "./interpose";
 export { last } from "./last";
 export { butLast } from "./but-last";
