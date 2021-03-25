@@ -23,4 +23,6 @@ export interface ICollection {
   get: (index: number) => any;
   count: number;
   empty: TCollection;
+  indexOf: (item: any) => number;
+  lastIndexOf: (item: any) => number;
 }

@@ -26,3 +26,4 @@ export { array$ } from "./array$";
 export { number$ } from "./number$";
 export { distinct$ } from "../generic/distinct$";
 export { regExp$ } from "./reg-exp$";
+export { maxKey } from "./max-key";

@@ -38,4 +38,10 @@ export class _Array extends _Collection implements ICollection {
   get count() {
     return this.set.length;
   }
+  indexOf(item: any) {
+    return this.set.indexOf(item);
+  }
+  lastIndexOf(item: any) {
+    return this.set.lastIndexOf(item);
+  }
 }
