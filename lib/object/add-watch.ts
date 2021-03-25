@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { spec } from "../spec/spec";
 import { watcher } from "./internal/constants";
 import { object$ } from "../generic/object$";
@@ -5,13 +6,6 @@ import { string$ } from "../generic/string$";
 import { cloneDeep } from "../generic/clone-deep";
 import { function$ } from "../generic/function$";
 
-/**
- * @param {{}} map
- * @param {string} key
- * @param {Function} watchFn
- * @returns {boolean|*}
- */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'map' implicitly has an 'any' type.
 export function addWatch(map, key, watchFn) {
   spec({
     func: "addWatch",
@@ -27,12 +21,10 @@ export function addWatch(map, key, watchFn) {
   const watchedMap = cloneDeep(map);
 
   const setHandler = {
-    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'obj' implicitly has an 'any' type.
     set(obj, prop, value) {
       if (watchedMap.__watcher.keys[prop]) {
         watchFn(prop, watchedMap, watchedMap[prop], value);
       }
-      // @ts-expect-error ts-migrate(2556) FIXME: Expected 3-4 arguments, but got 0 or more.
       return Reflect.set(...arguments);
     }
   };
@@ -43,8 +35,8 @@ export function addWatch(map, key, watchFn) {
   Object.defineProperty(proxy, watcher, {
     value: { setHandler, keys },
     writable: false,
-    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ value: { setHandler: { set(obj... Remove this comment to see the full error message
-    enumberable: false
+    enumberable: false,
+    configurable: true
   });
 
   return proxy;
