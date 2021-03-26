@@ -72,3 +72,5 @@ export { filter } from "./filter";
 export { map } from "./map";
 export { mReplace } from "./m-replace";
 export { drop } from "./drop";
+export { remove } from "./remove";
+export { union } from "./union";
