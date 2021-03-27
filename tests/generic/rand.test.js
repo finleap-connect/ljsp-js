@@ -1,4 +1,4 @@
-const { rand } = require("./rand");
+const { rand } = require("../../lib/generic/rand");
 
 describe("rand", function () {
   it("should generate a random number", function () {
