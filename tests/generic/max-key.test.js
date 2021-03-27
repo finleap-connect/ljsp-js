@@ -1,13 +1,13 @@
-const { maxKey } = require("generic");
-const { max } = require("math");
+const { maxKey } = require("../../lib/generic");
+const { max } = require("../../lib/math");
+const { count } = require("../../lib/list");
 
 describe("maxKey", function () {
-  const strLen = (item) => item.length | 0;
   it("should return maxKey for array of values", function () {
-    expect(maxKey(strLen, "asd", "bsd", "dsd", "long word")).toEqual("long word");
+    expect(maxKey(count, "asd", "bsd", "dsd", "long word")).toEqual("long word");
   });
   it("should return last maxKey for array of values when multiple", function () {
-    expect(maxKey(strLen, "asd", "bsd", "dsd")).toEqual("dsd");
+    expect(maxKey(count, "asd", "bsd", "dsd")).toEqual("dsd");
   });
   it("should find the key that has highest value in object", function () {
     const maxVal = (obj) => max(...Object.values(obj));
@@ -17,11 +17,10 @@ describe("maxKey", function () {
     expect(maxKey(maxVal, ...objColl)).toEqual(obj1);
   });
   it("should find the key that has highest value in set", function () {
-    const setLen = (set) => set.size;
     const set1 = new Set(["abc", "defc", "abcde"]);
     const set2 = new Set(["a", "bc"]);
     const setColl = [set1, set2];
-    expect(maxKey(setLen, ...setColl)).toEqual(set1);
+    expect(maxKey(count, ...setColl)).toEqual(set1);
   });
   it("should find the key that has highest value in map", function () {
     const maxVal = (map) => max(...map.values());
