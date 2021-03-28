@@ -18,7 +18,7 @@ import { cloneDeep } from "../generic/clone-deep";
  */
 export function assoc(map: Object | Array<any>, ...set: Array<any>) {
   const _set = cloneDeep(set);
-  const mapOrIndex = first(_set);
+  const [mapOrIndex] = _set;
   const isArray = number$(mapOrIndex);
   const _map = void$(map) ? {} : cloneDeep(map);
   spec({

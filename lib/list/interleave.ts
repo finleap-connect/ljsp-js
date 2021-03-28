@@ -20,7 +20,7 @@ export function interleave(...rest) {
       // find the shortest list
       const maxIterations = minLenList(...rest).length;
       // get the first list
-      const base = first(rest);
+      const [base] = rest;
       let temp = [];
 
       // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'acc' implicitly has an 'any' type.
