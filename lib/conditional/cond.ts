@@ -1,6 +1,8 @@
 import { spec } from "../spec/spec";
 import { even$ } from "../math/even$";
-import { function$ } from "../generic/function$";
+import { runFnOrGetValue } from "./internal/run-fn-or-get-value";
+import { _loopArgPairs } from "../internal/_loop-arg-pairs";
+import { ifYes } from "./if-yes";
 
 export const ELSE = "else";
 
@@ -9,13 +11,7 @@ export function cond(...rest: Array<any>) {
     return undefined;
   }
   spec({ func: "cond", spec: { argumentLength: even$(rest.length) } });
-  let i = 0;
-  while (i < rest.length) {
-    const predicate = rest[i];
-    if (function$(predicate) ? predicate() : predicate) {
-      const winner = rest[i + 1];
-      return function$(winner) ? winner() : winner;
-    }
-    i = i + 2;
-  }
+  return _loopArgPairs(rest, (predicate: any, winner: any) => {
+    return ifYes(runFnOrGetValue(predicate), () => [runFnOrGetValue(winner)]);
+  });
 }

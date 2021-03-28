@@ -1,5 +1,5 @@
-import { function$ } from "../generic/function$";
 import { empty$ } from "../generic";
+import { runFnOrGetValue } from "./internal/run-fn-or-get-value";
 
 export function and(...rest: Array<any>) {
   if (empty$(rest)) return true;
@@ -7,7 +7,7 @@ export function and(...rest: Array<any>) {
   let result;
   for (let x = 0; x < rest.length; x++) {
     const current = rest[x];
-    result = function$(current) ? current() : current;
+    result = runFnOrGetValue(current);
     if (!result) {
       return result;
     }

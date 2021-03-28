@@ -1,7 +1,8 @@
 import { TPrimitive } from "../types/TPrimitive";
 import { eq } from "../generic/eq";
-import { function$ } from "../generic/function$";
 import { undefined$ } from "../generic/undefined$";
+import { runFnOrGetValue } from "./internal/run-fn-or-get-value";
+import { _loopArgPairs } from "../internal/_loop-arg-pairs";
 
 /**
  * Takes an expression, and a set of clauses.
@@ -19,17 +20,11 @@ import { undefined$ } from "../generic/undefined$";
  * test-constants need not be all of the same type.
  */
 export function cases(expression: TPrimitive, ...rest: any[]) {
-  let i = 0;
-  while (i < rest.length) {
-    const predicate = rest[i];
-    const winner = rest[i + 1];
-    // If this is the default case, then return it.
+  return _loopArgPairs(rest, (predicate: any, winner: any) => {
     if (undefined$(winner)) {
-      return predicate;
+      return [predicate];
+    } else if (eq(predicate, expression)) {
+      return [runFnOrGetValue(winner)];
     }
-    if (eq(predicate, expression)) {
-      return function$(winner) ? winner() : winner;
-    }
-    i = i + 2;
-  }
+  });
 }

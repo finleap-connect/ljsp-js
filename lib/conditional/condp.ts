@@ -2,6 +2,8 @@ import { eq } from "../generic/eq";
 import { spec } from "../spec/spec";
 import { function$ } from "../generic/function$";
 import { undefined$ } from "../generic/undefined$";
+import { runFnOrGetValue } from "./internal/run-fn-or-get-value";
+import { _loopArgPairs } from "../internal/_loop-arg-pairs";
 
 /**
  * Takes a binary predicate, an expression, and a set of clauses.
@@ -27,19 +29,14 @@ export function condp(pred, expr, ...rest) {
     return undefined;
   }
   spec({ func: "condp", spec: { predIsFunction: function$(pred) } });
-  let i = 0;
-  while (i < rest.length) {
-    const rawComparator = rest[i];
-    const winner = rest[i + 1];
-    // If this is the default case, then return it.
+  return _loopArgPairs(rest, (rawComparator: any, winner: any) => {
     if (undefined$(winner)) {
-      return function$(rawComparator) ? rawComparator() : rawComparator;
+      return [runFnOrGetValue(rawComparator)];
     }
-    const comparison = function$(rawComparator) ? rawComparator() : rawComparator;
+    const comparison = runFnOrGetValue(rawComparator);
     const result = pred(expr, comparison);
     if (result) {
-      return function$(winner) ? winner(result) : winner;
+      return [runFnOrGetValue(winner, result)];
     }
-    i = i + 2;
-  }
+  });
 }
