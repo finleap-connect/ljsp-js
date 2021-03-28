@@ -7,7 +7,7 @@ export function _compare(values: Array<number | string>, comparator: Function) {
     return true;
   }
 
-  let comparison = first(values);
+  let [comparison] = values;
 
   for (let x = 1; x < values.length; x++) {
     const result = comparator(comparison, values[x]);

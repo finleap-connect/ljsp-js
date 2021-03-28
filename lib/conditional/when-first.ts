@@ -8,7 +8,7 @@ import { _returnLast } from "./internal/_return-last";
  * Roughly the same as (when (seq xs) (let [x (first xs)] body)) but xs is evaluated only once
  */
 export function whenFirst(set: Array<any>, ...rest: any) {
-  const boundItem = first(set);
+  const [boundItem] = set;
   if (boundItem) {
     return _returnLast(rest, boundItem);
   }

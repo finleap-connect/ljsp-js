@@ -10,14 +10,13 @@ export function map(fn: Function, ...args: Array<any>) {
     return function (stepFunction: Function) {
       return function (...args: any[]) {
         const len = args.length;
-        const result = first(args);
-        args = rest(args);
+        const [result, ...rest] = args;
         // prettier-ignore
         return condp(eq, len,
           0, () => stepFunction(),
           1, () => stepFunction(result),
           () => {
-            return stepFunction(result, apply(fn, args));
+            return stepFunction(result, apply(fn, rest));
           }
         );
       };

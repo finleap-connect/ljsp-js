@@ -4,9 +4,11 @@ import { void$ } from "../generic/void$";
 import { ffor } from "./ffor";
 import { assoc } from "./assoc";
 import { count } from "./count";
-import { second } from "./second";
 import { and } from "../conditional/and";
 import { keys } from "../object";
+import { comp } from "../function/comp";
+
+const fKeys = comp(keys, first);
 
 /**
  * When passed 2 rels, returns the rel corresponding to the natural
@@ -15,21 +17,20 @@ import { keys } from "../object";
  */
 export function natJoin(xrel: Array<any>, yrel: Array<any>, keyMap?: string[]) {
   const sizeOrderedSet = count(xrel) >= count(yrel) ? [xrel, yrel] : [yrel, xrel];
-  const base = first(sizeOrderedSet);
-  const foreign = second(sizeOrderedSet);
+  const [base, foreign] = sizeOrderedSet;
 
   // Build an index of items in the matched set based on the corresponding key
   // Use a Map, so the key can be any value
   let foreignKey: string, joinKey: string;
   if (keyMap) {
     const [leftKey, rightKey] = keyMap;
-    const test = first(base);
+    const [test] = base;
     foreignKey = leftKey in test ? rightKey : leftKey;
     joinKey = leftKey in test ? leftKey : rightKey;
   } else {
-    const xkeys = keys(first(xrel));
-    const ykeys = keys(first(yrel));
-    foreignKey = first(intersection(xkeys, ykeys));
+    const xkeys = fKeys(xrel);
+    const ykeys = fKeys(yrel);
+    [foreignKey] = intersection(xkeys, ykeys);
     joinKey = foreignKey;
   }
 
