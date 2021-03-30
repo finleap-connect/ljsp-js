@@ -1,4 +1,4 @@
-import { empty$ } from "../generic";
+import { empty$ } from "../generic/empty$";
 import { runFnOrGetValue } from "./internal/run-fn-or-get-value";
 
 export function and(...rest: Array<any>) {

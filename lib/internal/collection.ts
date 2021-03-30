@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { TCollection } from "../types/t-collection";
-import { string$ } from "../generic/string$";
 import { ICollection, ICollectionMap } from "./collection/i-collection";
 import { _Array } from "./collection/_array";
 import { _String } from "./collection/_string";
@@ -11,6 +10,7 @@ import { _Collection } from "./collection/_meta-collection";
 import { _getType } from "./_get-type";
 import { cloneDeep } from "../generic/clone-deep";
 import { not } from "../generic/not";
+import { BaseTypes } from "../enums/base-types";
 
 export function Collection(coll: TCollection, clone = true): ICollection {
   if (coll instanceof _Collection) {
@@ -18,7 +18,7 @@ export function Collection(coll: TCollection, clone = true): ICollection {
   }
 
   const type = _getType(coll);
-  let set = not(clone) || string$(coll) ? coll : cloneDeep(coll);
+  let set = not(clone) || typeof coll === BaseTypes.String ? coll : cloneDeep(coll);
 
   return new CollectionMap[type](set);
 }

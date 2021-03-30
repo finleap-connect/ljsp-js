@@ -1,7 +1,7 @@
-import { first } from "../list";
-import { iff } from "../conditional";
+import { first } from "../list/first";
+import { iff } from "../conditional/iff";
 import { identity } from "./identity";
-import { eq } from "../generic";
+import { eq } from "../generic/eq";
 import { apply } from "./apply";
 
 type Function = (...args: any) => any;
