@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { TCollection } from "../../types/t-collection";
-import { array$, eq, not } from "../../generic";
+import { array$ } from "../../generic/array$";
+import { eq } from "../../generic/eq";
+import { not } from "../../generic/not";
 import { _Collection } from "./_meta-collection";
 import { ICollection } from "./i-collection";
 

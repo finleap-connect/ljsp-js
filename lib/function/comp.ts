@@ -1,4 +1,4 @@
-import { makeArray } from "../list";
+import { makeArray } from "../list/make-array";
 
 export function comp(...fns: Array<Function>) {
   return function (...args: Array<any>) {
