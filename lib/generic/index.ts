@@ -26,6 +26,7 @@ export { notEmpty } from "./not-empty";
 export { notEq } from "./not-eq";
 export { number$ } from "./number$";
 export { numberSet$ } from "./number-set$";
+export { numeric$ } from "./numeric$";
 export { object$ } from "./object$";
 export { objectLike$ } from "./object-like$";
 export { objectSet$ } from "./object-set$";
