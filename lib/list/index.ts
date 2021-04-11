@@ -39,6 +39,7 @@ export { into } from "./into";
 export { iterator } from "./iterator";
 export { keep } from "./keep";
 export { last } from "./last";
+export { lazyMap } from "./lazyMap";
 export { mReplace } from "./m-replace";
 export { makeArray } from "./make-array";
 export { map } from "./map";

@@ -1,9 +1,6 @@
-import { apply } from "../function";
 import { empty$, eq } from "../generic";
 import { gt$ } from "../math";
 import { condp } from "../conditional";
-import { first } from "./first";
-import { rest } from "./rest";
 
 export function map(fn: Function, ...args: Array<any>) {
   if (empty$(args)) {
@@ -16,7 +13,7 @@ export function map(fn: Function, ...args: Array<any>) {
           0, () => stepFunction(),
           1, () => stepFunction(result),
           () => {
-            return stepFunction(result, apply(fn, rest));
+            return stepFunction(result, fn(...rest));
           }
         );
       };
@@ -27,7 +24,7 @@ export function map(fn: Function, ...args: Array<any>) {
 
     for (let x = 0; x < shortest.length; x++) {
       const col = getColumn(args, x);
-      result.push(apply(fn, col));
+      result.push(fn(...col));
     }
 
     return result;
