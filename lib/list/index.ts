@@ -25,6 +25,7 @@ export { fnext } from "./fnext";
 export { forIt } from "./for-it";
 export { frequencies } from "./frequencies";
 export { get } from "./get";
+export { getArraySetColumn } from "./get-array-set-column";
 export { getSectionFromSet } from "./get-section-from-set";
 export { groupBy } from "./group-by";
 export { identical$ } from "./identical$";
