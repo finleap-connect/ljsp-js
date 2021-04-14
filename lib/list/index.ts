@@ -79,6 +79,7 @@ export { superset$ } from "./superset$";
 export { take } from "./take";
 export { takeLast } from "./take-last";
 export { takeS } from "./take-s";
+export { toggleInclude } from "./toggle-include";
 export { union } from "./union";
 export { updateSet } from "./update-set";
 export { walk } from "./walk";
