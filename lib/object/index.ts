@@ -13,3 +13,4 @@ export { rename } from "./rename";
 export { swap } from "./swap";
 export { updateIn } from "./update-in";
 export { vals } from "./vals";
+export { entries } from "./entries";
