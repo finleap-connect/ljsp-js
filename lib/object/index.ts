@@ -8,6 +8,7 @@ export { M } from "./M";
 export { merge } from "./merge";
 export { ownMethods } from "./own-methods";
 export { project } from "./project";
+export { prune } from "./prune";
 export { removeWatch } from "./remove-watch";
 export { rename } from "./rename";
 export { swap } from "./swap";
