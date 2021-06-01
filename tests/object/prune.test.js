@@ -9,4 +9,12 @@ describe("prune", function () {
       leipzig: "city"
     });
   });
+  it("should prune empty string props from an object", function () {
+    const map = { one: "", bob: "name", leipzig: "city", age: "" };
+
+    expect(prune(map)).toEqual({
+      bob: "name",
+      leipzig: "city"
+    });
+  });
 });
