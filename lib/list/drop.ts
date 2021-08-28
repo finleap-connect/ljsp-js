@@ -6,7 +6,7 @@ import { void$ } from "../generic";
 import { Collection } from "../internal/collection";
 
 export function drop(n: number, set?: TCollection) {
-  spec({ func: "drop", spec: { nIsNumber: number$(n) } });
+  spec(drop, { nIsNumber: number$(n) });
   if (void$(set)) {
     return function (step: Function) {
       return function (result: any, input: any) {

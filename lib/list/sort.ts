@@ -7,12 +7,9 @@ import { spec } from "../spec/spec";
  */
 // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'comp' implicitly has an 'any' type.
 export function sort(comp, set) {
-  spec({
-    func: "sort",
-    spec: {
-      validComp: !set ? Array.isArray(comp) : function$(comp),
-      validSet: set ? Array.isArray(set) : true
-    }
+  spec(sort, {
+    validComp: !set ? Array.isArray(comp) : function$(comp),
+    validSet: set ? Array.isArray(set) : true
   });
   return Array.isArray(comp) ? comp.slice().sort() : set.slice().sort(comp);
 }

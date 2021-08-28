@@ -10,7 +10,7 @@ export function cond(...rest: Array<any>) {
   if (rest.length === 0) {
     return undefined;
   }
-  spec({ func: "cond", spec: { argumentLength: even$(rest.length) } });
+  spec(cond, { argumentLength: even$(rest.length) });
   return _loopArgPairs(rest, (predicate: any, winner: any) => {
     return ifYes(runFnOrGetValue(predicate), () => [runFnOrGetValue(winner)]);
   });

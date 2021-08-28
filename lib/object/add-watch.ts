@@ -7,14 +7,11 @@ import { cloneDeep } from "../generic/clone-deep";
 import { function$ } from "../generic/function$";
 
 export function addWatch(map, key, watchFn) {
-  spec({
-    func: "addWatch",
-    spec: {
-      mapIsObject: object$(map),
-      validKey: string$(key) && key.trim() !== "",
-      watchIsFunction: function$(watchFn),
-      watchHasFourArgs: watchFn.length === 4
-    }
+  spec(addWatch, {
+    mapIsObject: object$(map),
+    validKey: string$(key) && key.trim() !== "",
+    watchIsFunction: function$(watchFn),
+    watchHasFourArgs: watchFn.length === 4
   });
   const keys = map.__watcher && map.__watcher.keys ? { ...map.__watcher.keys, [key]: key } : { [key]: key };
 
