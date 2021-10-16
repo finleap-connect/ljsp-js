@@ -21,12 +21,9 @@ export function assoc(map: Object | Array<any>, ...set: Array<any>) {
   const [mapOrIndex] = _set;
   const isArray = number$(mapOrIndex);
   const _map = void$(map) ? {} : cloneDeep(map);
-  spec({
-    func: "assoc",
-    spec: {
-      setTypesMatch: or(and(Array.isArray(_map), Array.isArray(_set)), and(object$(_map), objectSet$(_set))),
-      arrayArgsIsTwo: iff(isArray, eq(_set.length, 2), true)
-    }
+  spec(assoc, {
+    setTypesMatch: or(and(Array.isArray(_map), Array.isArray(_set)), and(object$(_map), objectSet$(_set))),
+    arrayArgsIsTwo: iff(isArray, eq(_set.length, 2), true)
   });
   return iff(
     isArray,

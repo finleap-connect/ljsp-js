@@ -28,7 +28,7 @@ export function condp(pred, expr, ...rest) {
   if (eq(rest.length, 0)) {
     return undefined;
   }
-  spec({ func: "condp", spec: { predIsFunction: function$(pred) } });
+  spec(condp, { predIsFunction: function$(pred) });
   return _loopArgPairs(rest, (rawComparator: any, winner: any) => {
     if (undefined$(winner)) {
       return [runFnOrGetValue(rawComparator)];

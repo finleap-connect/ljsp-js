@@ -10,7 +10,7 @@ import { spec } from "../spec";
  * corresponding elements, in the order they appeared in coll.
  */
 export function groupBy(fn: Function | string, coll: Array<any>) {
-  spec({ func: "groupBy", spec: { keyWordHasObjectColl: string$(fn) ? objectSet$(coll) : true } });
+  spec(groupBy, { keyWordHasObjectColl: string$(fn) ? objectSet$(coll) : true });
   const isProp = and(objectSet$(coll), string$(fn));
 
   return coll.reduce((result, value, key) => {

@@ -5,7 +5,7 @@ import { contains$ } from "./contains$";
 import { spec } from "../spec";
 
 export function superset$(set1: Array<any>, set2: Array<any>) {
-  spec({ func: "superset$", spec: { setsAreArrays: and(Array.isArray(set1), Array.isArray(set2)) } });
+  spec(superset$, { setsAreArrays: and(Array.isArray(set1), Array.isArray(set2)) });
   function _contains(item: any) {
     return contains$(set1, item);
   }
