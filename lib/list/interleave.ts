@@ -1,8 +1,9 @@
 import { cond, ELSE } from "../conditional/cond";
 import { first } from "./first";
 import { minLenList } from "./min-len-list";
-import { notEmpty$ } from "../generic/not-empty$";
 import { empty$ } from "../generic/empty$";
+import { not } from "../generic";
+import { isMultiDimArr } from "../generic/internal/is-multi-dim-arr";
 
 /**
  * @param {[]} rest
@@ -10,11 +11,10 @@ import { empty$ } from "../generic/empty$";
  */
 // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'rest' implicitly has an 'any[]' ty... Remove this comment to see the full error message
 export function interleave(...rest) {
-  if (notEmpty$(rest)) {
-  }
   // prettier-ignore
   return cond(
     () => empty$(rest), () => undefined,
+    () => not(isMultiDimArr(rest)), () => rest,
     () => rest.length === 1, first(rest),
     ELSE, () => {
       // find the shortest list
