@@ -17,4 +17,7 @@ describe("interleave", function () {
   it("should return undefined if passed no values", function () {
     expect(interleave()).toEqual(undefined);
   });
+  it("should return the same array if passed a non-multi-dimensional array", function () {
+    expect(interleave([1, 2, 3])).toEqual([1, 2, 3]);
+  });
 });
