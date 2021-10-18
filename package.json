@@ -1,9 +1,9 @@
 {
-  "name": "@flc-ds/fii-js-core",
-  "version": "1.0.0",
+  "name": "ljsp-js",
+  "version": "0.1.0",
   "description": "",
   "repository": {
-    "url": "https://gitlab.figo.systems/flc-ds/js-core.git"
+    "url": "https://github.com/finleap-connect/ljsp-js"
   },
   "jsnext:main": "dist/index.js",
   "main": "dist/index.js",
@@ -26,7 +26,6 @@
     }
   },
   "dependencies": {
-    "@semantic-release/gitlab": "^6.0.9",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
@@ -38,7 +37,6 @@
     "@babel/preset-env": "^7.12.1",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@semantic-release/gitlab-config": "^8.0.0",
     "@types/jest": "^26.0.20",
     "@types/lodash": "^4.14.168",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
@@ -65,11 +63,7 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-url": "^3.0.1",
     "rollup-plugin-visualizer": "^4.1.2",
-    "semantic-release": "^17.3.9",
     "ts-jest": "^26.5.2",
     "typescript": "^4.2.2"
-  },
-  "publishConfig": {
-    "registry": "https://gitlab.figo.systems/api/v4/projects/808/packages/npm/"
   }
 }
