@@ -1,7 +1,7 @@
 {
   "name": "ljsp-js",
   "version": "0.1.0",
-  "description": "",
+  "description": "A lisp-inspired functional library for javascript programmers",
   "repository": {
     "url": "https://github.com/finleap-connect/ljsp-js"
   },
@@ -17,8 +17,28 @@
     "lint": "eslint lib/**/*.ts tests/**/*.js --fix --max-warnings=0",
     "prettify:all": "prettier --write \"**/*.js*\""
   },
-  "keywords": [],
-  "author": "",
+  "files": [
+    "release"
+  ],
+  "keywords": [
+    "lisp",
+    "javascript",
+    "functional",
+    "util",
+    "utils",
+    "utilities",
+    "functions",
+    "toolkit",
+    "fp",
+    "functional programming",
+    "clojure"
+  ],
+  "author": [
+    "Joseph Crick <joseph.crick@finleap.com>",
+    "Dania Duany <dania.duany@finleap.com>",
+    "Ashish Santikari <hi@ashishsantikari.info>",
+    "Josip Brčina <josipbrchina@gmail.com>"
+  ],
   "license": "ISC",
   "husky": {
     "hooks": {
