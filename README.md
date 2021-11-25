@@ -5,7 +5,7 @@
 [![version][version-badge]][changelog]
 
 [changelog]: CHANGELOG.md
-[version-badge]: https://img.shields.io/badge/version-0.1.0-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.1.1-blue.svg
 
 # LJSP: Embrace the Lisp in JavaScript!
 Whether you agree that JavaScript is a Lisp or not, you can still harness the Lisp-inspired power of LJSP in your app. LJSP derives most of its functions from Clojure libraries. Clojurians will notice the extent to which we treated the Clojure docs not only as our requirements' specification, but as a great place to copy and paste text for our docs! For this, we offer heart-felt, tremendous thanks to the Clojure community.
@@ -15,14 +15,14 @@ For information on how to use LJSP, please visit our official documentation site
 
 ## Getting Started
 
-NPM `npm i ljsp-js`
+NPM `npm i ljsp-core`
 
-YARN `yarn add ljsp-js`
+YARN `yarn add ljsp-core`
 
 ### USAGE
 
 ```javascript
-import { log, condp, str, mult, count, instance$ } from 'ljsp-js';
+import { log, condp, str, mult, count, instance$ } from 'ljsp-core';
 
 log("Enter a number: ")
 (function(line) {

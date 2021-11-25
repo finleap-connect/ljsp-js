@@ -1,6 +1,6 @@
 {
-  "name": "ljsp-js",
-  "version": "0.1.0",
+  "name": "ljsp-core",
+  "version": "0.1.1",
   "description": "A lisp-inspired functional library for javascript programmers",
   "repository": {
     "url": "https://github.com/finleap-connect/ljsp-js"
