@@ -1,0 +1,12 @@
+export { apply } from "./apply";
+export { comp } from "./comp";
+export { complement } from "./complement";
+export { constantly } from "./constantly";
+export { fNil } from "./f-nil";
+export { identity } from "./identity";
+export { juxt } from "./juxt";
+export { memoize } from "./memoize";
+export { partial } from "./partial";
+export { repeatedly } from "./repeatedly";
+export { tf } from "./tf";
+export { trampoline } from "./trampoline";
