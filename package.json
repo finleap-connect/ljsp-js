@@ -1,6 +1,6 @@
 {
   "name": "ljsp-core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A lisp-inspired functional library for javascript programmers",
   "repository": {
     "url": "https://github.com/finleap-connect/ljsp-js"
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
-    "release": "npm publish",
+    "release": "npm run build && npm publish",
     "test": "jest --watch",
     "test:once": "jest",
     "lint": "eslint lib/**/*.ts tests/**/*.js --fix --max-warnings=0",
@@ -40,11 +40,6 @@
     "Josip Brčina <josipbrchina@gmail.com>"
   ],
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "dependencies": {
     "lodash.set": "^4.3.2"
   },
