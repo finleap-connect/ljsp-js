@@ -1,7 +1,7 @@
-import { isObject } from "lodash";
 import { cycle } from "./cycle";
 import { iterator } from "./iterator";
 import { cloneDeep } from "../generic/clone-deep";
+import { object$ } from "../generic/object$";
 
 /**
  * @param {*|number} num
@@ -12,7 +12,7 @@ import { cloneDeep } from "../generic/clone-deep";
 export function repeat(num, x) {
   if (x) {
     const set = Array.from({ length: num }, () => {
-      return isObject(x) ? cloneDeep(x) : x;
+      return object$(x) ? cloneDeep(x) : x;
     });
     return iterator(set);
   } else {

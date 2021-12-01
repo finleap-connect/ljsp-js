@@ -1,4 +1,5 @@
-import { set } from "lodash";
+// @ts-ignore
+import set from "lodash.set";
 import { swap } from "./swap";
 import { get } from "../list/get";
 
@@ -9,8 +10,7 @@ import { get } from "../list/get";
  * @param {*} rest
  * @returns {*}
  */
-// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'coll' implicitly has an 'any' type.
-export function updateIn(coll, keys, fn, ...rest) {
+export function updateIn(coll: any, keys: any, fn: Function, ...rest: any) {
   const propertyPath = keys.join(".");
   const updateValue = get(coll, propertyPath);
   const result = fn(updateValue, ...rest);
