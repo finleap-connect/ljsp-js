@@ -12,7 +12,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "release": "npm run build && npm publish",
-    "release-beta": "npm run build && npm publish --tag beta",
+    "release:beta": "npm run build && npm publish --tag beta",
     "test": "jest --watch",
     "test:once": "jest",
     "lint": "eslint lib/**/*.ts tests/**/*.js --fix --max-warnings=0",
