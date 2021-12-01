@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { iff } from "../conditional";
-import { notEmpty$ } from "../generic";
+import { iff } from "../conditional/iff";
+import { notEmpty$ } from "../generic/not-empty$";
 import { subs } from "./subs";
 import { regExp$ } from "../generic/reg-exp$";
 

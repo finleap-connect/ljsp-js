@@ -1,0 +1,17 @@
+export { addWatch } from "./add-watch";
+export { dissoc } from "./dissoc";
+export { find } from "./find";
+export { hasOwnProp } from "./has-own-prop";
+export { instance$ } from "./instance$";
+export { keys } from "./keys";
+export { M } from "./M";
+export { merge } from "./merge";
+export { ownMethods } from "./own-methods";
+export { project } from "./project";
+export { prune } from "./prune";
+export { removeWatch } from "./remove-watch";
+export { rename } from "./rename";
+export { swap } from "./swap";
+export { updateIn } from "./update-in";
+export { vals } from "./vals";
+export { entries } from "./entries";

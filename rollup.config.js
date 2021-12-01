@@ -3,6 +3,7 @@ import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 import typescript from "rollup-plugin-typescript2";
 import { enableDevPlugins } from "./enableDevPlugins";
+import { terser } from "rollup-plugin-terser";
 
 export default [
   {
@@ -10,9 +11,10 @@ export default [
     output: [
       {
         file: "dist/index.js",
-        format: "cjs",
+        format: "esm",
         sourcemap: false
-      }
+      },
+      { file: "dist/lib.cjs.js", format: "cjs" }
     ],
     plugins: [
       ...enableDevPlugins(),
@@ -29,8 +31,9 @@ export default [
         ],
         exclude: ["node_modules/**", "lib", "bin"]
       }),
-      commonjs()
+      commonjs(),
+      terser()
     ],
-    external: ["lodash"]
+    external: ["lodash.set"]
   }
 ];
