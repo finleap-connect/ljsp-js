@@ -1,6 +1,6 @@
 {
   "name": "ljsp-core",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A lisp-inspired functional library for javascript programmers",
   "repository": {
     "url": "https://github.com/finleap-connect/ljsp-js"
@@ -41,9 +41,6 @@
     "Josip Brčina <josipbrchina@gmail.com>"
   ],
   "license": "ISC",
-  "dependencies": {
-    "lodash.set": "^4.3.2"
-  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",

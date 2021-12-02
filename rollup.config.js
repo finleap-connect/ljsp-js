@@ -33,7 +33,6 @@ export default [
       }),
       commonjs(),
       terser()
-    ],
-    external: ["lodash.set"]
+    ]
   }
 ];
