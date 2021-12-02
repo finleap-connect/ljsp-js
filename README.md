@@ -5,7 +5,7 @@
 [![version][version-badge]][changelog]
 
 [changelog]: CHANGELOG.md
-[version-badge]: https://img.shields.io/badge/version-0.1.7-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.1.8-blue.svg
 
 # LJSP: Embrace the Lisp in JavaScript!
 Whether you agree that JavaScript is a Lisp or not, you can still harness the Lisp-inspired power of LJSP in your app. LJSP derives most of its functions from Clojure libraries. Clojurians will notice the extent to which we treated the Clojure docs not only as our requirements' specification, but as a great place to copy and paste text for our docs! For this, we offer heart-felt, tremendous thanks to the Clojure community.

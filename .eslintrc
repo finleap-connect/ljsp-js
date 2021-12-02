@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["prettier/standard", "plugin:prettier/recommended", "plugin:jest/recommended"],
+  "extends": ["plugin:prettier/recommended", "plugin:jest/recommended"],
   "plugins": ["prettier", "jest"],
   "settings": {
     "import/resolver": {
@@ -35,7 +35,7 @@
     {
       "files": ["lib/**/*.ts"],
       "parser": "@typescript-eslint/parser",
-      "extends": ["prettier/standard", "plugin:prettier/recommended"],
+      "extends": ["plugin:prettier/recommended"],
       "plugins": ["@typescript-eslint", "prettier"],
       "settings": {
         "import/resolver": {
