@@ -3,14 +3,16 @@ import { take } from "../../lib/list/take";
 
 describe("take", () => {
   it("should return a transducer that works with LJSP's `reduce` if given one argument", () => {
+    // @ts-ignore
     const transducer = take(5);
-    const reducer = transducer((a, c) => a.concat([c]));
+    const reducer = transducer((a: any[], c: any) => a.concat([c]));
     const result = reduce(reducer, [], [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     expect(result).toEqual([1, 2, 3, 4, 5]);
   });
   it("should return a transducer that works with native `Array.prototype.reduce` if given one argument", () => {
+    // @ts-ignore
     const transducer = take(5);
-    const reducer = transducer((a, c) => a.concat([c]));
+    const reducer = transducer((a: any[], c: any) => a.concat([c]));
     const result = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce(reducer, []);
     expect(result).toEqual([1, 2, 3, 4, 5]);
   });

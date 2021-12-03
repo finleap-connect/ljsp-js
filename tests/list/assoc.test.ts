@@ -8,6 +8,7 @@ describe("assoc", () => {
     expect(assoc({ one: "one" }, { one: "two" })).toEqual({ one: "two" });
   });
   it("should treat void values as an empty map", () => {
+    // @ts-ignore
     expect(assoc(null, { one: "value", two: "another value" })).toEqual({ one: "value", two: "another value" });
   });
   it("should replace values in an Array by index", () => {
