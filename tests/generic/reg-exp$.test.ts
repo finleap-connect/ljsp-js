@@ -1,4 +1,4 @@
-import { regExp$ } from"../../lib/generic/reg-exp$";
+import { regExp$ } from "../../lib/generic/reg-exp$";
 
 describe("isRegExp", function () {
   it("should return true for regex", function () {

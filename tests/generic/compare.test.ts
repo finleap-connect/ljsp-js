@@ -1,4 +1,4 @@
-import { compare } from"../../lib/generic/compare";
+import { compare } from "../../lib/generic/compare";
 
 describe("compare", () => {
   describe("number comparisons", () => {

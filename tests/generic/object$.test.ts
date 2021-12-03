@@ -1,4 +1,4 @@
-import { object$ } from"../../lib/generic/object$";
+import { object$ } from "../../lib/generic/object$";
 
 describe("object$", () => {
   it("should return true if given an object", () => {

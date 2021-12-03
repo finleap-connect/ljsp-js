@@ -1,4 +1,4 @@
-import { rand } from"../../lib/generic/rand";
+import { rand } from "../../lib/generic/rand";
 
 describe("rand", function () {
   it("should generate a random number", function () {

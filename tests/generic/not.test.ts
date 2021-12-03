@@ -1,4 +1,4 @@
-import { not } from"../../lib/generic/not";
+import { not } from "../../lib/generic/not";
 
 describe("not", function () {
   it("should negate something", function () {

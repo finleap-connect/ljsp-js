@@ -1,4 +1,4 @@
-import { objectLike$ } from"../../lib/generic/object-like$";
+import { objectLike$ } from "../../lib/generic/object-like$";
 
 describe("objectLike$", () => {
   it("should return true when passed an object", () => {

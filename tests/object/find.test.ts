@@ -5,7 +5,7 @@ describe("find", () => {
     expect(find({ a: 1 }, "a")).toEqual(["a", 1]);
   });
   it("should find a Symbols-based property in an object", () => {
-    const sym = Symbol("a";
+    const sym = Symbol("a");
     const obj = { [sym]: 1 };
     expect(find(obj, sym)).toEqual([sym, 1]);
   });

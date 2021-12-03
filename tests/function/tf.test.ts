@@ -8,8 +8,8 @@ describe("thread first", () => {
       tf(
         "a b c d",
         upperCase,
-        (string) => string.replace("A", "X"),
-        (string) => string.split(" "),
+        (string: string) => string.replace("A", "X"),
+        (string: string) => string.split(" "),
         first
       )
     ).toBe("X");

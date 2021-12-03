@@ -1,4 +1,4 @@
-import { doWork } from"../../lib/generic/do-work";
+import { doWork } from "../../lib/generic/do-work";
 
 describe("doWork", function () {
   it("should return undefined when no args provided", function () {

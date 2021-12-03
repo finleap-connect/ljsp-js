@@ -1,4 +1,4 @@
-import { orEq } from"../../lib/generic/or-eq";
+import { orEq } from "../../lib/generic/or-eq";
 
 describe("orEq", () => {
   it("should return true if a base value is equal to one or more options", () => {

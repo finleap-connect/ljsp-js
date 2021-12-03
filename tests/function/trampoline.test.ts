@@ -2,8 +2,8 @@ import { trampoline } from "../../lib/function";
 
 describe("trampoline", () => {
   it("creates a recursable function", () => {
-    const result = [];
-    function foo(x) {
+    const result: any[] = [];
+    function foo(x: number) {
       // Base case
       if (x < 0) {
         result.push("done");

@@ -1,4 +1,4 @@
-import { distinct$ } from"../../lib/generic/distinct$";
+import { distinct$ } from "../../lib/generic/distinct$";
 
 describe("distinct$", () => {
   it("should return true when items are distinct", () => {
@@ -8,6 +8,7 @@ describe("distinct$", () => {
     expect(distinct$(1)).toBe(true);
   });
   it("should return false when one item is duplicated anywhere in the list", () => {
+    // eslint-disable-next-line jest/valid-expect
     expect(distinct$(1, 2, 3, false, "a", 2, 9));
   });
 });

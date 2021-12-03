@@ -1,4 +1,4 @@
-import { dotimes } from"../../lib/generic/dotimes";
+import { dotimes } from "../../lib/generic/dotimes";
 
 describe("dotimes", function () {
   it("should run a function n times", function () {

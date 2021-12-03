@@ -1,6 +1,6 @@
-import { maxKey } from"../../lib/generic";
-import { max } from"../../lib/math";
-import { count } from"../../lib/list";
+import { maxKey } from "../../lib/generic";
+import { max } from "../../lib/math";
+import { count } from "../../lib/list";
 
 describe("maxKey", function () {
   it("should return maxKey for array of values", function () {
@@ -10,7 +10,8 @@ describe("maxKey", function () {
     expect(maxKey(count, "asd", "bsd", "dsd")).toEqual("dsd");
   });
   it("should find the key that has highest value in object", function () {
-    const maxVal = (obj) => max(...Object.values(obj));
+    // @ts-ignore
+    const maxVal = (obj: { [s: string]: unknown } | ArrayLike<unknown>) => max(...Object.values(obj));
     const obj1 = { a: 3, b: 7, c: 9 };
     const obj2 = { a: 2, b: 3, c: 4 };
     const objColl = [obj1, obj2];
@@ -23,7 +24,7 @@ describe("maxKey", function () {
     expect(maxKey(count, ...setColl)).toEqual(set1);
   });
   it("should find the key that has highest value in map", function () {
-    const maxVal = (map) => max(...map.values());
+    const maxVal = (map: any[]) => max(...map.values());
     const map1 = new Map([
       ["a", 3],
       ["b", 7],

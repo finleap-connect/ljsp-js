@@ -1,4 +1,4 @@
-import { numeric$ } from"../../lib/generic/numeric$";
+import { numeric$ } from "../../lib/generic/numeric$";
 
 describe("numeric$", function () {
   it("returns true if the value can be converted to a number", function () {

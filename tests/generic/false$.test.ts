@@ -1,4 +1,4 @@
-import { false$ } from"../../lib/generic/false$";
+import { false$ } from "../../lib/generic/false$";
 describe("false$", () => {
   it("should return true if the argument is false", () => {
     expect(false$(false)).toEqual(true);

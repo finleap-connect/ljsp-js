@@ -17,6 +17,7 @@ describe("contains$", () => {
     expect(contains$(new Set(["a", "b", "c"]), "b")).toBe(true);
   });
   it("should return false if the element is NOT present in a Set", () => {
+    // @ts-ignore
     expect(contains$(new Set(["a", "b", "c"]), 2)).toBe(false);
   });
   it("should return true if the element is present in a Map", () => {

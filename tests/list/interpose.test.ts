@@ -7,12 +7,14 @@ describe("interpose", () => {
   });
   it("should return a transducer that works with LJSP's `reduce` if given one argument", () => {
     const transducer = interpose("-");
+    // @ts-ignore
     const reducer = transducer((a, c) => a.concat([c]));
     const result = reduce(reducer, [], [1, 2, 3]);
     expect(result).toEqual([1, "-", 2, "-", 3]);
   });
   it("should return a transducer that works with native `Array.prototype.reduce` if given one argument", () => {
     const transducer = interpose("-");
+    // @ts-ignore
     const reducer = transducer((a, c) => a.concat([c]));
     const result = [1, 2, 3].reduce(reducer, []);
     expect(result).toEqual([1, "-", 2, "-", 3]);

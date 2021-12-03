@@ -9,6 +9,7 @@ describe("M", function () {
       "three", 3,
       4, 4);
 
+    // @ts-ignore
     const expected = new Map([
       ["one", 1],
       ["two", 2],

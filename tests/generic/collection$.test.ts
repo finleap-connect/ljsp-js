@@ -1,4 +1,4 @@
-import { collection$ } from"../../lib/generic/collection$";
+import { collection$ } from "../../lib/generic/collection$";
 
 describe("collection$", () => {
   it("should return true if the item is an object", () => {

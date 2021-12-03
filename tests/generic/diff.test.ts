@@ -1,14 +1,16 @@
-import { diff } from"../../lib/generic/diff";
+import { diff } from "../../lib/generic/diff";
 
 describe("diff", function () {
   describe("arrays", function () {
     it("compare equal", function () {
+      // @ts-ignore
       const result = diff([1, 2, 3], [1, 2, 3]);
       expect(result[0]).toEqual([]);
       expect(result[0]).toEqual([]);
       expect(result[2]).toEqual([1, 2, 3]);
     });
     it("compare unequal", function () {
+      // @ts-ignore
       const result = diff([1, 2, 3, 4], [1, 2, 5]);
       expect(result[0]).toEqual([3, 4]);
       expect(result[1]).toEqual([5]);

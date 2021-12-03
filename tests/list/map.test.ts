@@ -15,12 +15,14 @@ describe("map", () => {
   });
   it("should return a transducer that works with LJSP's `reduce` if given one argument", () => {
     const transducer = map(inc);
+    // @ts-ignore
     const reducer = transducer((a, c) => a.concat([c]));
     const result = reduce(reducer, [], [1, 2, 3, 4, 5]);
     expect(result).toEqual([2, 3, 4, 5, 6]);
   });
   it("should return a transducer that works with `Array.prototype.reduce` if given one argument", () => {
     const transducer = map(inc);
+    // @ts-ignore
     const reducer = transducer((a, c) => a.concat([c]));
     const result = [1, 2, 3, 4, 5].reduce(reducer, []);
     expect(result).toEqual([2, 3, 4, 5, 6]);

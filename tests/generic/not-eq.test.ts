@@ -1,4 +1,4 @@
-import { notEq } from"../../lib/generic/not-eq";
+import { notEq } from "../../lib/generic/not-eq";
 
 describe("eq", function () {
   it("should return false if two primitives are equal by value", function () {

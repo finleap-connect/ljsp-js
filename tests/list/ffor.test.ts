@@ -9,7 +9,7 @@ describe("ffor", () => {
           [1, 2, 3],
           [1, 2, 3]
         ],
-        (x, y) => mult(x, y)
+        (x: number, y: number) => mult(x, y)
       )
     ).toEqual([1, 2, 3, 2, 4, 6, 3, 6, 9]);
   });
@@ -20,7 +20,7 @@ describe("ffor", () => {
           [1, 2, 3],
           [1, 2, 3]
         ],
-        (x, y) => [x, y].flat()
+        (x: any, y: any) => [x, y].flat()
       )
     ).toEqual([
       [1, 1],

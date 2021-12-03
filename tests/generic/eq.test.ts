@@ -1,4 +1,4 @@
-import { eq } from"../../lib/generic/eq";
+import { eq } from "../../lib/generic/eq";
 
 describe("eq", function () {
   it("should return true if two primitives are equal by value", function () {

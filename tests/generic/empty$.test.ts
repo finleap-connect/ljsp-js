@@ -1,4 +1,4 @@
-import { empty$ } from"../../lib/generic/empty$";
+import { empty$ } from "../../lib/generic/empty$";
 
 describe("empty$", () => {
   it("should return true if an Array has no elements", () => {
@@ -17,6 +17,7 @@ describe("empty$", () => {
     expect(empty$("")).toBe(true);
   });
   it("should return true if passed nothing", () => {
+    // @ts-ignore
     expect(empty$()).toBe(true);
   });
 });

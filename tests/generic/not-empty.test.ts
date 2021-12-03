@@ -1,13 +1,13 @@
-import { notEmpty } from"../../lib/generic/not-empty";
+import { notEmpty } from "../../lib/generic/not-empty";
 
 describe("notEmpty", () => {
   it("should return its argument if the argument is not empty", () => {
     expect(notEmpty([1])).toEqual([1]);
   });
-  it("should return its argument if the argument is not empty", () => {
+  it("should return its argument if the argument is not empty and is a Set", () => {
     expect(notEmpty(new Set([1]))).toEqual(new Set([1]));
   });
-  it("should return its argument if the argument is not empty", () => {
+  it("should return its argument if the argument is not empty and is object", () => {
     const sut = { a: 1 };
     expect(notEmpty(sut)).toBe(sut);
   });

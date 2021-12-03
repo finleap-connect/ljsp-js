@@ -1,4 +1,4 @@
-import { true$ } from"../../lib/generic/true$";
+import { true$ } from "../../lib/generic/true$";
 
 describe("true$", () => {
   it("should return true if the argument is true", () => {

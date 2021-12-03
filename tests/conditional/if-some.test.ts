@@ -5,8 +5,8 @@ describe("ifSome", () => {
     expect(
       ifSome(
         true,
-        (val) => `returns ${val}`,
-        (val) => `else returns ${val}`
+        (val: any) => `returns ${val}`,
+        (val: any) => `else returns ${val}`
       )
     ).toStrictEqual("returns true");
   });

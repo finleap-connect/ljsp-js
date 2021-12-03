@@ -19,7 +19,7 @@ describe("condp", () => {
     const result = condp(lt$, 15,
       1, "one",
       10, "ten",
-      100, (r) => r ? "evaluates true" : "evaluates false",
+      100, (r: any) => r ? "evaluates true" : "evaluates false",
       1000, "thousand",
       "default"
     );

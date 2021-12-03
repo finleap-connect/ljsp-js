@@ -1,4 +1,4 @@
-import { dotimes } from"../../lib/generic/dotimes";
+import { dotimes } from "../../lib/generic/dotimes";
 
 describe("dotimes", () => {
   it("should run a side effect n number of times, passing the arg to any callbacks", () => {

@@ -11,6 +11,7 @@ describe("disj", () => {
     expect(disj([1, 2, 3, 4], 2, 4)).toEqual([1, 3]);
   });
   it("should disjoin keys in a string", () => {
+    // @ts-ignore
     expect(disj("12345", 1, 3)).toEqual("245");
   });
 });

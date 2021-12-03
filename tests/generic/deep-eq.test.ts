@@ -1,4 +1,4 @@
-import { deepEq } from"../../lib/generic/deep-eq";
+import { deepEq } from "../../lib/generic/deep-eq";
 
 describe("deepEq", function () {
   it("compares arrays", function () {

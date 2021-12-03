@@ -6,11 +6,11 @@ describe("addWatch", function () {
     const ferret = { one: 1, two: 2, three: 3 };
     const test = jest.fn();
 
-    const watchedFerret = addWatch(ferret, "two", (key, object, oldState, newState) => {
+    const watchedFerret = addWatch(ferret, "two", (key: any, object: any, oldState: any, newState: any) => {
       test(`"ferret updated: ${key}, ${oldState} - ${newState}"`);
     });
 
-    swap(watchedFerret, (ferret) => {
+    swap(watchedFerret, (ferret: { two: number }) => {
       ferret.two = 42;
       return ferret;
     });

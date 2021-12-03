@@ -4,8 +4,4 @@
  * @param {*} locator
  * @returns {*}
  */
-export declare function insertBefore({ source, insert, locator }: {
-    source: any;
-    insert: any;
-    locator: any;
-}): any[];
+export declare function insertBefore({ source, insert, locator }: { source: any; insert: any; locator: any }): any[];

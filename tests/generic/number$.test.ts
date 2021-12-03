@@ -1,4 +1,4 @@
-import { number$ } from"../../lib/generic/number$";
+import { number$ } from "../../lib/generic/number$";
 
 describe("isBoolean", () => {
   it("returns true if value is Bool", () => {

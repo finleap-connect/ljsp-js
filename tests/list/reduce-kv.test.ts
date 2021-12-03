@@ -2,7 +2,7 @@ import { reduceKv } from "../../lib/list/reduce-kv";
 
 describe("reduceKv", function () {
   it("should reduce a kv pair", function () {
-    function flipKv(acc, key, value) {
+    function flipKv(acc: { [x: string]: any }, key: any, value: string | number) {
       acc[value] = key;
       return acc;
     }

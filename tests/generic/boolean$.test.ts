@@ -1,4 +1,4 @@
-import { boolean$ } from"../../lib/generic/boolean$";
+import { boolean$ } from "../../lib/generic/boolean$";
 
 describe("isBoolean", () => {
   it("returns true if value is Bool", () => {

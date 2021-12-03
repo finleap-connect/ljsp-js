@@ -1,4 +1,4 @@
-import { empty } from"../../lib/generic/empty";
+import { empty } from "../../lib/generic/empty";
 
 describe("empty", () => {
   it("should return an empty array when passed an array", () => {

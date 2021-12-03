@@ -1,15 +1,17 @@
 import { memoize } from "../../lib/function";
 
 // takes an argument to return the fibonacci value
+// @ts-ignore
 const fibonacci = (n) => {
   if (n === 1) return 1;
   return n * fibonacci(n - 1);
 };
 
 // takes two object and returns the sum of values of keys in a with b.
-const addObjectProp = (a, b) => {
+const addObjectProp = (a: { [x: string]: string }, b: { [x: string]: string }) => {
   const result = {};
   Object.keys(a).forEach((k) => {
+    // @ts-ignore
     result[k] = parseInt(a[k]) + parseInt(b[k]);
   });
   return result;
@@ -26,7 +28,7 @@ describe("memoize", function () {
     expect(memoizedFiboNacci.getCache().size).toEqual(2);
   });
   it("memoizes function with objects", function () {
-    const cacheKey = (x, y) => `${x.a}-${x.b}-${y.a}-${y.b}`;
+    const cacheKey = (x: { a: any; b: any }, y: { a: any; b: any }) => `${x.a}-${x.b}-${y.a}-${y.b}`;
 
     const memoizeAdd = memoize(addObjectProp, cacheKey);
 

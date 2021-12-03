@@ -5,7 +5,7 @@ import { mapIndexed } from "../../lib/list/map-indexed";
 
 describe("mapIndexed", () => {
   it("should map an index with a single value", () => {
-    const fn = (idx, itm) => [idx, itm];
+    const fn = (idx: any, itm: any) => [idx, itm];
     expect(mapIndexed(fn, "foobar")).toEqual([
       [0, "f"],
       [1, "o"],
@@ -18,7 +18,7 @@ describe("mapIndexed", () => {
   it("should map an index with a set of values", () => {
     expect(
       mapIndexed(
-        (a, b) => {
+        (a: string | number, b: any) => {
           const aGreater = lt$(a, 2);
           return when(aGreater, str(a, b));
         },
