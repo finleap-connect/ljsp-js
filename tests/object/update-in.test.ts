@@ -19,4 +19,11 @@ describe("updateIn", function () {
       }
     });
   });
+  it("should throw if a user tries to access a non-existent property", function () {
+    const base = { a: { b: 4 } };
+    const t = () => {
+      updateIn(base, ["a", "b", "c"], add, 10);
+    };
+    expect(t).toThrow();
+  });
 });
