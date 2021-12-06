@@ -5,8 +5,8 @@ export function updateIn(map: object, keys: string[], func: Function, ...args: a
   let current = keys[0];
   let rest = next(keys);
   if (rest) {
-    return Object.assign(map, { [current]: updateIn(map[current], rest, func, ...args) });
+    return Object.assign({}, map, { [current]: updateIn(map[current], rest, func, ...args) });
   } else {
-    return Object.assign(map, { [current]: func(map[current], ...args) });
+    return Object.assign({}, map, { [current]: func(map[current], ...args) });
   }
 }
