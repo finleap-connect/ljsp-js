@@ -4,5 +4,5 @@
  * @returns {{item: *}}
  */
 export declare function reduced(item: any): {
-    item: any;
+  item: any;
 };

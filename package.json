@@ -15,8 +15,8 @@
     "release:beta": "npm run build && npm publish --tag beta",
     "test": "jest --watch",
     "test:once": "jest",
-    "lint": "eslint lib/**/*.ts tests/**/*.js --fix --max-warnings=0",
-    "prettify:all": "prettier --write \"**/*.js*\""
+    "lint": "eslint lib/**/*.ts tests/**/*.ts --ignore-pattern=lib/**/*.d.ts --fix --max-warnings=0",
+    "prettify:all": "prettier --write \"**/*.ts*\""
   },
   "files": [
     "dist"
@@ -62,7 +62,7 @@
     "eslint-plugin-jest": "^24.3.2",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^7.0.4",
-    "jest": "^27.4.2",
+    "jest": "^26.1.0",
     "lint-staged": "^12.1.2",
     "prettier": "^2.1.2",
     "rollup": "^2.32.1",
@@ -76,7 +76,7 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-url": "^3.0.1",
     "rollup-plugin-visualizer": "^5.5.2",
-    "ts-jest": "^26.5.2",
+    "ts-jest": "^26.4.1",
     "typescript": "^4.2.2"
   },
   "sideEffects": false,
